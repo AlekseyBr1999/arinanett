@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навыки | Арина Петрова</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #0b0b13;
+            color: #fff;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Стилизация скроллбара */
+        html::-webkit-scrollbar { width: 12px; }
+        html::-webkit-scrollbar-track { background: #0b0b13; }
+        html::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #385fff, #e23f77); border-radius: 10px; border: 2px solid #0b0b13; }
+        html::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #5a7aff, #f35a8e); }
+        html { scrollbar-width: thin; scrollbar-color: #6d8eff #0b0b13; }
+        
+        /* Градиентный фон с анимацией */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 18% 32%, #2842c3bb 0%, transparent 55%),
+                radial-gradient(circle at 82% 72%, #c32b61bb 0%, transparent 44%),
+                linear-gradient(120deg, #10101b 90%, #202027 100%);
+            animation: gradientShift 12s infinite alternate;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-size: 150% 150%; background-position: 0% 0%; }
+            100% { background-size: 160% 160%; background-position: 100% 100%; }
+        }
+        
+        /* Анимированные частицы */
+        .particles { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; }
+        .particle { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.1); filter: blur(1px); animation: float 20s linear infinite; }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-120vh) scale(1.5); opacity: 0.7; }
+        }
+        
+        /* Главный контейнер */
+        .container { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 120px 20px 100px; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Хедер с навигацией */
+        header { position: fixed; top: 0; left: 0; right: 0; padding: 25px 5%; z-index: 100; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 11, 19, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); transform: translateY(0); transition: transform 0.4s ease, background 0.4s ease; }
+        header.scrolled { background: rgba(8, 8, 16, 0.95); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; transition: all 0.3s ease; }
+        .logo a { text-decoration: none; color: inherit; }
+        header.scrolled .logo { transform: scale(1.05); }
+        nav ul { display: flex; gap: 35px; list-style: none; }
+        nav a { color: rgba(220,220,230,0.85); text-decoration: none; font-weight: 500; font-size: 1.1rem; transition: all 0.3s ease; position: relative; }
+        nav a:hover { color: #fff; }
+        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6d8eff, #e23f77); transition: width 0.3s ease; }
+        nav a:hover::after { width: 100%; }
+        nav a.active { color: #fff; }
+        nav a.active::after { width: 100%; }
+        .mobile-nav-toggle { display: none; }
+
+        /* Стили страницы навыков */
+        .skills-page { width: 100%; padding-top: 50px; }
+        .page-title { font-size: 3.8rem; font-weight: 700; line-height: 1.1; background: linear-gradient(90deg, #fff, #a0a0d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); text-align: center; margin-bottom: 80px; opacity: 0; transform: translateY(30px); animation: fadeInTop 0.8s ease forwards; }
+        @keyframes fadeInTop { to { opacity: 1; transform: translateY(0); } }
+
+        .skills-section { margin-bottom: 80px; opacity: 0; transform: translateY(30px); animation: fadeInTop 0.8s ease forwards; }
+        .skills-section:nth-child(2) { animation-delay: 0.2s; }
+        .skills-section:nth-child(3) { animation-delay: 0.4s; }
+        .skills-section:nth-child(4) { animation-delay: 0.6s; }
+        .skills-section:nth-child(5) { animation-delay: 0.8s; }
+        
+        .section-subtitle { font-size: 2.2rem; font-weight: 600; margin-bottom: 40px; padding-bottom: 15px; border-bottom: 2px solid rgba(255, 255, 255, 0.1); position: relative; }
+        .section-subtitle::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 80px; height: 2px; background: linear-gradient(90deg, #6d8eff, #e23f77); }
+
+        .education-card { background: rgba(18, 18, 30, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; display: flex; align-items: center; gap: 30px; }
+        .education-icon { font-size: 4rem; background: linear-gradient(135deg, #385fff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .education-info h4 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 600; }
+        .education-info p { font-size: 1.1rem; color: rgba(220,220,240,0.8); line-height: 1.6; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+        .skill-card { background: rgba(18, 18, 30, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(5px); }
+        .skill-card:hover { transform: translateY(-8px); background: rgba(25, 25, 40, 0.9); border-color: rgba(109, 142, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .skill-icon { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(135deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+        .skill-card p { font-size: 0.9rem; color: rgba(220,220,240,0.7); line-height: 1.5; }
+
+        .key-points { margin-top: 40px; display: flex; flex-direction: column; gap: 30px; }
+        .key-point { position: relative; padding-left: 40px; }
+        .key-point::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 5px; width: 24px; height: 24px; background: linear-gradient(135deg, #385fff, #e23f77); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; }
+        .key-point-text { font-size: 1.4rem; line-height: 1.6; color: rgba(220,220,240,0.9); }
+        .highlight { background: linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+
+        /* Кнопка "На главную" */
+        .btn { padding: 16px 36px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; border: 2px solid transparent; position: relative; overflow: hidden; z-index: 1; }
+        .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #385fff, #e23f77); z-index: -1; transition: opacity 0.3s ease; }
+        .btn-primary { color: white; box-shadow: 0 10px 30px rgba(56, 95, 255, 0.3); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(56, 95, 255, 0.4); }
+        .back-to-home-section { text-align: center; margin-top: 80px; opacity: 0; transform: translateY(30px); animation: fadeInTop 0.8s ease 1s forwards; }
+
+        /* Параллакс слои */
+        .parallax-layer { position: absolute; z-index: -1; pointer-events: none; }
+        .layer-1 { top: 20%; right: 5%; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(109, 142, 255, 0.25) 0%, transparent 70%); filter: blur(40px); animation: floatElement 12s infinite alternate ease-in-out; }
+        .layer-2 { bottom: 15%; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(226, 63, 119, 0.25) 0%, transparent 70%); filter: blur(30px); animation: floatElement 15s infinite alternate-reverse ease-in-out; }
+        @keyframes floatElement { 0% { transform: translateY(0) rotate(0deg) scale(1); } 100% { transform: translateY(-50px) rotate(10deg) scale(1.1); } }
+        
+        #developer-signature { position: relative; z-index: 10; text-align: center; padding: 25px 20px; font-size: 1rem; color: rgba(220, 220, 240, 0.4); background: rgba(8, 8, 16, 0.6); backdrop-filter: blur(5px); border-top: 1px solid rgba(255, 255, 255, 0.08); }
+        #developer-signature a { color: rgba(109, 142, 255, 0.7); text-decoration: none; font-weight: 600; transition: all 0.3s ease; position: relative; }
+        #developer-signature a:hover { color: rgba(255, 255, 255, 0.8); }
+        .footer-year { display: block; margin-top: 8px; font-size: 0.9rem; color: rgba(220, 220, 240, 0.3); }
+
+        /* Стили для модального окна контактов */
+        .contact-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); animation: fadeIn 0.3s ease; align-items: center; justify-content: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .close-modal { color: #aaa; position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+        .close-modal:hover, .close-modal:focus { color: white; transform: scale(1.2); }
+        #multiContactModal .modal-content-multi { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; background: transparent; border: none; box-shadow: none; width: 100%; max-width: 950px; position: relative; padding: 40px 20px; }
+        .contact-card { background: rgba(18, 18, 30, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; width: 280px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 15px; opacity: 0; transform: translateY(30px); animation: cardFadeInUp 0.6s ease forwards; }
+        .contact-card:nth-child(2) { animation-delay: 0.1s; } .contact-card:nth-child(3) { animation-delay: 0.2s; }
+        @keyframes cardFadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .contact-card .contact-icon i { font-size: 28px; color: white; }
+        .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .contact-card h4 { font-size: 1.3rem; font-weight: 600; }
+        .contact-card .preference-text { font-size: 0.8rem; font-weight: 600; color: #ffd700; margin-top: -10px; }
+        .contact-card p { font-size: 1rem; color: #a0a0d0; }
+        .action-btn { display: block; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-align: center; position: relative; z-index: 2; width: 100%; font-size: 0.9rem; }
+        .action-primary { background: linear-gradient(90deg, #385fff, #e23f77); color: white; box-shadow: 0 5px 20px rgba(56, 95, 255, 0.3); }
+        .action-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(56, 95, 255, 0.4); }
+        .telegram .contact-icon { background: linear-gradient(135deg, #2AABEE, #229ED9); }
+        .max .contact-icon { background: none; }
+        .phone .contact-icon { background: linear-gradient(135deg, #25D366, #128C7E); }
+
+        /* Адаптивность и мобильная навигация (как в head.html) */
+        @media (max-width: 850px) {
+            .primary-navigation {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 70%;
+                max-width: 400px;
+                height: 100vh;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2em;
+                background: rgba(11, 11, 19, 0.95);
+                backdrop-filter: blur(1rem);
+                transform: translateX(100%);
+                transition: transform 350ms ease-out;
+                z-index: 1000;
+            }
+            .primary-navigation[data-visible="true"] {
+                transform: translateX(0%);
+            }
+            .primary-navigation a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-size: 1.3rem;
+                padding: 1rem 0;
+                white-space: normal;
+            }
+            .mobile-nav-toggle {
+                display: block;
+                position: absolute;
+                top: 1.8rem;
+                right: 2rem;
+                z-index: 2000;
+                background: transparent;
+                border: 0;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container { padding: 120px 20px 80px; }
+            .page-title { font-size: 2.8rem; margin-bottom: 60px; }
+            .section-subtitle { font-size: 1.8rem; }
+            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+            .education-card { flex-direction: column; text-align: center; }
+            .key-point-text { font-size: 1.2rem; }
+            .key-point { padding-left: 35px; }
+            #multiContactModal .modal-content-multi { flex-direction: column; align-items: center; gap: 20px; }
+            .contact-card { width: 90%; max-width: 300px; }
+        }
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .page-title { font-size: 2.4rem; }
+            .education-info h4 { font-size: 1.3rem; }
+            .education-info p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="particles" id="particles"></div>
+    <div class="parallax-layer layer-1"></div>
+    <div class="parallax-layer layer-2"></div>
+    
+    <header id="header">
+        <div class="logo">
+            <a href="head.html">Арина Петрова</a>
+        </div>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+            <span class="sr-only" style="display: none;">Меню</span>
+        </button>
+        <nav>
+            <ul id="primary-navigation" class="primary-navigation" data-visible="false">
+                <li><a href="head.html">Главная</a></li>
+                <li><a href="portfolio.html">Портфолио</a></li>
+                <li><a href="experience.html">Опыт</a></li>
+                <li><a href="skills.html" class="active">Навыки</a></li>
+                <li><a href="#" id="nav-contacts-link">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <section class="skills-page">
+            <h1 class="page-title">Навыки и компетенции</h1>
+
+            <div class="skills-section">
+                <h3 class="section-subtitle">Образование и Квалификация</h3>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-info">
+                        <h4>Государственный Университет (Пример)</h4>
+                        <p>Здесь можно разместить информацию о дипломе, например: "Специалист по направлению 'Журналистика', диплом с отличием. Тема дипломной работы: '...'"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3 class="section-subtitle">Программное обеспечение</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-figma"></i></div>
+                        <h4>Figma</h4>
+                        <p>Создание прототипов и дизайн-макетов</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-image"></i></div>
+                        <h4>Adobe Photoshop</h4>
+                        <p>Обработка изображений, создание графики</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-file-word"></i></div>
+                        <h4>MS Office Suite</h4>
+                        <p>Word, Excel, PowerPoint на продвинутом уровне</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-trello"></i></div>
+                        <h4>Trello / Jira</h4>
+                        <p>Управление проектами и задачами</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-camera"></i></div>
+                        <h4>Название ПО</h4>
+                        <p>Краткое описание навыка работы с программой</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Название ПО</h4>
+                        <p>Краткое описание навыка работы с программой</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3 class="section-subtitle">Работа с нейросетями (AI)</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                        <h4>ChatGPT 4o</h4>
+                        <p>Генерация и редактура текстов, брейншторминг</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                        <h4>Midjourney</h4>
+                        <p>Создание уникальных изображений по запросам</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                        <h4>Название AI</h4>
+                        <p>Краткое описание навыка работы с нейросетью</p>
+                    </div>
+                     <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-music"></i></div>
+                        <h4>Название AI</h4>
+                        <p>Краткое описание навыка работы с нейросетью</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3 class="section-subtitle">Ключевые профессиональные навыки</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <p class="key-point-text"><span class="highlight">Копирайтинг и рерайтинг</span></p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text"><span class="highlight">Редактура и корректура</span></p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text"><span class="highlight">SEO-оптимизация текстов</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3 class="section-subtitle">Компетенции</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <p class="key-point-text">Создание и разработка креативных концепций.</p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text">Написание продуктовых текстов, статей и лонгридов.</p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text">Редактура текста.</p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text">Генерация креативных идей для контент-плана.</p>
+                    </div>
+                     <div class="key-point">
+                        <p class="key-point-text">Создание текстового наполнения для посадочных страниц сайтов.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-to-home-section">
+                <a href="head.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> На главную
+                </a>
+            </div>
+
+        </section>
+    </div>
+
+    <div id="multiContactModal" class="contact-modal">
+        <div class="modal-content-multi">
+            <span class="close-modal">&times;</span>
+            <div class="contact-card">
+                <div class="contact-icon telegram"><i class="fab fa-telegram"></i></div>
+                <h4>Telegram</h4>
+                <div class="preference-text">Предпочтительно</div>
+                <p>@arina_copywriter</p>
+                <a href="https://t.me/arina_copywriter" target="_blank" class="action-btn action-primary">Написать</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon max"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"></div>
+                <h4>MAX</h4>
+                <p>arina_work</p>
+                <a href="https://max.team/arina_work" target="_blank" class="action-btn action-primary">Открыть</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon phone"><i class="fas fa-phone"></i></div>
+                <h4>Телефон</h4>
+                <p>+7 123 456 78-90</p>
+                <a href="tel:+71234567890" class="action-btn action-primary">Позвонить</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="developer-signature">
+        Сайт разработал 
+        <a href="#" onclick="event.preventDefault(); alert('Сайт Алексея Бронникова в разработке');">
+            Алексей Бронников
+        </a>
+        <span class="footer-year">2025</span>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создание частиц
+            const particlesContainer = document.getElementById('particles');
+            if (particlesContainer) {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 15 + 3;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.top = `${Math.random() * 100}vh`;
+                    particle.style.opacity = Math.random() * 0.3 + 0.1;
+                    particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Логика скролла для хедера
+            const header = document.getElementById('header');
+            function handleScroll() {
+                if (header) {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                }
+            }
+            window.addEventListener('scroll', handleScroll);
+
+            // Логика модального окна контактов
+            const multiModal = document.getElementById("multiContactModal");
+            const navContactsLink = document.getElementById('nav-contacts-link');
+
+            if (navContactsLink) {
+                navContactsLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if(multiModal) multiModal.style.display = "flex";
+                });
+            }
+
+            function closeModal() {
+                if(multiModal) multiModal.style.display = "none";
+            }
+
+            document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+            window.addEventListener('click', (e) => {
+                if (e.target === multiModal) {
+                    closeModal();
+                }
+            });
+
+            // Управление мобильной навигацией (как в head.html)
+            const nav = document.querySelector('.primary-navigation');
+            const navToggle = document.querySelector('.mobile-nav-toggle');
+
+            if (navToggle && nav) {
+                navToggle.addEventListener('click', () => {
+                    const isVisible = nav.getAttribute('data-visible');
+                    if (isVisible === 'false') {
+                        nav.setAttribute('data-visible', true);
+                        navToggle.setAttribute('aria-expanded', true);
+                        navToggle.querySelector('i').classList.replace('fa-bars', 'fa-times');
+                    } else {
+                        nav.setAttribute('data-visible', false);
+                        navToggle.setAttribute('aria-expanded', false);
+                        navToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
