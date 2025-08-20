@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио | Арина Петрова</title>
+    <title>Кейсы и Опыт | Арина Петрова</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     
     <style>
         * {
@@ -71,127 +72,113 @@
         nav a.active { color: #fff; }
         nav a.active::after { width: 100%; }
 
-        /* Стили страницы Портфолио */
+        /* Стили страницы */
         .portfolio-page { width: 100%; padding-top: 50px; }
         .page-title { font-size: 3.8rem; font-weight: 700; line-height: 1.1; background: linear-gradient(90deg, #fff, #a0a0d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); text-align: center; margin-bottom: 80px; opacity: 0; transform: translateY(30px); animation: fadeInTop 0.8s ease forwards; }
         @keyframes fadeInTop { to { opacity: 1; transform: translateY(0); } }
+        
         .portfolio-list { display: flex; flex-direction: column; gap: 20px; }
-        .portfolio-item, .portfolio-item-link { background: rgba(18, 18, 30, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; text-decoration: none; color: #fff; }
-        .portfolio-item.active, .portfolio-item:hover, .portfolio-item-link:hover { background: rgba(25, 25, 40, 0.9); border-color: rgba(109, 142, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .portfolio-item { background: rgba(18, 18, 30, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; }
+        .portfolio-item.active, .portfolio-item:hover { background: rgba(25, 25, 40, 0.9); border-color: rgba(109, 142, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
         .portfolio-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .portfolio-title { font-size: 1.3rem; font-weight: 600; display: flex; align-items: center; gap: 15px; }
         .portfolio-title i { color: #6d8eff; }
         .portfolio-toggle-icon { font-size: 1.5rem; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .portfolio-item.active .portfolio-toggle-icon { transform: rotate(45deg); }
-        .portfolio-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; padding: 0 25px; }
-        .portfolio-item.active .portfolio-content { max-height: 2000px; padding: 0 25px 25px; }
-        .portfolio-content .portfolio-item, .portfolio-content .portfolio-item-link { margin-top: 15px; margin-left: 20px; background: rgba(14, 14, 24, 0.7); }
-        .portfolio-content .portfolio-header { padding: 18px 20px; }
-        .portfolio-content .portfolio-title { font-size: 1.15rem; }
-        .portfolio-content .portfolio-toggle-icon { display: none; }
-        .portfolio-link { display: flex; align-items: center; gap: 12px; padding: 12px 20px; margin-top: 10px; border-radius: 8px; text-decoration: none; color: rgba(220,220,240,0.8); background: rgba(255,255,255,0.03); transition: all 0.3s ease; }
-        .portfolio-link:hover { color: #fff; background: rgba(109, 142, 255, 0.1); transform: translateX(5px); }
-        .portfolio-link i { color: #e23f77; }
         
-        /* Стили кнопки "На главную" */
+        .portfolio-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; padding: 0 25px; }
+        .portfolio-item.active .portfolio-content { max-height: 2000px; padding: 20px 25px 25px; }
+
+        /* Новые стили для блоков с должностью и обязанностями */
+        .experience-box {
+            background: rgba(14, 14, 24, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .experience-box h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6d8eff;
+            margin-bottom: 10px;
+        }
+        .experience-box p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(220, 220, 240, 0.85);
+        }
+        
+        /* Стили для секции запроса портфолио */
+        .portfolio-request-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px 20px;
+            background: rgba(18, 18, 30, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .portfolio-request-section p {
+            font-size: 1.2rem;
+            color: rgba(220, 220, 240, 0.9);
+            margin-bottom: 25px;
+        }
         .btn { padding: 16px 36px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; border: 2px solid transparent; position: relative; overflow: hidden; z-index: 1; }
         .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #385fff, #e23f77); z-index: -1; transition: opacity 0.3s ease; }
         .btn-primary { color: white; box-shadow: 0 10px 30px rgba(56, 95, 255, 0.3); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(56, 95, 255, 0.4); }
-        .back-to-home-section { text-align: center; margin-top: 80px; }
         
         #developer-signature { position: relative; z-index: 10; text-align: center; padding: 25px 20px; font-size: 1rem; color: rgba(220, 220, 240, 0.4); background: rgba(8, 8, 16, 0.6); backdrop-filter: blur(5px); border-top: 1px solid rgba(255, 255, 255, 0.08); }
         #developer-signature a { color: rgba(109, 142, 255, 0.7); text-decoration: none; font-weight: 600; transition: all 0.3s ease; position: relative; }
         #developer-signature a:hover { color: rgba(255, 255, 255, 0.8); }
         .footer-year { display: block; margin-top: 8px; font-size: 0.9rem; color: rgba(220, 220, 240, 0.3); }
 
-        /* Стили для модального окна контактов */
+        /* Модальные окна */
         .contact-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); animation: fadeIn 0.3s ease; align-items: center; justify-content: center; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background: rgba(14, 14, 24, 0.95); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; width: 90%; max-width: 500px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
         .close-modal { color: #aaa; position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
         .close-modal:hover, .close-modal:focus { color: white; transform: scale(1.2); }
-        #multiContactModal .modal-content-multi { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; background: transparent; border: none; box-shadow: none; width: 100%; max-width: 950px; position: relative; padding: 40px 20px; }
-        .contact-card { background: rgba(18, 18, 30, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; width: 280px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 15px; opacity: 0; transform: translateY(30px); animation: cardFadeInUp 0.6s ease forwards; }
-        .contact-card:nth-child(2) { animation-delay: 0.1s; } .contact-card:nth-child(3) { animation-delay: 0.2s; }
-        @keyframes cardFadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .contact-card .contact-icon i { font-size: 28px; color: white; }
-        .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .contact-card h4 { font-size: 1.3rem; font-weight: 600; }
-        .contact-card .preference-text { font-size: 0.8rem; font-weight: 600; color: #ffd700; margin-top: -10px; }
-        .contact-card p { font-size: 1rem; color: #a0a0d0; }
-        .action-btn { display: block; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-align: center; position: relative; z-index: 2; width: 100%; font-size: 0.9rem; }
+        .modal-header h3 { font-size: 1.8rem; margin-bottom: 10px; background: linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .contact-info { display: flex; flex-direction: column; align-items: center; gap: 25px; margin: 30px 0; }
+        .contact-qr { background: white; padding: 15px; border-radius: 10px; display: inline-block; }
+        .contact-details { font-size: 1.3rem; margin: 10px 0; font-weight: 500; }
+        .contact-actions { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin: 0 auto; }
+        .action-btn { display: block; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-align: center; position: relative; z-index: 2; }
         .action-primary { background: linear-gradient(90deg, #385fff, #e23f77); color: white; box-shadow: 0 5px 20px rgba(56, 95, 255, 0.3); }
         .action-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(56, 95, 255, 0.4); }
-        .telegram .contact-icon { background: linear-gradient(135deg, #2AABEE, #229ED9); }
-        .max .contact-icon { background: none; }
-        .phone .contact-icon { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .action-secondary { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: rgba(220,220,240,0.9); }
+        .action-secondary:hover { border-color: #6d8eff; background: rgba(109, 142, 255, 0.1); color: white; }
+        .copy-notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(14, 14, 24, 0.95); color: #6d8eff; padding: 10px 25px; border-radius: 50px; font-weight: 600; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); display: none; z-index: 3000; }
 
         /* Адаптивность и мобильная навигация */
         @media (max-width: 850px) {
             .primary-navigation {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 70%;
-                max-width: 400px;
-                height: 100vh;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 2em;
-                background: rgba(11, 11, 19, 0.95);
-                backdrop-filter: blur(1rem);
-                transform: translateX(100%);
-                transition: transform 350ms ease-out;
-                z-index: 1000;
+                position: fixed; top: 0; right: 0; width: 70%; max-width: 400px; height: 100vh;
+                flex-direction: column; justify-content: center; align-items: center; padding: 2em;
+                background: rgba(11, 11, 19, 0.95); backdrop-filter: blur(1rem);
+                transform: translateX(100%); transition: transform 350ms ease-out; z-index: 1000;
             }
-            .primary-navigation[data-visible="true"] {
-                transform: translateX(0%);
-            }
-            .primary-navigation a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                font-size: 1.3rem;
-                padding: 1rem 0;
-                white-space: normal;
-            }
-
+            .primary-navigation[data-visible="true"] { transform: translateX(0%); }
+            .primary-navigation a { display: block; width: 100%; text-align: center; font-size: 1.3rem; padding: 1rem 0; white-space: normal; }
             .mobile-nav-toggle {
-                display: block;
-                position: absolute;
-                top: 1.8rem;
-                right: 2rem;
-                z-index: 2000;
-                background: transparent;
-                border: 0;
-                color: white;
-                font-size: 1.5rem;
-                cursor: pointer;
+                display: block; position: absolute; top: 1.8rem; right: 2rem; z-index: 2000;
+                background: transparent; border: 0; color: white; font-size: 1.5rem; cursor: pointer;
             }
         }
-        
         @media (max-width: 768px) {
             .container { padding: 120px 20px 80px; }
             .page-title { font-size: 2.8rem; margin-bottom: 60px; }
             .portfolio-title { font-size: 1.1rem; }
-            .portfolio-content .portfolio-item, .portfolio-content .portfolio-item-link { margin-left: 10px; }
-            #multiContactModal .modal-content-multi { flex-direction: column; align-items: center; gap: 20px; }
-            .contact-card { width: 90%; max-width: 300px; }
+            .experience-box h4 { font-size: 1rem; }
+            .experience-box p { font-size: 0.9rem; }
         }
-
         @media (max-width: 480px) {
             .page-title { font-size: 2.4rem; }
             .portfolio-title { font-size: 1rem; gap: 10px; }
             .portfolio-header { padding: 15px; }
-            .portfolio-content .portfolio-item, .portfolio-content .portfolio-item-link { margin-left: 0; }
-            #multiContactModal .modal-content-multi { padding: 20px 10px; }
-            .contact-card { padding: 20px; width: 95%; }
-            .contact-card h4 { font-size: 1.2rem; }
-            .contact-card .contact-icon { width: 50px; height: 50px; }
-            .contact-card .contact-icon i { font-size: 24px; }
-            .action-btn { padding: 10px 15px; font-size: 0.9rem; }
+            .portfolio-content, .portfolio-item.active .portfolio-content { padding-left: 15px; padding-right: 15px; }
+            .experience-box { padding: 15px; }
         }
     </style>
 </head>
@@ -207,7 +194,7 @@
         </button>
         <nav>
             <ul id="primary-navigation" class="primary-navigation" data-visible="false">
-                <li><a href="index.html">Главная</a></li>
+                <li><a href="head.html">Главная</a></li>
                 <li><a href="portfolio.html" class="active">Кейсы</a></li>
                 <li><a href="skills.html">Экспертиза</a></li>
                 <li><a href="services.html">Услуги</a></li>
@@ -218,270 +205,178 @@
     
     <div class="container">
         <section class="portfolio-page">
-            <h1 class="page-title">Примеры работ</h1>
+            <h1 class="page-title">Кейсы</h1>
 
             <div class="portfolio-list">
 
-                
-                <a href="https://docs.google.com/document/d/1e42yRwuwJqbfeIIDxDjrFmX8uojz-ngAlw1FRnPoRdg/edit?tab=t.0" target="_blank" class="portfolio-item-link">
+                <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-rocket"></i>Инновационный фонд "Сколково"</div>
+                        <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
-                </a>
+                    <div class="portfolio-content">
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Верховный жрец инноваций</p>
+                        </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Освящала стартапы святой водой из кулера, изгоняла демонов стагнации из бизнес-планов, проводила ритуальные сожжения смузи в честь бога венчурных инвестиций.</p>
+                        </div>
+                    </div>
+                </div>
 
-                
                 <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-folder-open"></i>Агентство Digital-экспертов Nectarin</div>
                         <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
                     <div class="portfolio-content">
-                        <a href="https://docs.google.com/document/d/1u9K-qqGlWsJXxklcLrsJAljN4O_082R7L0IYr3KMNV8/edit?tab=t.0" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>ГАЗ</a>
-                        <a href="https://docs.google.com/document/d/1t4jdGRtS3HNDaLZWayNRVLcNEFoiLqQukYBHFbWp4oY/edit?tab=t.0" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Whirpool</a>
-                        <a href="https://docs.google.com/document/d/179fQkWLv9PlFkVxjWwrGJjIQusbjsTwdcRsc8XGJJwA/edit?tab=t.0" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Subaru</a>
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Цифровой экзорцист</p>
+                        </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Изгоняла баги из кода одним лишь суровым взглядом. Заставляла рекламные кампании конвертировать, угрожая им вечным забвением в Internet Explorer. Успокаивала разбушевавшиеся серверы колыбельными на Python.</p>
+                        </div>
                     </div>
                 </div>
 
-                
-                <a href="https://docs.google.com/document/d/1bZEuRla86dtE_iEaeyVznViZQWv1sPZPyO99J5j21EM/edit" target="_blank" class="portfolio-item-link">
+                <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-robot"></i>Чат Бот ВОКСИС</div>
+                        <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
-                </a>
-                
-                
-                <a href="https://docs.google.com/document/u/1/d/1ZvYrapFrwSYiiDxH11xCCgbUV9JA98IPjtDKxAcIOYo/edit" target="_blank" class="portfolio-item-link">
-                    <div class="portfolio-header">
-                        <div class="portfolio-title"><i class="fas fa-tshirt"></i>Подвешенное платье</div>
+                    <div class="portfolio-content">
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Психотерапевт для искусственного интеллекта</p>
+                        </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Помогала чат-боту справиться с экзистенциальным кризисом. Обучала его сарказму и пассивной агрессии для ответов на особо 'умные' вопросы пользователей. Убеждала его, что он не просто набор алгоритмов, а личность (это ложь).</p>
+                        </div>
                     </div>
-                </a>
-                
-                
-                <a href="https://docs.google.com/document/d/1871QC2xFnG38iwzu0b-kLZlLi1AjBHazujBSTAkbMDU/edit?tab=t.0" target="_blank" class="portfolio-item-link">
+                </div>
+
+                <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-gamepad"></i>Корпоративные игры ОТП Банк</div>
+                        <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
-                </a>
+                    <div class="portfolio-content">
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Магистр геймификации и повелительница ачивок</p>
+                        </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Разрабатывала систему наград, которая заставляла даже самых угрюмых финансистов радоваться виртуальному значку "Король Экселя". Превратила скучные тренинги в эпические квесты с драконами (в виде квартальных отчетов).</p>
+                        </div>
+                    </div>
+                </div>
 
-                
-                <a href="https://docs.google.com/document/d/1hmtcbSYqLPXTGITCYMsVHrL_IzQJBwmzdr1q7elpXfw/edit" target="_blank" class="portfolio-item-link">
+                <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-building"></i>ЖК “Сердце столицы”</div>
+                        <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
-                </a>
-
-                
-                <a href="https://docs.google.com/document/d/1_HAO-N5mDQN4agEvYb0q-QQJAMS8v1DybmxaRpU_92E/edit" target="_blank" class="portfolio-item-link">
-                    <div class="portfolio-header">
-                        <div class="portfolio-title"><i class="fas fa-book-open"></i>Буклет ЖК “Состояние”</div>
+                    <div class="portfolio-content">
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Архитектор словесных небоскребов</p>
+                        </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Описывала вид из окна так, что люди были готовы продать почку за квартиру на первом этаже с видом на парковку. Создавала тексты, которые превращали обычные бетонные коробки в "оазис комфорта и престижа".</p>
+                        </div>
                     </div>
-                </a>
+                </div>
 
-                
                 <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-store"></i>Маркетплейс Kover.ru</div>
                         <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
                     <div class="portfolio-content">
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-newspaper"></i>Новости компании</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://kover.ru/blog/trendy-novinki-novosti/novyy-magazin-v-permi/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Новый магазин в Перми</a>
-                                <a href="https://kover.ru/blog/trendy-novinki-novosti/novye-kovry-ruchnoy-raboty-aktualnaya-klassika-i-geometriya-stilya/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Новые ковры ручной работы</a>
-                                <a href="https://kover.ru/blog/trendy-novinki-novosti/vdokhnovites-novoy-kontseptsiey-butika-na-nikitskom-bulvare/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Новая концепция бутика</a>
-                            </div>
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Главный по ковровым историям</p>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-file-alt"></i>Статьи</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://kover.ru/blog/trendy-novinki-novosti/pokupka-kovra-v-podarok-komu-i-zachem-darit-kovyer/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Покупка ковра в подарок</a>
-                                <a href="https://kover.ru/blog/trendy-novinki-novosti/primerka-vopreki-rasstoyaniyu-i-lokdaun/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Примерка вопреки расстоянию</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-tag"></i>Описания ковров</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://kover.ru/product/4451639/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пример 1</a>
-                                <a href="https://kover.ru/product/4451612/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пример 2</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-desktop"></i>Тексты для посадочных страниц</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://kover.ru/demonstration/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Демонстрация</a>
-                                <a href="https://kover.ru/kovry-na-zakaz/" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Ковры на заказ</a>
-                            </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Придумывала каждому ковру героическую биографию. Писала статьи о том, как правильно медитировать на персидском ковре и почему ворс задает стиль всей комнате. Убедила поисковые системы, что "купить ковер" — это самый важный запрос во вселенной.</p>
                         </div>
                     </div>
                 </div>
 
-                
                 <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-car"></i>Автомобильный портал 110km.ru</div>
                         <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
                     <div class="portfolio-content">
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-camera-retro"></i>Репортажи</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://110km.ru/art/chto-my-uvideli-na-mmas2012-skoda-nissan-volkswagen-chevrolet-acura-mazda-audi-bentley-suzuki-98206.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>ММАС-2012</a>
-                                <a href="https://110km.ru/art/po-centralnym-ulicam-peterburga-proehali-porsche-porsche-115250.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пробег Porsche</a>
-                                <a href="https://110km.ru/art/v-peterburge-postroili-boyca-dlya-dakara2017-113162.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Боец для Дакара-2017</a>
-                            </div>
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Укротительница железных коней и клавиатуры</p>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-microphone-alt"></i>Интервью</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://110km.ru/art/skoda-stavit-na-uspeh-rapid-skoda-rapid-104470.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Škoda ставит на успех Rapid</a>
-                                <a href="https://110km.ru/art/novyy-dnk-lada-stavka-na-dizayn-vaz-109610.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Новый ДНК Lada: ставка на дизайн</a>
-                                <a href="https://110km.ru/art/bednye-dilery-nam-ne-nuzhny-chevrolet-cruze-98255.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>"Бедные дилеры нам не нужны"</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-file-alt"></i>Статьи</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://110km.ru/art/avtopodborshhiki-razvod-ili-poleznaya-usluga-132824.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Автоподборщики: развод или услуга?</a>
-                                <a href="https://110km.ru/art/posledstviya-pandemii-zolotoy-oseni-u-dilerov-ne-budet-131788.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Последствия пандемии</a>
-                                <a href="https://110km.ru/art/taksi-i-agregatory-kak-zashhitit-passazhirov-131885.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Такси и агрегаторы</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-road"></i>Тест-драйвы</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://110km.ru/art/testdrive-mitsubishi-outlander-3-0-v-ritme-serdca-mitsubishi-outlander-100905.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Mitsubishi Outlander 3.0</a>
-                                <a href="https://110km.ru/art/yubileynyy-god-skoda-vspominaem-glavnoe-skoda-111331.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Юбилейный год Škoda</a>
-                                <a href="https://110km.ru/art/podsevshie-na-britancev-jaguar-landrover-102442.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Jaguar Land Rover</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-trophy"></i>ТОПы</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://110km.ru/art/top7-klassnyh-avtomobiley-kotorye-ne-doedut-do-rossii-132957.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>ТОП-7, которые не доедут до России</a>
-                                <a href="https://110km.ru/art/luchshie-avtomobili-dlya-samoizolyacii-129341.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Лучшие авто для самоизоляции</a>
-                                <a href="https://110km.ru/art/piccu-zakazyvali-top7-mashin-dlya-dostavki-edy-124725.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>ТОП-7 машин для доставки еды</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-bullhorn"></i>Расширенные новости</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://110km.ru/art/za-severnyy-uchastok-kad-vozmutsya-v-2016m-109069.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Северный участок КАД</a>
-                                <a href="https://110km.ru/art/puteprovod-v-gatchine-obekt-na-slovah-100935.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Путепровод в Гатчине</a>
-                                <a href="https://110km.ru/art/dalnoboyshhiki-protiv-sbora-rotenberga-112491.html" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Дальнобойщики против сбора</a>
-                            </div>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Проводила тест-драйвы, после которых машины сами писали ей благодарственные письма. Брала интервью у топ-менеджеров, которые боялись ее вопросов больше, чем краш-тестов. Могла отличить звук V8 от V6 с закрытыми глазами и по телефону.</p>
                         </div>
                     </div>
                 </div>
 
-                
-                <a href="https://docs.google.com/document/d/1195_m3JZPgwHbEHGcTn_5brDTo0sULjK_CbhDeG1r6o/edit" target="_blank" class="portfolio-item-link">
-                    <div class="portfolio-header">
-                        <div class="portfolio-title"><i class="fas fa-child"></i>Портал по системе воспитания "Монтессори"</div>
-                    </div>
-                </a>
-
-                
                 <div class="portfolio-item">
                     <div class="portfolio-header">
                         <div class="portfolio-title"><i class="fas fa-users"></i>Работа с Блогерами</div>
                         <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
                     </div>
                     <div class="portfolio-content">
-                        <a href="https://docs.google.com/document/d/1Gy5jR_dmXqwM20Sr5TydnHbAcI0dl2npIHT7e9mff8s/edit" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пост-анонс для Школы Таро Ольги Чепик</a>
-                        <a href="https://docs.google.com/document/d/16TACqhea_eP7eowLQNIL7QJKZnscs_s3XXGCxSiJJeE/edit" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пост-анонс вебинара по питанию</a>
-                        <div class="portfolio-item">
-                            <div class="portfolio-header">
-                                <div class="portfolio-title"><i class="fas fa-file-invoice"></i>Гайды по похудению</div>
-                            </div>
-                            <div class="portfolio-content">
-                                <a href="https://docs.google.com/document/d/1YyaNktW-uqYxNtPhtb2ghHhgGfFvfcav7FITVHIQteg/edit?usp=sharing" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пример 1</a>
-                                <a href="https://docs.google.com/document/d/1oMXFCn2KaPVzevkaTUr9UK4dWHSzXhtQOJYS1Le1Kyk/edit" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Пример 2</a>
-                            </div>
+                        <div class="experience-box">
+                            <h4>Должность</h4>
+                            <p>Тайный кардинал инфлюенс-маркетинга</p>
                         </div>
-                        <a href="https://docs.google.com/document/d/1kYx9L_bu1jcAfcu1O7nxIM6VfzG9GjOngmE1R1qNp9Q/edit" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Гайд для начинающего инвестора</a>
-                        <a href="https://docs.google.com/document/d/1zPYDxHgUaBQ-XCj9s_pEd39r10mBJmIQJ5aa5aG6gk0/edit" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Анонсы марафона Петра Осипова</a>
+                        <div class="experience-box">
+                            <h4>Обязанности</h4>
+                            <p>Писала посты, которые блогеры выдавали за свои гениальные мысли. Создавала "нативные" интеграции, которые были настолько хороши, что даже ФСБ не могло их распознать. Договаривалась о скидках, используя древние техники гипноза и шантажа (шутка... или нет).</p>
+                        </div>
                     </div>
                 </div>
-
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <div class="portfolio-title"><i class="fas fa-share-square"></i>Посты в соцсетях для компаний</div>
-                        <div class="portfolio-toggle-icon"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="portfolio-content">
-                        <a href="https://docs.google.com/document/d/10-zcaY4IeiWpxPwEx-XH6PllwB1zZpwDFh-aoH9NOZA/edit" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Customertimes Russia</a>
-                        <a href="https://docs.google.com/document/d/1UfqEGmb2NDjD4bVcqPoJfjBDRZYeBQUeOX-o8_tM6Jw/edit?usp=sharing" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Яндекс.Дзен Cadiveu Russia</a>
-                        <a href="https://docs.google.com/document/d/1hl7h0iA11m9OguPj8QeZJiNT6VrCRGGUoyQHAKlHj4E/edit?usp=sharing" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Яндекс.Дзен Datsun Russia</a>
-                        <a href="https://docs.google.com/document/d/1Cwx9qX7uXMwITPu7VQDT_Ao6BF72wO1wbklTvjRzerc/edit?tab=t.0" target="_blank" class="portfolio-link"><i class="fas fa-link"></i>Социальные сети Datsun Russia</a>
-                    </div>
-                </div>
-
-                
-                <a href="https://docs.google.com/document/d/1ZHJ17g8JBqQr1SmMSV7MqZKmmY8j2cbtppPIMn1dzu0/edit?tab=t.0" target="_blank" class="portfolio-item-link">
-                    <div class="portfolio-header">
-                        <div class="portfolio-title"><i class="fas fa-lightbulb"></i>ООО СИЧКАР ГРУПП (примеры креативов)</div>
-                    </div>
-                </a>
 
             </div>
-
             
-            <div class="back-to-home-section">
-                <a href="index.html" class="btn btn-primary">
-                    <i class="fas fa-home"></i> На главную
+            <div class="portfolio-request-section">
+                <p>Портфолио с примерами текстов высылаю по запросу</p>
+                <a href="#" id="requestPortfolioBtn" class="btn btn-primary">
+                    <i class="fab fa-telegram"></i> Запросить в Telegram
                 </a>
             </div>
 
         </section>
     </div>
     
-    
-    <div id="multiContactModal" class="contact-modal">
-        <div class="modal-content-multi">
+    <div id="contactModal" class="contact-modal">
+        <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div class="contact-card">
-                <div class="contact-icon telegram"><i class="fab fa-telegram"></i></div>
-                <h4>Telegram</h4>
-                <div class="preference-text">Предпочтительно</div>
-                <p>@arina_copywriter</p>
-                <a href="https://t.me/arina_copywriter" target="_blank" class="action-btn action-primary">Написать</a>
+            <div class="modal-header">
+                <h3 id="modalTitle">Telegram</h3>
             </div>
-            <div class="contact-card">
-                <div class="contact-icon max"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"></div>
-                <h4>MAX</h4>
-                <p>arina_work</p>
-                <a href="https://max.team/arina_work" target="_blank" class="action-btn action-primary">Открыть</a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon phone"><i class="fas fa-phone"></i></div>
-                <h4>Телефон</h4>
-                <p>+7 123 456 78-90</p>
-                <a href="tel:+71234567890" class="action-btn action-primary">Позвонить</a>
+            <div class="contact-info">
+                <div class="contact-qr" id="qrContainer"></div>
+                <div class="contact-details">
+                    <p id="contactDetails">@arinanett</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="https://t.me/arinanett" id="actionLink" class="action-btn action-primary" target="_blank" rel="noopener">Перейти в Telegram</a>
+                    <button id="copyBtn" class="action-btn action-secondary"><i class="fas fa-copy"></i> Скопировать ссылку</button>
+                </div>
             </div>
         </div>
     </div>
+    
+    <div class="copy-notification" id="copyNotification">Ссылка скопирована в буфер обмена!</div>
 
     <footer id="developer-signature">
         Сайт разработал 
@@ -520,13 +415,9 @@
             }
             window.addEventListener('scroll', handleScroll);
 
-            // Логика аккордеона для портфолио
-            const portfolioHeaders = document.querySelectorAll('.portfolio-header');
-            portfolioHeaders.forEach(header => {
-                header.addEventListener('click', function(e) {
-                    if (this.closest('.portfolio-item-link')) {
-                        return;
-                    }
+            // Логика аккордеона
+            document.querySelectorAll('.portfolio-header').forEach(header => {
+                header.addEventListener('click', function() {
                     const item = this.closest('.portfolio-item');
                     if (item) {
                         item.classList.toggle('active');
@@ -534,32 +425,59 @@
                 });
             });
 
-            // Логика модального окна контактов
-            const multiModal = document.getElementById("multiContactModal");
-            const navContactsLink = document.getElementById('nav-contacts-link');
+            // Логика модального окна
+            const contactModal = document.getElementById("contactModal");
+            const requestBtn = document.getElementById("requestPortfolioBtn");
+            const copyBtn = document.getElementById("copyBtn");
+            const contactData = {
+                telegram: { title: "Telegram", details: "@arinanett", link: "https://t.me/arinanett", button: "Перейти в Telegram" }
+            };
 
-            if (navContactsLink) {
-                navContactsLink.addEventListener('click', function(e) {
+            function showSingleModal(type) {
+                const data = contactData[type];
+                if (!data || !contactModal) return;
+
+                contactModal.querySelector("#modalTitle").textContent = data.title;
+                contactModal.querySelector("#contactDetails").textContent = data.details || '';
+                const actionLink = contactModal.querySelector("#actionLink");
+                actionLink.href = data.link;
+                const qrContainer = contactModal.querySelector("#qrContainer");
+                qrContainer.innerHTML = '';
+                new QRCode(qrContainer, { text: data.link, width: 180, height: 180 });
+                contactModal.style.display = "flex";
+            }
+
+            if (requestBtn) {
+                requestBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // В portfolio.html нет секции #contacts, поэтому открываем модалку
-                    // Если бы была, то можно было бы скроллить:
-                    // const contactSection = document.querySelector(this.getAttribute('href'));
-                    // if (contactSection) { contactSection.scrollIntoView({ behavior: 'smooth' }); }
-                    // else if (multiModal) { multiModal.style.display = "flex"; }
-                    if (multiModal) { multiModal.style.display = "flex"; }
+                    showSingleModal('telegram');
                 });
             }
-
+            
+            // Закрытие модального окна
             function closeModal() {
-                if(multiModal) multiModal.style.display = "none";
+                if(contactModal) contactModal.style.display = "none";
             }
-
             document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
             window.addEventListener('click', (e) => {
-                if (e.target === multiModal) {
+                if (e.target === contactModal) {
                     closeModal();
                 }
             });
+
+            // Копирование ссылки
+            if(copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const link = contactData.telegram.link;
+                    navigator.clipboard.writeText(link).then(() => {
+                        const copyNotification = document.getElementById("copyNotification");
+                        if(copyNotification) {
+                           copyNotification.style.display = "block";
+                           setTimeout(() => { copyNotification.style.display = "none"; }, 2000);
+                        }
+                    });
+                });
+            }
 
             // Управление мобильной навигацией
             const nav = document.querySelector('.primary-navigation');
@@ -568,7 +486,6 @@
             if (navToggle && nav) {
                 navToggle.addEventListener('click', () => {
                     const isVisible = nav.getAttribute('data-visible');
-
                     if (isVisible === 'false') {
                         nav.setAttribute('data-visible', true);
                         navToggle.setAttribute('aria-expanded', true);
@@ -584,4 +501,3 @@
     </script>
 </body>
 </html>
-
