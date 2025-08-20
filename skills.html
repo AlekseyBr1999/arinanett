@@ -110,14 +110,12 @@
         .key-point-text { font-size: 1.4rem; line-height: 1.6; color: rgba(220,220,240,0.9); }
         .highlight { background: linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
 
-        /* Кнопка "На главную" */
         .btn { padding: 16px 36px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; border: 2px solid transparent; position: relative; overflow: hidden; z-index: 1; }
         .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #385fff, #e23f77); z-index: -1; transition: opacity 0.3s ease; }
         .btn-primary { color: white; box-shadow: 0 10px 30px rgba(56, 95, 255, 0.3); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(56, 95, 255, 0.4); }
         .back-to-home-section { text-align: center; margin-top: 80px; opacity: 0; transform: translateY(30px); animation: fadeInTop 0.8s ease 1s forwards; }
 
-        /* Параллакс слои */
         .parallax-layer { position: absolute; z-index: -1; pointer-events: none; }
         .layer-1 { top: 20%; right: 5%; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(109, 142, 255, 0.25) 0%, transparent 70%); filter: blur(40px); animation: floatElement 12s infinite alternate ease-in-out; }
         .layer-2 { bottom: 15%; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(226, 63, 119, 0.25) 0%, transparent 70%); filter: blur(30px); animation: floatElement 15s infinite alternate-reverse ease-in-out; }
@@ -153,44 +151,16 @@
         /* Адаптивность и мобильная навигация */
         @media (max-width: 850px) {
             .primary-navigation {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 70%;
-                max-width: 400px;
-                height: 100vh;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 2em;
-                background: rgba(11, 11, 19, 0.95);
-                backdrop-filter: blur(1rem);
-                transform: translateX(100%);
-                transition: transform 350ms ease-out;
-                z-index: 1000;
+                position: fixed; top: 0; right: 0; width: 70%; max-width: 400px; height: 100vh;
+                flex-direction: column; justify-content: center; align-items: center; padding: 2em;
+                background: rgba(11, 11, 19, 0.95); backdrop-filter: blur(1rem);
+                transform: translateX(100%); transition: transform 350ms ease-out; z-index: 1000;
             }
-            .primary-navigation[data-visible="true"] {
-                transform: translateX(0%);
-            }
-            .primary-navigation a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                font-size: 1.3rem;
-                padding: 1rem 0;
-                white-space: normal;
-            }
+            .primary-navigation[data-visible="true"] { transform: translateX(0%); }
+            .primary-navigation a { display: block; width: 100%; text-align: center; font-size: 1.3rem; padding: 1rem 0; white-space: normal; }
             .mobile-nav-toggle {
-                display: block;
-                position: absolute;
-                top: 1.8rem;
-                right: 2rem;
-                z-index: 2000;
-                background: transparent;
-                border: 0;
-                color: white;
-                font-size: 1.5rem;
-                cursor: pointer;
+                display: block; position: absolute; top: 1.8rem; right: 2rem; z-index: 2000;
+                background: transparent; border: 0; color: white; font-size: 1.5rem; cursor: pointer;
             }
         }
 
@@ -203,8 +173,35 @@
             .education-card { flex-direction: column; text-align: center; }
             .key-point-text { font-size: 1.2rem; }
             .key-point { padding-left: 35px; }
-            #multiContactModal .modal-content-multi { flex-direction: column; align-items: center; gap: 20px; }
-            .contact-card { width: 90%; max-width: 300px; }
+            
+            /* ИСПРАВЛЕНИЯ ДЛЯ МОДАЛЬНОГО ОКНА */
+            .contact-modal { align-items: flex-start; }
+            #multiContactModal .modal-content-multi {
+                flex-direction: column; align-items: center;
+                gap: 15px; /* Уменьшаем отступ */
+                padding: 50px 15px 20px 15px; /* Увеличиваем верхний отступ для крестика, остальное уменьшаем */
+            }
+            .contact-card {
+                width: 90%; max-width: 300px;
+                padding: 20px; /* Уменьшаем внутренний отступ */
+                gap: 10px; /* Уменьшаем отступ внутри карточки */
+            }
+            .contact-card .contact-icon {
+                width: 50px; height: 50px; /* Уменьшаем иконку */
+            }
+            .contact-card .contact-icon i {
+                font-size: 24px; /* Уменьшаем иконку */
+            }
+            .contact-card h4 {
+                font-size: 1.2rem; /* Уменьшаем заголовок */
+            }
+            .contact-card p {
+                font-size: 0.9rem; /* Уменьшаем текст */
+            }
+            .action-btn {
+                padding: 10px 15px; /* Уменьшаем кнопку */
+                font-size: 0.85rem;
+            }
         }
         @media (max-width: 480px) {
             .skills-grid { grid-template-columns: 1fr; }
