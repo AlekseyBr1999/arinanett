@@ -89,7 +89,6 @@
         .portfolio-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; padding: 0 25px; }
         .portfolio-item.active .portfolio-content { max-height: 2000px; padding: 20px 25px 25px; }
 
-        /* Новые стили для блоков с должностью и обязанностями */
         .experience-box {
             background: rgba(14, 14, 24, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -109,7 +108,6 @@
             color: rgba(220, 220, 240, 0.85);
         }
         
-        /* Стили для секции запроса портфолио */
         .portfolio-request-section {
             text-align: center;
             margin-top: 80px;
@@ -133,7 +131,7 @@
         #developer-signature a:hover { color: rgba(255, 255, 255, 0.8); }
         .footer-year { display: block; margin-top: 8px; font-size: 0.9rem; color: rgba(220, 220, 240, 0.3); }
 
-        /* Модальные окна */
+        /* --- ИЗМЕНЕНИЕ: Добавлены стили для модальных окон --- */
         .contact-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); animation: fadeIn 0.3s ease; align-items: center; justify-content: center; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-content { background: rgba(14, 14, 24, 0.95); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; width: 90%; max-width: 500px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
@@ -150,6 +148,22 @@
         .action-secondary { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: rgba(220,220,240,0.9); }
         .action-secondary:hover { border-color: #6d8eff; background: rgba(109, 142, 255, 0.1); color: white; }
         .copy-notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(14, 14, 24, 0.95); color: #6d8eff; padding: 10px 25px; border-radius: 50px; font-weight: 600; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); display: none; z-index: 3000; }
+
+        #multiContactModal .modal-content-multi { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; background: transparent; border: none; box-shadow: none; width: 100%; max-width: 950px; position: relative; padding: 40px 20px; }
+        .contact-card { background: rgba(18, 18, 30, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; width: 280px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 15px; opacity: 0; transform: translateY(30px); animation: cardFadeInUp 0.6s ease forwards; }
+        .contact-card:nth-child(2) { animation-delay: 0.1s; } .contact-card:nth-child(3) { animation-delay: 0.2s; }
+        @keyframes cardFadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .contact-card .contact-icon i { font-size: 28px; color: white;}
+        .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .contact-card h4 { font-size: 1.3rem; font-weight: 600; }
+        .contact-card .preference-text { font-size: 0.8rem; font-weight: 600; color: #ffd700; margin-top: -10px; }
+        .contact-card p { font-size: 1rem; color: #a0a0d0; }
+        .contact-card .action-btn { width: 100%; padding: 12px; font-size: 0.9rem; }
+        .telegram .contact-icon { background: linear-gradient(135deg, #2AABEE, #229ED9); }
+        .max .contact-icon { background: none; }
+        .phone .contact-icon { background: linear-gradient(135deg, #25D366, #128C7E); }
+        /* --- Конец добавленных стилей --- */
 
         /* Адаптивность и мобильная навигация */
         @media (max-width: 850px) {
@@ -172,6 +186,10 @@
             .portfolio-title { font-size: 1.1rem; }
             .experience-box h4 { font-size: 1rem; }
             .experience-box p { font-size: 0.9rem; }
+            
+            /* --- ИЗМЕНЕНИЕ: Добавлены стили для адаптации модального окна --- */
+            #multiContactModal .modal-content-multi { flex-direction: column; align-items: center; gap: 20px; }
+            .contact-card { width: 90%; max-width: 300px; }
         }
         @media (max-width: 480px) {
             .page-title { font-size: 2.4rem; }
@@ -179,6 +197,14 @@
             .portfolio-header { padding: 15px; }
             .portfolio-content, .portfolio-item.active .portfolio-content { padding-left: 15px; padding-right: 15px; }
             .experience-box { padding: 15px; }
+            
+            /* --- ИЗМЕНЕНИЕ: Добавлены стили для адаптации модального окна --- */
+            #multiContactModal .modal-content-multi { padding: 20px 10px; }
+            .contact-card { padding: 20px; width: 95%; }
+            .contact-card h4 { font-size: 1.2rem; }
+            .contact-card .contact-icon { width: 50px; height: 50px; }
+            .contact-card .contact-icon i { font-size: 24px; }
+            .action-btn { padding: 10px 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -194,7 +220,8 @@
         </button>
         <nav>
             <ul id="primary-navigation" class="primary-navigation" data-visible="false">
-                <li><a href="head.html">Главная</a></li>
+                
+                <li><a href="index.html">Главная</a></li>
                 <li><a href="portfolio.html" class="active">Кейсы</a></li>
                 <li><a href="skills.html">Экспертиза</a></li>
                 <li><a href="services.html">Услуги</a></li>
@@ -376,6 +403,32 @@
         </div>
     </div>
     
+    
+    <div id="multiContactModal" class="contact-modal">
+        <div class="modal-content-multi">
+            <span class="close-modal">&times;</span>
+            <div class="contact-card">
+                <div class="contact-icon telegram"> <i class="fab fa-telegram"></i> </div>
+                <h4>Telegram</h4>
+                <div class="preference-text">Предпочтительно</div>
+                <p>@arinanett</p>
+                <a href="https://t.me/arinanett" target="_blank" rel="noopener" class="action-btn action-primary">Написать</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon max"> <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"> </div>
+                <h4>MAX</h4>
+                <p>Профиль на MAX</p>
+                <a href="https://web.max.ru/10624402" target="_blank" rel="noopener" class="action-btn action-primary">Перейти в профиль</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon phone"> <i class="fas fa-phone"></i> </div>
+                <h4>Телефон</h4>
+                <p>+79633480774</p>
+                <a href="tel:+79633480774" class="action-btn action-primary">Позвонить</a>
+            </div>
+        </div>
+    </div>
+
     <div class="copy-notification" id="copyNotification">Ссылка скопирована в буфер обмена!</div>
 
     <footer id="developer-signature">
@@ -425,13 +478,23 @@
                 });
             });
 
-            // Логика модального окна
+            // --- ИСПРАВЛЕНИЕ 2: Добавлена логика для модальных окон ---
             const contactModal = document.getElementById("contactModal");
+            const multiModal = document.getElementById("multiContactModal"); // Новая переменная
+            const navContactsLink = document.getElementById('nav-contacts-link'); // Новая переменная
             const requestBtn = document.getElementById("requestPortfolioBtn");
             const copyBtn = document.getElementById("copyBtn");
             const contactData = {
                 telegram: { title: "Telegram", details: "@arinanett", link: "https://t.me/arinanett", button: "Перейти в Telegram" }
             };
+
+            // Открытие модального окна по клику в навигации
+            if (navContactsLink) {
+                navContactsLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if(multiModal) multiModal.style.display = "flex";
+                });
+            }
 
             function showSingleModal(type) {
                 const data = contactData[type];
@@ -454,13 +517,16 @@
                 });
             }
             
-            // Закрытие модального окна
+            // Обновленная функция закрытия модальных окон
             function closeModal() {
                 if(contactModal) contactModal.style.display = "none";
+                if(multiModal) multiModal.style.display = "none";
             }
             document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+            
+            // Обновленный обработчик клика вне окна
             window.addEventListener('click', (e) => {
-                if (e.target === contactModal) {
+                if (e.target === contactModal || e.target === multiModal) {
                     closeModal();
                 }
             });
