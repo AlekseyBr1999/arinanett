@@ -118,20 +118,21 @@
         .reviews-container { max-width: 1200px; margin: 60px auto 0; position: relative; padding: 0 20px; }
         .swiper { width: 100%; padding: 20px 0; }
         .swiper-slide { 
-            background: rgba(22, 22, 36, 0.85); /* Более плотный фон */
-            backdrop-filter: blur(12px); /* Усиленный эффект стекла */
+            /* ИЗМЕНЕНИЕ: Плашки сделаны менее прозрачными */
+            background: rgba(22, 22, 36, 0.95);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0px 1px 1px rgba(255,255,255,0.08); /* Тень для объема + внутренний блик */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0px 1px 1px rgba(255,255,255,0.08);
             border-radius: 16px; 
             padding: 30px; 
             text-align: left; 
-            transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease; /* Добавил тень в transition */
+            transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
             width: 60%; 
             max-width: 450px; 
         }
         .swiper-slide-active { 
             transform: scale(1.05); 
-            box-shadow: 0 15px 45px rgba(0,0,0,0.4), inset 0px 1px 1px rgba(255,255,255,0.1); /* Усиленная тень для активного слайда */
+            box-shadow: 0 15px 45px rgba(0,0,0,0.4), inset 0px 1px 1px rgba(255,255,255,0.1);
         }
         .swiper-slide:not(.swiper-slide-active) { opacity: 0.5; transform: scale(0.9); }
         .review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
@@ -356,41 +357,29 @@
                 
                 <div class="swiper-wrapper">
                     
+                    
                     <div class="swiper-slide">
                         <div class="review-header">
-                            <img src="client1.jpg" alt="Фото клиента" class="review-photo">
-                            <h4 class="review-author">Иван Иванов, CEO "ТехноСтарт"</h4>
+                            <img src="client1.jpg" alt="Фото Юли Свидло" class="review-photo">
+                            <h4 class="review-author">Юля Свидло, основатель коммуникационного агентства JUSS</h4>
                         </div>
-                        <p class="review-text">Работа с Ариной — это всегда выход за рамки стандартов. Ее креативные тексты помогли нашему бренду зазвучать по-новому и привлечь внимание ведущих СМИ.</p>
+                        <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
                     </div>
                     <div class="swiper-slide">
                         <div class="review-header">
-                            <img src="client2.jpg" alt="Фото клиента" class="review-photo">
-                            <h4 class="review-author">Елена Смирнова, Маркетолог "Фэшн-Прорыв"</h4>
+                            <img src="client2.jpg" alt="Фото Эльвега Евгенова" class="review-photo">
+                            <h4 class="review-author">Эльвег Евгенов, Head of Content Planeta.ru</h4>
                         </div>
-                        <p class="review-text">Арина — настоящий профессионал в редактуре. Она не просто исправляет ошибки, а превращает сухой текст в увлекательную историю, которая цепляет читателя.</p>
+                        <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
                     </div>
                     <div class="swiper-slide">
                         <div class="review-header">
-                            <img src="client3.jpg" alt="Фото клиента" class="review-photo">
-                            <h4 class="review-author">Петр Кузнецов, Основатель "ЭкоФуд"</h4>
+                            <img src="client3.jpg" alt="Фото Валерии Кузьма" class="review-photo">
+                            <h4 class="review-author">Валерия Кузьма, генеральный директор SICHKAR GROUP</h4>
                         </div>
-                        <p class="review-text">Благодаря контент-стратегии, разработанной Ариной, мы смогли систематизировать наши коммуникации и значительно увеличить вовлеченность аудитории.</p>
+                        <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и  активно поддерживала корпоративную культуру.</p>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="review-header">
-                            <img src="client4.jpg" alt="Фото клиента" class="review-photo">
-                            <h4 class="review-author">Анна Вольская, HR "IT-Горизонт"</h4>
-                        </div>
-                        <p class="review-text">Невероятная способность Арины находить правильные слова для описания сложных IT-продуктов простым языком помогла нам в построении HR-бренда.</p>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="review-header">
-                            <img src="client5.jpg" alt="Фото клиента" class="review-photo">
-                            <h4 class="review-author">Сергей Белов, Арт-директор "Креатив-Бюро"</h4>
-                        </div>
-                        <p class="review-text">Если вам нужен не просто текст, а эмоция, облеченная в слова, то вам к Арине. Ее работа над нашим манифестом стала основой всей рекламной кампании.</p>
-                    </div>
+
                 </div>
                 
                 <div class="swiper-pagination"></div>
