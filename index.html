@@ -115,9 +115,8 @@
 
         /* ИЗМЕНЕНИЕ: Секция отзывов (Swiper) - НОВЫЕ СТИЛИ */
         .reviews-section { padding: 100px 0; position: relative; z-index: 2; text-align: center; }
-        .reviews-container { max-width: 1200px; margin: 60px auto 0; position: relative; padding: 0 40px; }
+        .reviews-container { max-width: 1400px; margin: 60px auto 0; position: relative; padding: 0 40px; }
         .swiper { width: 100%; padding: 20px 0; }
-        /* ИЗМЕНЕНИЕ: Добавлен align-items для выравнивания высоты */
         .swiper-wrapper { align-items: stretch; }
         .swiper-slide { 
             background: rgba(22, 22, 36, 0.95);
@@ -127,25 +126,23 @@
             border-radius: 16px; 
             padding: 30px; 
             text-align: left; 
-            transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
-            width: 80%; 
-            max-width: 450px;
-            /* ИЗМЕНЕНИЕ: Стили для выравнивания высоты плашек */
+            transition: transform 0.4s ease, opacity 0.4s ease;
             height: auto;
             display: flex;
             flex-direction: column;
+            opacity: 0.5;
+            transform: scale(0.9);
         }
         .swiper-slide-active { 
-            transform: scale(1.05); 
+            opacity: 1;
+            transform: scale(1);
             box-shadow: 0 15px 45px rgba(0,0,0,0.4), inset 0px 1px 1px rgba(255,255,255,0.1);
         }
-        .swiper-slide:not(.swiper-slide-active) { opacity: 0.6; transform: scale(0.95); }
         .review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
         .review-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; }
         .review-author { font-size: 1.2rem; font-weight: 600; }
         .review-text { 
             font-size: 1rem; color: rgba(220,220,240,0.85); line-height: 1.6; font-style: italic; position: relative; 
-            /* ИЗМЕНЕНИЕ: Текстовый блок будет растягиваться, выравнивая высоту */
             flex-grow: 1;
         }
         .review-text::before { content: '“'; font-size: 2.5rem; color: #6d8eff; position: absolute; top: -15px; left: -20px; opacity: 0.5; }
@@ -180,6 +177,14 @@
         #developer-signature { 
             position: relative; z-index: 10; text-align: center; padding: 25px 20px; font-size: 1rem; color: rgba(220, 220, 240, 0.6); background: rgba(8, 8, 16, 0.6); backdrop-filter: blur(5px); border-top: 1px solid rgba(255, 255, 255, 0.08); font-weight: 500;
         }
+        #developer-signature a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        #developer-signature a:hover {
+            color: #fff;
+        }
         .signature-e {
             font-weight: 700;
             font-size: 1.1em;
@@ -189,6 +194,13 @@
         }
         .footer-year { 
             display: block; margin-top: 8px; font-size: 0.9rem; color: rgba(220, 220, 240, 0.3); 
+        }
+        .footer-version {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: rgba(220, 220, 240, 0.4);
+            letter-spacing: 1px;
         }
         
         /* Модальные окна */
@@ -259,7 +271,6 @@
             .key-point-text { font-size: 1.2rem; }
             .btn { padding: 14px 28px; font-size: 1rem; }
             .section-title { font-size: 2.2rem; }
-            .swiper-slide { width: 80%; }
             .swiper-button-next, .swiper-button-prev { display: none; }
             .reviews-container { padding: 0; }
             .contact-icons { gap: 20px; }
@@ -287,7 +298,6 @@
 
         @media (max-width: 480px) {
             .photo-frame { max-width: 300px; }
-            .swiper-slide { width: 90%; }
             .contact-icons { gap: 15px; }
             .contact-item { width: 70px; height: 70px; }
             .contact-icon { width: 50px; height: 50px; }
@@ -429,8 +439,11 @@
     
     
     <footer id="developer-signature">
-        Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников
+        <a href="#" title="Сайт в разработке">
+            Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников
+        </a>
         <span class="footer-year">2025</span>
+        <span class="footer-version">v 1.0</span>
     </footer>
     
     <div id="contactModal" class="contact-modal">
@@ -566,14 +579,14 @@
                 if(el) observer.observe(el);
             });
             
-            // ИЗМЕНЕНИЕ: Инициализация Swiper.js с новой конфигурацией
+            // ИЗМЕНЕНИЕ: Инициализация Swiper.js с новой, более стабильной конфигурацией
             const swiper = new Swiper('.swiper', {
-                loop: true,
                 effect: 'slide',
                 grabCursor: true,
                 centeredSlides: true,
-                slidesPerView: 'auto',
-                spaceBetween: 30,
+                loop: true,
+                slidesPerView: 1, // Базовое значение для мобильных устройств
+                spaceBetween: 20,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -582,12 +595,15 @@
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
+                // Адаптивные настройки для разных экранов
                 breakpoints: {
                     768: {
                         slidesPerView: 2,
+                        spaceBetween: 30,
                     },
-                    1024: {
+                    1200: {
                         slidesPerView: 3,
+                        spaceBetween: 30,
                     }
                 }
             });
