@@ -22,7 +22,7 @@
       min-height:100vh; position:relative;
     }
 
-    /* Скроллбар */
+    /* Глобальный скроллбар (страница) */
     html::-webkit-scrollbar { width:12px; }
     html::-webkit-scrollbar-track { background:#0b0b13; }
     html::-webkit-scrollbar-thumb {
@@ -156,12 +156,33 @@
       backdrop-filter: blur(12px);
       border:1px solid rgba(255,255,255,0.12);
       box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.08);
-      border-radius:16px; padding:28px; text-align:left; display:flex; flex-direction:column; height:auto;
+      border-radius:16px; text-align:left; display:flex; flex-direction:column; height:auto;
     }
-    .review-header { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+    /* Компактная карточка на мобильных: фиксированная высота, прокрутка текста */
+    @media (max-width: 1023.98px) {
+      .reviews-mobile .reviews-card { padding:20px; height:260px; }
+      .reviews-mobile .review-header { margin-bottom:10px; }
+      .reviews-mobile .review-content {
+        flex:1 1 auto; overflow:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding-right:8px;
+        scrollbar-width: thin; scrollbar-color: #6d8eff #0b0b13; /* Firefox */
+      }
+      /* WebKit-скроллбар для текста внутри карточки */
+      .reviews-mobile .review-content::-webkit-scrollbar { width:12px; }
+      .reviews-mobile .review-content::-webkit-scrollbar-track { background:#0b0b13; }
+      .reviews-mobile .review-content::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #385fff, #e23f77);
+        border-radius:10px; border:2px solid #0b0b13;
+      }
+      .reviews-mobile .review-content::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #5a7aff, #f35a8e);
+      }
+    }
+
+    .review-header { display:flex; align-items:center; gap:14px; }
     .review-photo { width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,0.2); flex-shrink:0; }
     .review-author { font-size:1.05rem; font-weight:600; }
     .review-text { font-size:1rem; color:rgba(220,220,240,0.85); line-height:1.6; font-style:italic; }
+
     .reviews-mobile .swiper-pagination { position:relative; margin-top:18px; }
     .reviews-mobile .swiper-pagination-bullet { background:rgba(255,255,255,0.3); width:10px; height:10px; opacity:1; }
     .reviews-mobile .swiper-pagination-bullet-active { background: linear-gradient(90deg, #6d8eff, #e23f77); width:26px; border-radius:6px; }
@@ -171,11 +192,10 @@
     .reviews-grid {
       display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:30px;
     }
-    .reviews-grid .reviews-card { height:100%; }
+    .reviews-grid .reviews-card { padding:28px; }
     .reviews-grid .reviews-card:hover { transform: translateY(-4px); transition: transform .25s ease; }
 
     /* Переключение версий */
-    /* По умолчанию (мобайл-первый): показываем мобильный, скрываем десктоп */
     .reviews-desktop { display:none; }
     @media (min-width: 1024px) {
       .reviews-mobile { display:none; }
@@ -415,7 +435,9 @@
                   <img src="client1.jpg" alt="Фото Юли Свидло" class="review-photo">
                   <h4 class="review-author">Юля Свидло, основатель коммуникационного агентства JUSS</h4>
                 </div>
-                <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
+                <div class="review-content">
+                  <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
+                </div>
               </article>
             </div>
             <div class="swiper-slide">
@@ -424,7 +446,9 @@
                   <img src="client2.jpg" alt="Фото Эльвега Евгенова" class="review-photo">
                   <h4 class="review-author">Эльвег Евгенов, Head of Content Planeta.ru</h4>
                 </div>
-                <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
+                <div class="review-content">
+                  <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
+                </div>
               </article>
             </div>
             <div class="swiper-slide">
@@ -433,7 +457,9 @@
                   <img src="client3.jpg" alt="Фото Валерии Кузьма" class="review-photo">
                   <h4 class="review-author">Валерия Кузьма, генеральный директор SICHKAR GROUP</h4>
                 </div>
-                <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и активно поддерживала корпоративную культуру.</p>
+                <div class="review-content">
+                  <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и активно поддерживала корпоративную культуру.</p>
+                </div>
               </article>
             </div>
           </div>
@@ -495,7 +521,7 @@
   <footer id="developer-signature">
     <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
     <span class="footer-year">2025</span>
-    <span class="footer-version">v 1.1</span>
+    <span class="footer-version">v 1.2</span>
   </footer>
 
   
@@ -626,8 +652,6 @@
           spaceBetween: 16,
           speed: 450,
           pagination: { el: '.reviews-mobile .swiper-pagination', clickable: true }
-          // Если понадобится отключать Swiper на больших экранах без дублирования DOM,
-          // см. breakpoints с enabled:false: https://swiperjs.com/types/interfaces/types_swiper_options.SwiperOptions
         });
       }
 
