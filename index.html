@@ -242,20 +242,55 @@
     .footer-version { display:block; margin-top:10px; font-size:.8rem; color:rgba(220,220,240,0.4); letter-spacing:1px; }
 
     /* Модалки */
-    .contact-modal { display:none; position:fixed; z-index:2000; inset:0; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px); animation: fadeIn .3s ease; align-items:center; justify-content:center; }
-    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
-    .modal-content {
-      background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px;
-      width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    .contact-modal {
+      display:none; position:fixed; z-index:2000; inset:0;
+      background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+      animation: fadeIn .3s ease; align-items:center; justify-content:center;
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
     }
-    .close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; }
-    .close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+
+    /* Делает контент модалок прокручиваемым на маленьких экранах и удерживает вьюпорт */
+    .modal-content,
+    #multiContactModal .modal-content-multi {
+      width: clamp(280px, 92vw, 950px);
+      max-height: 92vh;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      background: rgba(14,14,24,0.95);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      position:relative;
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    /* Единый плавающий крестик — всегда виден, даже при скролле */
+    .close-modal {
+      position: fixed; /* фиксируем к вьюпорту */
+      top: calc(env(safe-area-inset-top, 0px) + 12px);
+      right: calc(env(safe-area-inset-right, 0px) + 12px);
+      z-index: 2100;
+      width:44px; height:44px;
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      color:#fff;
+      font-size:24px; line-height:1;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+      transition: transform .15s ease, background .2s ease;
+    }
+    .close-modal:hover { transform: scale(1.08); background: rgba(0,0,0,0.7); }
+
+    .modal-header { text-align:center; padding: 24px 24px 0; }
     .modal-header h3 { font-size:1.8rem; margin-bottom:10px; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .contact-info { display:flex; flex-direction:column; align-items:center; gap:25px; margin:30px 0; }
+    .contact-info { display:flex; flex-direction:column; align-items:center; gap:22px; margin:20px 0 30px; padding: 0 24px 24px; }
     .contact-qr { background:#fff; padding:15px; border-radius:10px; display:inline-block; }
-    .contact-details { font-size:1.3rem; margin:10px 0; font-weight:500; }
-    .contact-phone { font-size:1.4rem; margin:15px 0; font-weight:600; color:#a0a0d0; }
-    .contact-actions { display:flex; flex-direction:column; gap:15px; width:100%; max-width:300px; margin:0 auto; }
+    .contact-details { font-size:1.25rem; margin:6px 0; font-weight:500; text-align:center; }
+    .contact-phone { font-size:1.2rem; margin:10px 0; font-weight:600; color:#a0a0d0; }
+    .contact-actions { display:flex; flex-direction:column; gap:12px; width:100%; max-width:300px; margin:0 auto; }
     .action-btn { display:block; padding:14px 20px; border-radius:50px; text-decoration:none; font-weight:600; transition:all .3s ease; text-align:center; position:relative; z-index:2; }
     .action-primary { background:linear-gradient(90deg, #385fff, #e23f77); color:#fff; box-shadow:0 5px 20px rgba(56,95,255,0.3); }
     .action-primary:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(56,95,255,0.4); }
@@ -263,23 +298,23 @@
     .action-secondary:hover { border-color:#6d8eff; background:rgba(109,142,255,0.1); color:#fff; }
     .action-btn.is-disabled { opacity:.5; pointer-events:none; cursor:not-allowed; }
 
+    /* Сетка контактов в мульти-модалке + замена иконок на tg.png/phone.png/max.png */
     #multiContactModal .modal-content-multi {
-      display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px;
+      display:flex; flex-wrap:wrap; gap:18px; justify-content:center; background:transparent; border:none; box-shadow:none; padding: 60px 16px 20px; /* отступ сверху под плавающий крестик */
     }
     .contact-card {
-      background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px;
-      text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards;
+      background: rgba(18,18,30,0.95); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:22px; width:280px;
+      text-align:center; display:flex; flex-direction:column; align-items:center; gap:12px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards;
     }
     .contact-card:nth-child(2) { animation-delay:.1s; }
     .contact-card:nth-child(3) { animation-delay:.2s; }
     @keyframes cardFadeInUp { to { opacity:1; transform:translateY(0) } }
-    .contact-card .contact-icon { width:60px; height:60px; margin-bottom:5px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
-    .contact-card .contact-icon i { font-size:28px; color:#fff; }
-    .contact-card .contact-icon img { width:100%; height:100%; object-fit:cover; }
-    .contact-card h4 { font-size:1.3rem; font-weight:600; }
-    .contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-10px; }
-    .contact-card p { font-size:1rem; color:#a0a0d0; }
-    .contact-card .action-btn { width:100%; padding:12px; font-size:.9rem; }
+    .contact-card .contact-icon { width:60px; height:60px; margin-bottom:5px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.06); }
+    .contact-card .contact-icon img { width:100%; height:100%; object-fit:contain; padding:8px; }
+    .contact-card h4 { font-size:1.2rem; font-weight:600; }
+    .contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-4px; }
+    .contact-card p { font-size:0.95rem; color:#a0a0d0; }
+    .contact-card .action-btn { width:100%; padding:12px; font-size:.95rem; }
 
     .copy-notification {
       position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
@@ -322,27 +357,10 @@
       .key-point-text { font-size:1.2rem; }
       .btn { padding:14px 28px; font-size:1rem; }
       .section-title { font-size:2.2rem; }
-      .contact-icons { gap:20px; }
-      .contact-item { width:80px; height:80px; }
-      .contact-icon { width:60px; height:60px; }
-      .contact-icon i { font-size:28px; }
-      .contact-label { font-size:.8rem; }
-      .preference-indicator { width:16px; height:16px; top:-8px; right:-8px; }
-      .contact-item.telegram:hover .preference-indicator { width:100px; padding:0 10px; }
-      .preference-indicator span { font-size:.6rem; }
-      .modal-content { padding:20px; }
-      .contact-details { font-size:1.1rem; }
-      .contact-phone { font-size:1.2rem; }
-      #multiContactModal .modal-content-multi { flex-direction:column; align-items:center; gap:20px; }
-      .contact-card { width:90%; max-width:300px; }
 
-      .preference-indicator.is-visible {
-        width:100px; border-radius:12px; animation:none;
-        background:linear-gradient(135deg, #ffd700, #ff9800); padding:0 10px;
-      }
-      .preference-indicator.is-visible span {
-        font-size:.6rem; opacity:1; transform:translateX(0); transition-delay:.1s;
-      }
+      /* Уточнения для модалок на мобилках: больше «тач»-зона крестика и мягче радиус */
+      .close-modal { width:48px; height:48px; font-size:26px; }
+      .modal-content, #multiContactModal .modal-content-multi { border-radius:16px; }
     }
 
     @media (max-width: 480px) {
@@ -356,12 +374,12 @@
       .contact-item.telegram:hover .preference-indicator { width:85px; padding:0 8px; }
       .action-btn { padding:12px 15px; font-size:.9rem; }
 
-      #multiContactModal .modal-content-multi { padding:20px 10px; }
-      .contact-card { padding:20px; width:95%; }
-      .contact-card h4 { font-size:1.2rem; }
-      .contact-card .contact-icon { width:50px; height:50px; }
-      .contact-card .contact-icon i { font-size:24px; }
-      .action-btn { padding:10px 15px; font-size:.9rem; }
+      #multiContactModal .modal-content-multi { padding: 60px 12px 16px; }
+      .contact-card { padding:18px; width:100%; max-width: 320px; }
+      .contact-card h4 { font-size:1.1rem; }
+      .contact-card .contact-icon { width:56px; height:56px; }
+      .contact-card .contact-icon img { padding:7px; }
+      .contact-card .action-btn { padding:11px; font-size:.9rem; }
     }
   </style>
 </head>
@@ -521,13 +539,13 @@
   <footer id="developer-signature">
     <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
     <span class="footer-year">2025</span>
-    <span class="footer-version">v 1.2</span>
+    <span class="footer-version">v 1.3</span>
   </footer>
 
   
-  <div id="contactModal" class="contact-modal">
+  <div id="contactModal" class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
-      <span class="close-modal">&times;</span>
+      <span class="close-modal" aria-label="Закрыть">&times;</span>
       <div class="modal-header">
         <h3 id="modalTitle">Telegram</h3>
       </div>
@@ -546,24 +564,30 @@
   </div>
 
   
-  <div id="multiContactModal" class="contact-modal">
+  <div id="multiContactModal" class="contact-modal" role="dialog" aria-modal="true" aria-label="Контакты">
     <div class="modal-content-multi">
-      <span class="close-modal">&times;</span>
+      <span class="close-modal" aria-label="Закрыть">&times;</span>
       <div class="contact-card">
-        <div class="contact-icon telegram"><i class="fab fa-telegram"></i></div>
+        <div class="contact-icon">
+          <img src="tg.png" alt="Telegram">
+        </div>
         <h4>Telegram</h4>
         <div class="preference-text">Предпочтительно</div>
         <p>@arinanett</p>
         <a href="https://t.me/arinanett" target="_blank" rel="noopener" class="action-btn action-primary">Написать</a>
       </div>
       <div class="contact-card">
-        <div class="contact-icon max"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"></div>
+        <div class="contact-icon">
+          <img src="max.png" alt="MAX">
+        </div>
         <h4>MAX</h4>
         <p>Профиль на MAX</p>
         <a href="https://web.max.ru/10624402" target="_blank" rel="noopener" class="action-btn action-primary">Перейти в профиль</a>
       </div>
       <div class="contact-card">
-        <div class="contact-icon phone"><i class="fas fa-phone"></i></div>
+        <div class="contact-icon">
+          <img src="phone.png" alt="Телефон">
+        </div>
         <h4>Телефон</h4>
         <p>+79633480774</p>
         <a href="tel:+79633480774" class="action-btn action-primary">Позвонить</a>
@@ -667,6 +691,16 @@
       const multiModal = document.getElementById("multiContactModal");
       const copyBtn = document.getElementById("copyBtn");
 
+      function lockBodyScroll(lock) {
+        if (lock) {
+          document.body.dataset.scrollLock = 'true';
+          document.body.style.overflow = 'hidden';
+        } else {
+          delete document.body.dataset.scrollLock;
+          document.body.style.overflow = '';
+        }
+      }
+
       function showSingleModal(type) {
         const data = contactData[type];
         if (!data || !singleModal) return;
@@ -702,13 +736,8 @@
           qrContainer.innerHTML = '<div style="width:180px;height:180px;display:flex;align-items:center;justify-content:center;color:#0b0b13;background:#fff;border-radius:10px;font-weight:700;">Скоро</div>';
         }
 
-        if (copyBtn) {
-          copyBtn.style.display = data.link ? 'block' : 'none';
-          copyBtn.disabled = !data.link;
-          copyBtn.classList.toggle('is-disabled', !data.link);
-        }
-
         singleModal.style.display = "flex";
+        lockBodyScroll(true);
       }
 
       document.querySelectorAll('.contact-item').forEach(item => {
@@ -719,17 +748,32 @@
       if (navContactsLink) {
         navContactsLink.addEventListener('click', function(e) {
           e.preventDefault();
-          if (multiModal) multiModal.style.display = "flex";
+          if (multiModal) {
+            multiModal.style.display = "flex";
+            lockBodyScroll(true);
+          }
         });
       }
 
       function closeModal() {
         if (singleModal) singleModal.style.display = "none";
         if (multiModal) multiModal.style.display = "none";
+        lockBodyScroll(false);
       }
+
+      // Закрытие по клику на крестик
       document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+      // Закрытие по клику вне контента
       window.addEventListener('click', (e) => {
-        if (e.target === singleModal || e.target === multiModal) closeModal();
+        if (e.target === singleModal || e.target === multiModal) {
+          closeModal();
+        }
+      });
+      // Закрытие по Esc
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (singleModal.style.display === 'flex' || multiModal.style.display === 'flex')) {
+          closeModal();
+        }
       });
 
       if (copyBtn) {
