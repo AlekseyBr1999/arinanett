@@ -1,273 +1,289 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Арина Петрова | PR, креативные тексты, редактура, контент-стратегии</title>  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>  <style>
+  <title>Арина Петрова | PR, креативные тексты, редактура, контент-стратегии</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { height:100%; overflow-x:hidden; scroll-behavior:smooth; }
-    body { background:#0b0b13; color:#fff; font-family:'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; min-height:100vh; position:relative; }html::-webkit-scrollbar { width:12px; }
-html::-webkit-scrollbar-track { background:#0b0b13; }
-html::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #385fff, #e23f77);
-  border-radius:10px; border:2px solid #0b0b13;
-}
-html::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #5a7aff, #f35a8e); }
-html { scrollbar-width:thin; scrollbar-color:#6d8eff #0b0b13; }
-.bg-gradient {
-  position:fixed; inset:0; z-index:-2;
-  background:
-    radial-gradient(circle at 18% 32%, #2842c3bb 0%, transparent 55%),
-    radial-gradient(circle at 82% 72%, #c32b61bb 0%, transparent 44%),
-    linear-gradient(120deg, #10101b 90%, #202027 100%);
-  animation: gradientShift 12s infinite alternate;
-}
-@keyframes gradientShift { 0% { background-size:150% 150%; background-position:0% 0%; } 100% { background-size:160% 160%; background-position:100% 100%; } }
-.particles { position:fixed; inset:0; pointer-events:none; z-index:-1; }
-.particle { position:absolute; border-radius:50%; background:rgba(255,255,255,0.1); filter:blur(1px); animation: float 20s linear infinite; }
-@keyframes float { 0% { transform: translateY(0) scale(1); opacity:0.7; } 50% { opacity:1; } 100% { transform: translateY(-120vh) scale(1.5); opacity:0.7; } }
-.container { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:120px 20px 100px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
-header {
-  position:fixed; top:0; left:0; right:0; padding:25px 5%; z-index:100;
-  display:flex; justify-content:space-between; align-items:center;
-  background:rgba(11,11,19,0.85); backdrop-filter: blur(10px);
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  transform:translateY(0); transition: transform .4s ease, background .4s ease;
-}
-header.scrolled { background:rgba(8,8,16,0.95); transform:translateY(-10px); box-shadow:0 10px 30px rgba(0,0,0,0.5); }
-.logo { font-size:1.8rem; font-weight:700; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px; transition:all .3s ease; }
-header.scrolled .logo { transform:scale(1.05); }
-.mobile-nav-toggle { display:none; }
-nav ul { display:flex; gap:35px; list-style:none; }
-nav a { color:rgba(220,220,230,0.85); text-decoration:none; font-weight:500; font-size:1.1rem; transition:all .3s ease; position:relative; }
-nav a:hover { color:#fff; }
-nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:linear-gradient(90deg, #6d8eff, #e23f77); transition:width .3s ease; }
-nav a:hover::after { width:100%; }
-nav a.active { color:#fff; }
-nav a.active::after { width:100%; }
-.hero { display:flex; align-items:center; gap:60px; padding-top:50px; }
-.hero-photo { flex:1; position:relative; perspective:1000px; }
-.photo-frame {
-  width:100%; max-width:420px; border-radius:24px; overflow:hidden; position:relative;
-  transform-style:preserve-3d; transform: rotateY(-5deg) rotateX(2deg);
-  box-shadow:0 25px 50px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
-  transition: transform .5s ease;
-}
-.photo-frame:hover { transform:rotateY(0) rotateX(0); }
-.photo-frame::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, #385fff, #e23f77); opacity:.15; z-index:1; }
-.photo-frame img { width:100%; height:auto; display:block; transition: transform .5s ease; }
-.photo-frame:hover img { transform:scale(1.05); }
-.hero-content { flex:1; position:relative; }
-.hero-content h1 { font-size:3.8rem; font-weight:700; margin-bottom:20px; line-height:1.1; background:linear-gradient(90deg, #fff, #a0a0d0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 4px 20px rgba(0,0,0,0.2); }
-.hero-content .subtitle { font-size:1.8rem; color:#a0a0d0; margin-bottom:40px; font-weight:400; }
-.key-points { margin-top:40px; }
-.key-point { margin-bottom:30px; position:relative; padding-left:40px; opacity:0; transform:translateX(-30px); animation: fadeInRight .8s ease forwards; }
-.key-point:nth-child(1) { animation-delay:.3s; } .key-point:nth-child(2) { animation-delay:.6s; }
-@keyframes fadeInRight { to { opacity:1; transform:translateX(0) } }
-.key-point::before { content:''; position:absolute; left:0; top:8px; width:24px; height:24px; background:linear-gradient(135deg, #385fff, #e23f77); border-radius:50%; }
-.key-point-text { font-size:1.4rem; line-height:1.6; color:rgba(220,220,240,0.9); }
-.highlight { background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:600; position:relative; display:inline-block; text-decoration:none; }
-.highlight::after { content:''; position:absolute; bottom:2px; left:0; width:100%; height:2px; background:linear-gradient(90deg, #6d8eff, #e23f77); transform:scaleX(0); transform-origin:right; transition: transform .5s ease; }
-.key-point:hover .highlight::after { transform:scaleX(1); transform-origin:left; }
-.cta-buttons { display:flex; gap:20px; margin-top:50px; flex-wrap:wrap; }
-.btn { padding:16px 36px; border-radius:50px; font-size:1.1rem; font-weight:600; text-decoration:none; transition:all .3s ease; display:inline-flex; align-items:center; gap:10px; border:2px solid transparent; position:relative; overflow:hidden; z-index:1; }
-.btn::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg, #385fff, #e23f77); z-index:-1; transition:opacity .3s ease; }
-.btn-primary { color:#fff; box-shadow:0 10px 30px rgba(56,95,255,0.3); }
-.btn-primary:hover { transform:translateY(-5px); box-shadow:0 15px 40px rgba(56,95,255,0.4); }
-.parallax-layer { position:absolute; z-index:-1; pointer-events:none; }
-.layer-1 { top:20%; right:5%; width:300px; height:300px; border-radius:50%; background: radial-gradient(circle, rgba(109,142,255,.25) 0%, transparent 70%); filter:blur(40px); animation: floatElement 12s infinite alternate ease-in-out; }
-.layer-2 { bottom:15%; left:10%; width:200px; height:200px; border-radius:50%; background: radial-gradient(circle, rgba(226,63,119,.25) 0%, transparent 70%); filter:blur(30px); animation: floatElement 15s infinite alternate-reverse ease-in-out; }
-@keyframes floatElement { 0% { transform: translateY(0) rotate(0deg) scale(1) } 100% { transform: translateY(-50px) rotate(10deg) scale(1.1) } }
-.section-title { font-size:2.8rem; margin-bottom:20px; background:linear-gradient(90deg,#fff,#a0a0d0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; opacity:0; transform:translateY(30px); transition: all .8s ease; text-align:center; }
-.reviews-section { padding:100px 20px; position:relative; z-index:2; }
-.reviews-inner { max-width:1400px; margin:0 auto; }
-.reviews-mobile { margin-top:40px; }
-.reviews-mobile .swiper { width:100%; padding-bottom:32px; }
-.reviews-mobile .swiper-wrapper { align-items:stretch; }
-.reviews-card {
-  background: rgba(22,22,36,0.95);
-  backdrop-filter: blur(12px);
-  border:1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.08);
-  border-radius:16px; text-align:left; display:flex; flex-direction:column; height:auto;
-}
-@media (max-width: 1023.98px) {
-  .reviews-mobile .reviews-card { padding:20px; height:260px; }
-  .reviews-mobile .review-header { margin-bottom:10px; }
-  .reviews-mobile .review-content {
-    flex:1 1 auto; overflow:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding-right:8px;
-    scrollbar-width: thin; scrollbar-color: #6d8eff #0b0b13;
-  }
-  .reviews-mobile .review-content::-webkit-scrollbar { width:12px; }
-  .reviews-mobile .review-content::-webkit-scrollbar-track { background:#0b0b13; }
-  .reviews-mobile .review-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #385fff, #e23f77); border-radius:10px; border:2px solid #0b0b13; }
-  .reviews-mobile .review-content::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #5a7aff, #f35a8e); }
-}
-.review-header { display:flex; align-items:center; gap:14px; }
-.review-photo { width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,0.2); flex-shrink:0; }
-.review-author { font-size:1.05rem; font-weight:600; }
-.review-text { font-size:1rem; color:rgba(220,220,240,0.85); line-height:1.6; font-style:italic; }
-.reviews-mobile .swiper-pagination { position:relative; margin-top:18px; }
-.reviews-mobile .swiper-pagination-bullet { background:rgba(255,255,255,0.3); width:10px; height:10px; opacity:1; }
-.reviews-mobile .swiper-pagination-bullet-active { background: linear-gradient(90deg, #6d8eff, #e23f77); width:26px; border-radius:6px; }
-.reviews-desktop { margin-top:48px; }
-.reviews-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:30px; }
-.reviews-grid .reviews-card { padding:28px; }
-.reviews-grid .reviews-card:hover { transform: translateY(-4px); transition: transform .25s ease; }
-.reviews-desktop { display:none; }
-@media (min-width: 1024px) {
-  .reviews-mobile { display:none; }
-  .reviews-desktop { display:block; }
-}
-.contacts-section { padding:100px 20px; position:relative; z-index:2; max-width:1200px; margin:0 auto; text-align:center; }
-.contact-icons { display:flex; flex-wrap:wrap; justify-content:center; gap:35px; max-width:900px; margin:60px auto 0; }
-.contact-item { position:relative; width:110px; height:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transform:translateY(30px) scale(.8); transition:all .5s ease; text-decoration:none !important; cursor:pointer; }
-.contact-icon { width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); position:relative; z-index:2; box-shadow:0 8px 25px rgba(0,0,0,0.3); overflow:hidden; }
-.contact-icon i { font-size:38px; color:#fff; }
-.contact-icon img { width:100%; height:100%; object-fit:cover; }
-.contact-icon::before { content:''; position:absolute; inset:0; border-radius:50%; background:inherit; z-index:-1; filter:blur(8px); opacity:.4; transform:scale(1.2); }
-.contact-label { margin-top:15px; font-size:.9rem; color:rgba(220,220,240,0.8); font-weight:500; transition:all .3s ease; opacity:.8; }
-.preference-indicator { position:absolute; top:-10px; right:-10px; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg, #ffd700, #ff9800); z-index:10; box-shadow:0 0 15px rgba(255,215,0,0.7); animation:pulse 2s infinite; display:flex; align-items:center; justify-content:center; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); overflow:hidden; }
-.preference-indicator span { position:absolute; font-size:0; font-weight:700; color:#000; white-space:nowrap; opacity:0; transition:all .3s ease; transform:translateX(10px); }
-@keyframes pulse { 0% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,215,0,0.7); } 70% { transform:scale(1.2); box-shadow:0 0 0 10px rgba(255,215,0,0); } 100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,215,0,0); } }
-@media (min-width: 1024px) {
-  .contact-item.telegram:hover .preference-indicator { width:130px; border-radius:12px; animation:none; padding:0 15px; }
-  .contact-item.telegram:hover .preference-indicator span { font-size:.7rem; opacity:1; transform:translateX(0); transition-delay:.1s; }
-}
-/* ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНЫХ: бейдж «предпочтительно» теперь автоширины и всегда вмещает текст */
-@media (max-width: 1023.98px) {
-  .contact-item.telegram.is-visible .preference-indicator {
-    width: auto;
-    height: 22px;
-    border-radius: 12px;
-    animation: none;
-    padding: 0 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    right: -6px;
-    top: -6px;
-  }
-  .contact-item.telegram.is-visible .preference-indicator span {
-    font-size: .7rem;
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: .1s;
-  }
-}
-.contact-item:hover .contact-icon { transform: translateY(-10px) scale(1.15); box-shadow:0 15px 35px rgba(0,0,0,0.4); }
-.contact-item:hover .contact-label { opacity:1; transform: translateY(5px); }
-.telegram .contact-icon { background:linear-gradient(135deg, #2AABEE, #229ED9); }
-.max .contact-icon { background:none; }
-.phone .contact-icon { background:linear-gradient(135deg, #25D366, #128C7E); }
-#developer-signature { position:relative; z-index:10; text-align:center; padding:25px 20px; font-size:1rem; color:rgba(220,220,240,0.6); background:rgba(8,8,16,0.6); backdrop-filter: blur(5px); border-top:1px solid rgba(255,255,255,0.08); font-weight:500; }
-#developer-signature a { color:inherit; text-decoration:none; transition:color .3s ease; }
-#developer-signature a:hover { color:#fff; }
-.signature-e { font-weight:700; font-size:1.1em; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.footer-year { display:block; margin-top:8px; font-size:.9rem; color:rgba(220,220,240,0.3); }
-.footer-version { display:block; margin-top:10px; font-size:.8rem; color:rgba(220,220,240,0.4); letter-spacing:1px; }
+    body { background:#0b0b13; color:#fff; font-family:'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; min-height:100vh; position:relative; }
+    html::-webkit-scrollbar { width:12px; }
+    html::-webkit-scrollbar-track { background:#0b0b13; }
+    html::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #385fff, #e23f77);
+      border-radius:10px; border:2px solid #0b0b13;
+    }
+    html::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #5a7aff, #f35a8e); }
+    html { scrollbar-width:thin; scrollbar-color:#6d8eff #0b0b13; }
+    .bg-gradient {
+      position:fixed; inset:0; z-index:-2;
+      background:
+        radial-gradient(circle at 18% 32%, #2842c3bb 0%, transparent 55%),
+        radial-gradient(circle at 82% 72%, #c32b61bb 0%, transparent 44%),
+        linear-gradient(120deg, #10101b 90%, #202027 100%);
+      animation: gradientShift 12s infinite alternate;
+    }
+    @keyframes gradientShift { 0% { background-size:150% 150%; background-position:0% 0%; } 100% { background-size:160% 160%; background-position:100% 100%; } }
+    .particles { position:fixed; inset:0; pointer-events:none; z-index:-1; }
+    .particle { position:absolute; border-radius:50%; background:rgba(255,255,255,0.1); filter:blur(1px); animation: float 20s linear infinite; }
+    @keyframes float { 0% { transform: translateY(0) scale(1); opacity:0.7; } 50% { opacity:1; } 100% { transform: translateY(-120vh) scale(1.5); opacity:0.7; } }
+    .container { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:120px 20px 100px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
+    header {
+      position:fixed; top:0; left:0; right:0; padding:25px 5%; z-index:100;
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(11,11,19,0.85); backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      transform:translateY(0); transition: transform .4s ease, background .4s ease;
+    }
+    header.scrolled { background:rgba(8,8,16,0.95); transform:translateY(-10px); box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+    .logo { font-size:1.8rem; font-weight:700; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px; transition:all .3s ease; }
+    header.scrolled .logo { transform:scale(1.05); }
+    .mobile-nav-toggle { display:none; }
+    nav ul { display:flex; gap:35px; list-style:none; }
+    nav a { color:rgba(220,220,230,0.85); text-decoration:none; font-weight:500; font-size:1.1rem; transition:all .3s ease; position:relative; }
+    nav a:hover { color:#fff; }
+    nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:linear-gradient(90deg, #6d8eff, #e23f77); transition:width .3s ease; }
+    nav a:hover::after { width:100%; }
+    nav a.active { color:#fff; }
+    nav a.active::after { width:100%; }
+    .hero { display:flex; align-items:center; gap:60px; padding-top:50px; }
+    .hero-photo { flex:1; position:relative; perspective:1000px; }
+    .photo-frame {
+      width:100%; max-width:420px; border-radius:24px; overflow:hidden; position:relative;
+      transform-style:preserve-3d; transform: rotateY(-5deg) rotateX(2deg);
+      box-shadow:0 25px 50px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+      transition: transform .5s ease;
+    }
+    .photo-frame:hover { transform:rotateY(0) rotateX(0); }
+    .photo-frame::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, #385fff, #e23f77); opacity:.15; z-index:1; }
+    .photo-frame img { width:100%; height:auto; display:block; transition: transform .5s ease; }
+    .photo-frame:hover img { transform:scale(1.05); }
+    .hero-content { flex:1; position:relative; }
+    .hero-content h1 { font-size:3.8rem; font-weight:700; margin-bottom:20px; line-height:1.1; background:linear-gradient(90deg, #fff, #a0a0d0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 4px 20px rgba(0,0,0,0.2); }
+    .hero-content .subtitle { font-size:1.8rem; color:#a0a0d0; margin-bottom:40px; font-weight:400; }
+    .key-points { margin-top:40px; }
+    .key-point { margin-bottom:30px; position:relative; padding-left:40px; opacity:0; transform:translateX(-30px); animation: fadeInRight .8s ease forwards; }
+    .key-point:nth-child(1) { animation-delay:.3s; } .key-point:nth-child(2) { animation-delay:.6s; }
+    @keyframes fadeInRight { to { opacity:1; transform:translateX(0) } }
+    .key-point::before { content:''; position:absolute; left:0; top:8px; width:24px; height:24px; background:linear-gradient(135deg, #385fff, #e23f77); border-radius:50%; }
+    .key-point-text { font-size:1.4rem; line-height:1.6; color:rgba(220,220,240,0.9); }
+    .highlight { background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:600; position:relative; display:inline-block; text-decoration:none; }
+    .highlight::after { content:''; position:absolute; bottom:2px; left:0; width:100%; height:2px; background:linear-gradient(90deg, #6d8eff, #e23f77); transform:scaleX(0); transform-origin:right; transition: transform .5s ease; }
+    .key-point:hover .highlight::after { transform:scaleX(1); transform-origin:left; }
+    .cta-buttons { display:flex; gap:20px; margin-top:50px; flex-wrap:wrap; }
+    .btn { padding:16px 36px; border-radius:50px; font-size:1.1rem; font-weight:600; text-decoration:none; transition:all .3s ease; display:inline-flex; align-items:center; gap:10px; border:2px solid transparent; position:relative; overflow:hidden; z-index:1; }
+    .btn::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg, #385fff, #e23f77); z-index:-1; transition:opacity .3s ease; }
+    .btn-primary { color:#fff; box-shadow:0 10px 30px rgba(56,95,255,0.3); }
+    .btn-primary:hover { transform:translateY(-5px); box-shadow:0 15px 40px rgba(56,95,255,0.4); }
+    .parallax-layer { position:absolute; z-index:-1; pointer-events:none; }
+    .layer-1 { top:20%; right:5%; width:300px; height:300px; border-radius:50%; background: radial-gradient(circle, rgba(109,142,255,.25) 0%, transparent 70%); filter:blur(40px); animation: floatElement 12s infinite alternate ease-in-out; }
+    .layer-2 { bottom:15%; left:10%; width:200px; height:200px; border-radius:50%; background: radial-gradient(circle, rgba(226,63,119,.25) 0%, transparent 70%); filter:blur(30px); animation: floatElement 15s infinite alternate-reverse ease-in-out; }
+    @keyframes floatElement { 0% { transform: translateY(0) rotate(0deg) scale(1) } 100% { transform: translateY(-50px) rotate(10deg) scale(1.1) } }
+    .section-title { font-size:2.8rem; margin-bottom:20px; background:linear-gradient(90deg,#fff,#a0a0d0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; opacity:0; transform:translateY(30px); transition: all .8s ease; text-align:center; }
+    .reviews-section { padding:100px 20px; position:relative; z-index:2; }
+    .reviews-inner { max-width:1400px; margin:0 auto; }
+    .reviews-mobile { margin-top:40px; }
+    .reviews-mobile .swiper { width:100%; padding-bottom:32px; }
+    .reviews-mobile .swiper-wrapper { align-items:stretch; }
+    .reviews-card {
+      background: rgba(22,22,36,0.95);
+      backdrop-filter: blur(12px);
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.08);
+      border-radius:16px; text-align:left; display:flex; flex-direction:column; height:auto;
+    }
+    @media (max-width: 1023.98px) {
+      .reviews-mobile .reviews-card { padding:20px; height:260px; }
+      .reviews-mobile .review-header { margin-bottom:10px; }
+      .reviews-mobile .review-content {
+        flex:1 1 auto; overflow:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding-right:8px;
+        scrollbar-width: thin; scrollbar-color: #6d8eff #0b0b13;
+      }
+      .reviews-mobile .review-content::-webkit-scrollbar { width:12px; }
+      .reviews-mobile .review-content::-webkit-scrollbar-track { background:#0b0b13; }
+      .reviews-mobile .review-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #385fff, #e23f77); border-radius:10px; border:2px solid #0b0b13; }
+      .reviews-mobile .review-content::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #5a7aff, #f35a8e); }
+    }
+    .review-header { display:flex; align-items:center; gap:14px; }
+    .review-photo { width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,0.2); flex-shrink:0; }
+    .review-author { font-size:1.05rem; font-weight:600; }
+    .review-text { font-size:1rem; color:rgba(220,220,240,0.85); line-height:1.6; font-style:italic; }
+    .reviews-mobile .swiper-pagination { position:relative; margin-top:18px; }
+    .reviews-mobile .swiper-pagination-bullet { background:rgba(255,255,255,0.3); width:10px; height:10px; opacity:1; }
+    .reviews-mobile .swiper-pagination-bullet-active { background: linear-gradient(90deg, #6d8eff, #e23f77); width:26px; border-radius:6px; }
+    .reviews-desktop { margin-top:48px; }
+    .reviews-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:30px; }
+    .reviews-grid .reviews-card { padding:28px; }
+    .reviews-grid .reviews-card:hover { transform: translateY(-4px); transition: transform .25s ease; }
+    .reviews-desktop { display:none; }
+    @media (min-width: 1024px) {
+      .reviews-mobile { display:none; }
+      .reviews-desktop { display:block; }
+    }
+    .contacts-section { padding:100px 20px; position:relative; z-index:2; max-width:1200px; margin:0 auto; text-align:center; }
+    .contact-icons { display:flex; flex-wrap:wrap; justify-content:center; gap:35px; max-width:900px; margin:60px auto 0; }
+    .contact-item { position:relative; width:110px; height:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transform:translateY(30px) scale(.8); transition:all .5s ease; text-decoration:none !important; cursor:pointer; }
+    .contact-icon { width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); position:relative; z-index:2; box-shadow:0 8px 25px rgba(0,0,0,0.3); overflow:hidden; }
+    .contact-icon i { font-size:38px; color:#fff; }
+    .contact-icon img { width:100%; height:100%; object-fit:cover; }
+    .contact-icon::before { content:''; position:absolute; inset:0; border-radius:50%; background:inherit; z-index:-1; filter:blur(8px); opacity:.4; transform:scale(1.2); }
+    .contact-label { margin-top:15px; font-size:.9rem; color:rgba(220,220,240,0.8); font-weight:500; transition:all .3s ease; opacity:.8; }
+    .preference-indicator { position:absolute; top:-10px; right:-10px; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg, #ffd700, #ff9800); z-index:10; box-shadow:0 0 15px rgba(255,215,0,0.7); animation:pulse 2s infinite; display:flex; align-items:center; justify-content:center; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); overflow:hidden; }
+    .preference-indicator span { position:absolute; font-size:0; font-weight:700; color:#000; white-space:nowrap; opacity:0; transition:all .3s ease; transform:translateX(10px); }
+    @keyframes pulse { 0% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,215,0,0.7); } 70% { transform:scale(1.2); box-shadow:0 0 0 10px rgba(255,215,0,0); } 100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,215,0,0); } }
+    @media (min-width: 1024px) {
+      .contact-item.telegram:hover .preference-indicator { width:130px; border-radius:12px; animation:none; padding:0 15px; }
+      .contact-item.telegram:hover .preference-indicator span { font-size:.7rem; opacity:1; transform:translateX(0); transition-delay:.1s; }
+    }
+    .contact-item:hover .contact-icon { transform: translateY(-10px) scale(1.15); box-shadow:0 15px 35px rgba(0,0,0,0.4); }
+    .contact-item:hover .contact-label { opacity:1; transform: translateY(5px); }
+    .telegram .contact-icon { background:linear-gradient(135deg, #2AABEE, #229ED9); }
+    .max .contact-icon { background:none; }
+    .phone .contact-icon { background:linear-gradient(135deg, #25D366, #128C7E); }
+    #developer-signature { position:relative; z-index:10; text-align:center; padding:25px 20px; font-size:1rem; color:rgba(220,220,240,0.6); background:rgba(8,8,16,0.6); backdrop-filter: blur(5px); border-top:1px solid rgba(255,255,255,0.08); font-weight:500; }
+    #developer-signature a { color:inherit; text-decoration:none; transition:color .3s ease; }
+    #developer-signature a:hover { color:#fff; }
+    .signature-e { font-weight:700; font-size:1.1em; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .footer-year { display:block; margin-top:8px; font-size:.9rem; color:rgba(220,220,240,0.3); }
+    .footer-version { display:block; margin-top:10px; font-size:.8rem; color:rgba(220,220,240,0.4); letter-spacing:1px; }
 
-/* --- Стили модальных окон --- */
-.contact-modal { display:none; position:fixed; z-index:2000; inset:0; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px); animation: fadeIn .3s ease; align-items:center; justify-content:center; }
-@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
-.close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0; }
-.close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
-.modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
-.modal-header h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; }
-.contact-qr { margin: 0 auto 20px; background: white; padding: 10px; border-radius: 10px; line-height: 0; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
-.contact-details p { font-size: 1.2rem; color: #a0a0d0; margin-bottom: 5px;}
-.contact-phone { font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 20px; }
-.contact-actions { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-.action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
-.action-secondary { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
-.action-secondary:hover { background: rgba(255,255,255,0.2); }
-/* ИСПРАВЛЕНИЕ: Градиент на псевдоэлементе для избежания артефактов */
-.action-primary { color: #fff; }
-.action-primary::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #385fff, #e23f77); transition: transform .3s ease; }
-.action-primary:hover::before { transform: scale(1.05); }
-.action-primary:hover { box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
+    /* --- Стили модальных окон --- */
+    .contact-modal { display:none; position:fixed; z-index:2000; inset:0; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px); animation: fadeIn .3s ease; align-items:center; justify-content:center; }
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+    .close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0; }
+    .close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
+    .modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
+    .modal-header h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; }
+    .contact-qr { margin: 0 auto 20px; background: white; padding: 10px; border-radius: 10px; line-height: 0; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
+    .contact-details p { font-size: 1.2rem; color: #a0a0d0; margin-bottom: 5px;}
+    .contact-phone { font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 20px; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
+    .action-secondary { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
+    .action-secondary:hover { background: rgba(255,255,255,0.2); }
+    .action-primary { color: #fff; }
+    .action-primary::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #385fff, #e23f77); transition: transform .3s ease; }
+    .action-primary:hover::before { transform: scale(1.05); }
+    .action-primary:hover { box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
 
-/* МУЛЬТИ-модальное окно */
-#multiContactModal .modal-content-multi { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px; }
-.contact-card { background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards; }
-.contact-card:nth-child(2) { animation-delay:.1s; } .contact-card:nth-child(3) { animation-delay:.2s; }
-@keyframes cardFadeInUp { to { opacity:1; transform:translateY(0) } }
-#multiContactModal .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; background: none; border-radius: 0; }
-#multiContactModal .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: contain; }
-.contact-card h4 { font-size:1.3rem; font-weight:600; }
-.contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-10px; }
-.contact-card p { font-size:1rem; color:#a0a0d0; }
-.contact-card .actions-wrapper { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: auto; }
-#multiContactModal .action-btn { width: 100%; }
-.copy-notification { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(14,14,24,0.95); color:#6d8eff; padding:10px 25px; border-radius:50px; font-weight:600; box-shadow:0 5px 20px rgba(0,0,0,0.3); display:none; z-index:3000; }
+    /* МУЛЬТИ-модальное окно */
+    #multiContactModal .modal-content-multi { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px; }
+    .contact-card { background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards; }
+    .contact-card:nth-child(2) { animation-delay:.1s; } .contact-card:nth-child(3) { animation-delay:.2s; }
+    @keyframes cardFadeInUp { to { opacity:1; transform:translateY(0) } }
+    #multiContactModal .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; background: none; border-radius: 0; }
+    #multiContactModal .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .contact-card h4 { font-size:1.3rem; font-weight:600; }
+    .contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-10px; }
+    .contact-card p { font-size:1rem; color:#a0a0d0; }
+    .contact-card .actions-wrapper { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: auto; }
+    #multiContactModal .action-btn { width: 100%; }
+    .copy-notification { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(14,14,24,0.95); color:#6d8eff; padding:10px 25px; border-radius:50px; font-weight:600; box-shadow:0 5px 20px rgba(0,0,0,0.3); display:none; z-index:3000; }
 
-/* Мобильные правки */
-@media (max-width: 1023.98px) {
-  .contact-modal { padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
-  .modal-content, #multiContactModal .modal-content-multi { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; }
-  .modal-content { width: clamp(280px, 92vw, 500px); border-radius:16px; }
-  #multiContactModal .modal-content-multi { width: clamp(300px, 96vw, 950px); padding: 60px 16px 20px; }
-  .close-modal { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); z-index: 2100; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color:#fff; font-size:26px; line-height:1; cursor:pointer; border:1px solid rgba(255,255,255,0.2); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s ease, background .2s ease; }
-  .close-modal:hover { transform: scale(1.08); background: rgba(0,0,0,0.7); }
-}
-@media (max-width: 1024px) {
-  .hero { flex-direction:column; text-align:center; }
-  .hero-photo { margin:0 auto 50px; }
-  .key-point { padding-left:0; text-align:center; }
-  .key-point::before { position:relative; margin:0 auto 15px; left:auto; }
-  .cta-buttons { justify-content:center; }
-  .contact-icons { gap:25px; }
-  .contact-item { width:90px; height:90px; }
-  .contact-icon { width:70px; height:70px; }
-  .preference-indicator { width:18px; height:18px; }
-}
-@media (max-width: 768px) {
-  .container { padding:120px 20px 80px; }
-  .hero-content h1 { font-size:2.8rem; }
-  .hero-content .subtitle { font-size:1.5rem; }
-  .key-point-text { font-size:1.2rem; }
-  .btn { padding:14px 28px; font-size:1rem; }
-  .section-title { font-size:2.2rem; }
-  #multiContactModal .contact-card { width:90%; max-width:300px; }
-  .contact-card .contact-icon { width:60px; height:60px; }
-}
-@media (max-width: 480px) {
-  .photo-frame { max-width:300px; }
-  .contact-icons { gap:15px; }
-  .contact-item { width:70px; height:70px; }
-  .contact-icon { width:50px; height:50px; }
-  .contact-icon i { font-size:22px; }
-  .contact-label { font-size:.7rem; margin-top:10px; }
-  .preference-indicator { width:14px; height:14px; top:-6px; right:-6px; }
-  .action-btn { padding:12px 15px; font-size:.9rem; }
-  .contact-card { padding:18px; width:100%; max-width: 320px; }
-  .contact-card h4 { font-size:1.1rem; }
-  #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
-  .contact-card .action-btn { padding:11px; font-size:.9rem; }
-  /* Дополнительная подстройка бейджа на самых маленьких экранах */
-  .contact-item.telegram.is-visible .preference-indicator {
-    height: 20px;
-    padding: 0 8px;
-  }
-  .contact-item.telegram.is-visible .preference-indicator span {
-    font-size: 0.62rem;
-  }
-}
+    /* ИСПРАВЛЕНО: Добавлен класс для доступности (Accessibility) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
 
+    /* Мобильные правки */
+    @media (max-width: 1023.98px) {
+      .contact-modal { padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
+      .modal-content, #multiContactModal .modal-content-multi { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; }
+      .modal-content { width: clamp(280px, 92vw, 500px); border-radius:16px; }
+      #multiContactModal .modal-content-multi { width: clamp(300px, 96vw, 950px); padding: 60px 16px 20px; }
+      .close-modal { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); z-index: 2100; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color:#fff; font-size:26px; line-height:1; cursor:pointer; border:1px solid rgba(255,255,255,0.2); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s ease, background .2s ease; }
+      .close-modal:hover { transform: scale(1.08); background: rgba(0,0,0,0.7); }
+
+      /* ИСПРАВЛЕНО: Стили для индикатора "предпочтительно" на мобильных */
+      .contact-item.telegram.is-visible .preference-indicator {
+        width: 110px;
+        border-radius: 12px;
+        animation: none;
+        padding: 0 12px;
+      }
+      .contact-item.telegram.is-visible .preference-indicator span {
+        font-size: .7rem;
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: .1s;
+      }
+    }
+    @media (max-width: 1024px) {
+      .hero { flex-direction:column; text-align:center; }
+      .hero-photo { margin:0 auto 50px; }
+      .key-point { padding-left:0; text-align:center; }
+      .key-point::before { position:relative; margin:0 auto 15px; left:auto; }
+      .cta-buttons { justify-content:center; }
+      .contact-icons { gap:25px; }
+      .contact-item { width:90px; height:90px; }
+      .contact-icon { width:70px; height:70px; }
+      .preference-indicator { width:18px; height:18px; }
+    }
+    @media (max-width: 850px) {
+      .primary-navigation { position:fixed; top:0; right:0; width:70%; max-width:400px; height:100vh; flex-direction:column; justify-content:center; align-items:center; padding:2em; background:rgba(11,11,19,0.95); backdrop-filter: blur(1rem); transform: translateX(100%); transition: transform 350ms ease-out; z-index:1000; }
+      .primary-navigation[data-visible="true"] { transform: translateX(0%); }
+      .primary-navigation a { display:block; width:100%; text-align:center; font-size:1.3rem; padding:1rem 0; white-space:normal; }
+      .mobile-nav-toggle { display:block; position:absolute; top:1.8rem; right:2rem; z-index:2000; background:transparent; border:0; color:#fff; font-size:1.5rem; cursor:pointer; }
+    }
+    @media (max-width: 768px) {
+      .container { padding:120px 20px 80px; }
+      .hero-content h1 { font-size:2.8rem; }
+      .hero-content .subtitle { font-size:1.5rem; }
+      .key-point-text { font-size:1.2rem; }
+      .btn { padding:14px 28px; font-size:1rem; }
+      .section-title { font-size:2.2rem; }
+      #multiContactModal .contact-card { width:90%; max-width:300px; }
+      .contact-card .contact-icon { width:60px; height:60px; }
+    }
+    @media (max-width: 480px) {
+      .photo-frame { max-width:300px; }
+      .contact-icons { gap:15px; }
+      .contact-item { width:70px; height:70px; }
+      .contact-icon { width:50px; height:50px; }
+      .contact-icon i { font-size:22px; }
+      .contact-label { font-size:.7rem; margin-top:10px; }
+      .preference-indicator { width:14px; height:14px; top:-6px; right:-6px; }
+      .action-btn { padding:12px 15px; font-size:.9rem; }
+      .contact-card { padding:18px; width:100%; max-width: 320px; }
+      .contact-card h4 { font-size:1.1rem; }
+      #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
+      .contact-card .action-btn { padding:11px; font-size:.9rem; }
+
+      /* ИСПРАВЛЕНО: Оптимизация индикатора для самых маленьких экранов */
+      .contact-item.telegram.is-visible .preference-indicator {
+        width: 90px;
+        padding: 0 8px;
+      }
+      .contact-item.telegram.is-visible .preference-indicator span {
+        font-size: 0.65rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="bg-gradient"></div>
   <div class="particles" id="particles"></div>
   <div class="parallax-layer layer-1"></div>
-  <div class="parallax-layer layer-2"></div>  <header id="header">
+  <div class="parallax-layer layer-2"></div>
+  <header id="header">
     <div class="logo">Арина Петрова</div>
     <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
       <i class="fas fa-bars" aria-hidden="true"></i>
-      <span class="sr-only" style="display:none;">Меню</span>
+      
+      <span class="sr-only">Меню</span>
     </button>
     <nav>
       <ul id="primary-navigation" class="primary-navigation" data-visible="false">
@@ -278,7 +294,8 @@ nav a.active::after { width:100%; }
         <li><a href="#contacts" id="nav-contacts-link">Контакты</a></li>
       </ul>
     </nav>
-  </header>  <div class="container">
+  </header>
+  <div class="container">
     <section class="hero">
       <div class="hero-photo">
         <div class="photo-frame">
@@ -287,135 +304,126 @@ nav a.active::after { width:100%; }
       </div>
       <div class="hero-content">
         <h1>Арина Петрова</h1>
-        <div class="subtitle">PR, креативные тексты, редактура, контент-стратегии</div>    <div class="key-points">
-      <div class="key-point">
-        <p class="key-point-text">
-          Пишу тексты, редактирую, делаю бренд обсуждаемым, выступаю за <a class="highlight" href="skills.html">смелый креатив</a>
-        </p>
+        <div class="subtitle">PR, креативные тексты, редактура, контент-стратегии</div>
+        <div class="key-points">
+          <div class="key-point">
+            <p class="key-point-text">
+              Пишу тексты, редактирую, делаю бренд обсуждаемым, выступаю за <a class="highlight" href="skills.html">смелый креатив</a>
+            </p>
+          </div>
+          <div class="key-point">
+            <p class="key-point-text">
+              <a class="highlight" href="portfolio.html">Более 15 лет</a> в журналистике, PR, маркетинге
+            </p>
+          </div>
+        </div>
+        <div class="cta-buttons">
+          <a href="portfolio.html" class="btn btn-primary"><i class="fas fa-folder-open"></i> Кейсы</a>
+          <a href="skills.html" class="btn btn-primary"><i class="fas fa-lightbulb"></i> Экспертиза</a>
+          <a href="services.html" class="btn btn-primary"><i class="fas fa-briefcase"></i> Услуги</a>
+        </div>
       </div>
-      <div class="key-point">
-        <p class="key-point-text">
-          <a class="highlight" href="portfolio.html">Более 15 лет</a> в журналистике, PR, маркетинге
-        </p>
-      </div>
-    </div>
-    <div class="cta-buttons">
-      <a href="portfolio.html" class="btn btn-primary"><i class="fas fa-folder-open"></i> Кейсы</a>
-      <a href="skills.html" class="btn btn-primary"><i class="fas fa-lightbulb"></i> Экспертиза</a>
-      <a href="services.html" class="btn btn-primary"><i class="fas fa-briefcase"></i> Услуги</a>
-    </div>
-  </div>
-</section>
+    </section>
 
-  </div>  <section id="reviews" class="reviews-section">
+  </div>
+  <section id="reviews" class="reviews-section">
     <h2 class="section-title">Что говорят клиенты</h2>
-    <div class="reviews-inner">  <div class="reviews-mobile">
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
+    <div class="reviews-inner">
+      <div class="reviews-mobile">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <article class="reviews-card">
+                <div class="review-header">
+                  <img src="client1.jpg" alt="Фото Юли Свидло" class="review-photo">
+                  <h4 class="review-author">Юля Свидло, основатель коммуникационного агентства JUSS</h4>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
+                </div>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="reviews-card">
+                <div class="review-header">
+                  <img src="client2.jpg" alt="Фото Эльвега Евгенова" class="review-photo">
+                  <h4 class="review-author">Эльвег Евгенов, Head of Content Planeta.ru</h4>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
+                </div>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="reviews-card">
+                <div class="review-header">
+                  <img src="client3.jpg" alt="Фото Валерии Кузьма" class="review-photo">
+                  <h4 class="review-author">Валерия Кузьма, генеральный директор SICHKAR GROUP</h4>
+                </div>
+                <div class="review-content">
+                  <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и активно поддерживала корпоративную культуру.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="reviews-desktop">
+        <div class="reviews-grid">
           <article class="reviews-card">
             <div class="review-header">
               <img src="client1.jpg" alt="Фото Юли Свидло" class="review-photo">
               <h4 class="review-author">Юля Свидло, основатель коммуникационного агентства JUSS</h4>
             </div>
-            <div class="review-content">
-              <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
-            </div>
+            <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
           </article>
-        </div>
-        <div class="swiper-slide">
           <article class="reviews-card">
             <div class="review-header">
               <img src="client2.jpg" alt="Фото Эльвега Евгенова" class="review-photo">
               <h4 class="review-author">Эльвег Евгенов, Head of Content Planeta.ru</h4>
             </div>
-            <div class="review-content">
-              <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
-            </div>
+            <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
           </article>
-        </div>
-        <div class="swiper-slide">
           <article class="reviews-card">
             <div class="review-header">
               <img src="client3.jpg" alt="Фото Валерии Кузьма" class="review-photo">
               <h4 class="review-author">Валерия Кузьма, генеральный директор SICHKAR GROUP</h4>
             </div>
-            <div class="review-content">
-              <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и активно поддерживала корпоративную культуру.</p>
-            </div>
+            <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и активно поддерживала корпоративную культуру.</p>
           </article>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
     </div>
-  </div>
-  <div class="reviews-desktop">
-    <div class="reviews-grid">
-      <article class="reviews-card">
-        <div class="review-header">
-          <img src="client1.jpg" alt="Фото Юли Свидло" class="review-photo">
-          <h4 class="review-author">Юля Свидло, основатель коммуникационного агентства JUSS</h4>
-        </div>
-        <p class="review-text">С Ариной взаимодействовали много лет в области PR и журналистики. Она отлично владеет языком, хорошо понимает специфику работы с международными брендами, предлагает смелые идеи и решения для их реализации. А еще Арина тактичная и порядочная, на нее определенно можно положиться!</p>
-      </article>
-      <article class="reviews-card">
-        <div class="review-header">
-          <img src="client2.jpg" alt="Фото Эльвега Евгенова" class="review-photo">
-          <h4 class="review-author">Эльвег Евгенов, Head of Content Planeta.ru</h4>
-        </div>
-        <p class="review-text">Профессионал своего дела! Редко встречал настолько исполнительных, ответственных и талантливых авторов. Арина всегда глубоко вникает в задачу, умеет работать с разными TOV и форматами, а тексты получаются живыми, разнообразными и вовлекающими. Она безупречно соблюдает сроки, умеет предлагать креативные решения и при этом держит баланс между творчеством и бизнес-задачами. С ней можно быть уверенным, что результат будет на уровне. Также стоит выделить её soft skills: работать с ней комфортно и экологично.</p>
-      </article>
-      <article class="reviews-card">
-        <div class="review-header">
-          <img src="client3.jpg" alt="Фото Валерии Кузьма" class="review-photo">
-          <h4 class="review-author">Валерия Кузьма, генеральный директор SICHKAR GROUP</h4>
-        </div>
-        <p class="review-text">Арина работала в креативном агентстве SICHKAR GROUP на должности креатор-копирайтер. В ее задачи входили разработка креативных концепций для клиентов компании, участие в тендерах и разработка маркетинговых акций. За время работы Арина ко всем задачам подходила креативно и структурно.<br><br>В работе Арина проявила себя как максимально вовлеченный, лояльный и ответственный сотрудник. Легко влилась в коллектив, всегда была на связи, оперативно решала поставленные задачи и активно поддерживала корпоративную культуру.</p>
-      </article>
-    </div>
-  </div>
-</div>
 
-  </section>  <section id="contacts" class="contacts-section">
+  </section>
+  <section id="contacts" class="contacts-section">
     <h2 class="section-title">Связаться</h2>
     <div class="contact-icons">
-      <div class="contact-item telegram" data-type="telegram">
+      <div class="contact-item telegram">
         <div class="contact-icon"><i class="fab fa-telegram"></i></div>
         <span class="contact-label">Telegram</span>
         <div class="preference-indicator"><span>предпочтительно</span></div>
       </div>
-      <div class="contact-item max" data-type="max">
+      <div class="contact-item max">
         <div class="contact-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"></div>
         <span class="contact-label">MAX</span>
       </div>
-      <div class="contact-item phone" data-type="phone">
+      <div class="contact-item phone">
         <div class="contact-icon"><i class="fas fa-phone"></i></div>
         <span class="contact-label">Позвонить</span>
       </div>
     </div>
-  </section>  <footer id="developer-signature">
+  </section>
+  <footer id="developer-signature">
     <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
     <span class="footer-year">2025</span>
-    <span class="footer-version">v 2.1</span>
-  </footer>  <div id="contactModal" class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-content">
-      <span class="close-modal" aria-label="Закрыть">&times;</span>
-      <div class="modal-header">
-        <h3 id="modalTitle">Telegram</h3>
-      </div>
-      <div class="contact-info">
-        <div class="contact-qr" id="qrContainer"></div>
-        <div class="contact-details">
-          <p id="contactDetails">@arinanett</p>
-          <div class="contact-phone" id="contactPhone"></div>
-        </div>
-      </div>
-      <div class="contact-actions">
-        <a href="https://t.me/arinanett" id="actionLink" class="action-btn action-primary" target="_blank" rel="noopener">Перейти в Telegram</a>
-        <button id="copyBtn" class="action-btn action-secondary"><i class="fas fa-copy"></i> Копировать ссылку</button>
-      </div>
-    </div>
-  </div>  <div id="multiContactModal" class="contact-modal" role="dialog" aria-modal="true" aria-label="Контакты">
+    <span class="footer-version">v 1.5</span>
+  </footer>
+
+  
+
+  <div id="multiContactModal" class="contact-modal" role="dialog" aria-modal="true" aria-label="Контакты">
     <div class="modal-content-multi">
       <span class="close-modal" aria-label="Закрыть">&times;</span>
       <div class="contact-card">
@@ -425,7 +433,7 @@ nav a.active::after { width:100%; }
         <p>@arinanett</p>
         <div class="actions-wrapper">
           <a href="https://t.me/arinanett" target="_blank" rel="noopener" class="action-btn action-primary">Написать</a>
-          <button class="action-btn action-secondary" data-copy-value="@arinanett"><i class="fas fa-copy"></i> Копировать ссылку</button>
+          <button class="action-btn action-secondary" data-copy-value="@arinanett"><i class="fas fa-copy"></i> Скопировать @</button>
         </div>
       </div>
       <div class="contact-card">
@@ -434,7 +442,7 @@ nav a.active::after { width:100%; }
         <p>Профиль на MAX</p>
         <div class="actions-wrapper">
           <a href="https://web.max.ru/10624402" target="_blank" rel="noopener" class="action-btn action-primary">Перейти в профиль</a>
-          <button class="action-btn action-secondary" data-copy-value="https://web.max.ru/10624402"><i class="fas fa-copy"></i> Копировать ссылку</button>
+          <button class="action-btn action-secondary" data-copy-value="https://web.max.ru/10624402"><i class="fas fa-copy"></i> Скопировать ссылку</button>
         </div>
       </div>
       <div class="contact-card">
@@ -443,11 +451,14 @@ nav a.active::after { width:100%; }
         <p>+79633480774</p>
         <div class="actions-wrapper">
           <a href="tel:+79633480774" class="action-btn action-primary">Позвонить</a>
-          <button class="action-btn action-secondary" data-copy-value="+79633480774"><i class="fas fa-copy"></i> Копировать номер</button>
+          <button class="action-btn action-secondary" data-copy-value="+79633480774"><i class="fas fa-copy"></i> Скопировать номер</button>
         </div>
       </div>
     </div>
-  </div>  <div class="copy-notification" id="copyNotification">Ссылка скопирована в буфер обмена!</div>  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>  <script>
+  </div>
+  <div class="copy-notification" id="copyNotification">Ссылка скопирована в буфер обмена!</div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const particlesContainer = document.getElementById('particles');
       if (particlesContainer) {
@@ -464,135 +475,111 @@ nav a.active::after { width:100%; }
           p.style.animationDelay = (Math.random() * 5).toFixed(1) + 's';
           particlesContainer.appendChild(p);
         }
-      }  document.addEventListener('mousemove', (e) => {
-    const mouseX = e.clientX / window.innerWidth - 0.5;
-    const mouseY = e.clientY / window.innerHeight - 0.5;
-    const photoFrame = document.querySelector('.photo-frame');
-    if (photoFrame) {
-      photoFrame.style.transform = `rotateY(${(-5 + mouseX * 10)}deg) rotateX(${mouseY * 5}deg)`;
-    }
-  });
-  const header = document.getElementById('header');
-  function handleScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 50); }
-  window.addEventListener('scroll', handleScroll);
-  const nav = document.querySelector('.primary-navigation');
-  const navToggle = document.querySelector('.mobile-nav-toggle');
-  if (navToggle && nav) {
-    navToggle.addEventListener('click', () => {
-      const isVisible = nav.getAttribute('data-visible') === 'true';
-      nav.setAttribute('data-visible', !isVisible);
-      navToggle.setAttribute('aria-expanded', !isVisible);
-      navToggle.querySelector('i').classList.toggle('fa-bars', isVisible);
-      navToggle.querySelector('i').classList.toggle('fa-times', !isVisible);
-    });
-  }
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-        if (entry.target.classList.contains('contact-item')) {
-          const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
-          entry.target.style.transitionDelay = `${index * 0.1}s`;
-          if (entry.target.classList.contains('telegram')) {
-            entry.target.classList.add('is-visible');
-          }
-        }
-        if (!entry.target.classList.contains('swiper-slide')) observer.unobserve(entry.target);
       }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.section-title, .contact-item').forEach(el => observer.observe(el));
-  const mobileSwiperEl = document.querySelector('.reviews-mobile .swiper');
-  if (mobileSwiperEl) {
-    new Swiper(mobileSwiperEl, {
-      slidesPerView: 1,
-      spaceBetween: 16,
-      speed: 450,
-      pagination: { el: '.reviews-mobile .swiper-pagination', clickable: true }
-    });
-  }
-  const contactData = {
-    telegram: { title: "Telegram", details: "@arinanett", phone: "", link: "https://t.me/arinanett", copyText: "@arinanett", button: "Перейти в Telegram", copyButton: "Копировать ссылку" },
-    max: { title: "MAX", details: "Профиль на MAX", phone: "", link: "https://web.max.ru/10624402", copyText: "https://web.max.ru/10624402", button: "Перейти в профиль", copyButton: "Копировать ссылку" },
-    phone: { title: "Телефон", details: "+79633480774", phone: "+79633480774", link: "tel:+79633480774", copyText: "+79633480774", button: "Позвонить сейчас", copyButton: "Копировать номер" }
-  };
-  const singleModal = document.getElementById("contactModal");
-  const multiModal = document.getElementById("multiContactModal");
-  const copyNotification = document.getElementById("copyNotification");
-  const isMobileViewport = () => window.matchMedia('(max-width: 1023.98px)').matches;
-  function lockBodyScroll(lock) {
-    if (lock) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }
-  function showCopyNotification(text) {
-    if (copyNotification) {
-      copyNotification.textContent = 'Скопировано: ' + text;
-      copyNotification.style.display = "block";
-      setTimeout(() => { copyNotification.style.display = "none"; }, 2000);
-    }
-  }
-  function showSingleModal(type) {
-    const data = contactData[type];
-    if (!data || !singleModal) return;
-    singleModal.querySelector("#modalTitle").textContent = data.title;
-    singleModal.querySelector("#contactDetails").textContent = data.details || '';
-    const phoneEl = singleModal.querySelector("#contactPhone");
-    phoneEl.textContent = data.phone === data.details ? '' : data.phone;
-    phoneEl.style.display = phoneEl.textContent ? "block" : "none";
-    singleModal.querySelector("#actionLink").textContent = data.button;
-    singleModal.querySelector("#actionLink").href = data.link;
-    const copyBtn = singleModal.querySelector("#copyBtn");
-    copyBtn.innerHTML = `<i class="fas fa-copy"></i> ${data.copyButton}`;
-    copyBtn.onclick = () => {
-      navigator.clipboard.writeText(data.copyText).then(() => showCopyNotification(data.copyText));
-    };
-    const qrContainer = singleModal.querySelector("#qrContainer");
-    qrContainer.innerHTML = '';
-    if (type !== 'phone' && data.link) {
-      new QRCode(qrContainer, { text: data.link, width: 180, height: 180, colorDark: "#0b0b13", colorLight: "#ffffff" });
-    } else if (type === 'phone') {
-      qrContainer.innerHTML = '<i class="fas fa-phone fa-4x" style="color:#0b0b13; padding:20px;"></i>';
-    } else {
-      qrContainer.innerHTML = '<div style="width:180px;height:180px;display:flex;align-items:center;justify-content:center;color:#0b0b13;background:#fff;border-radius:10px;font-weight:700;">Скоро</div>';
-    }
-    singleModal.style.display = "flex";
-    if (isMobileViewport()) lockBodyScroll(true);
-  }
-  document.querySelectorAll('.contact-item').forEach(item => {
-    item.addEventListener('click', () => showSingleModal(item.dataset.type));
-  });
-  document.getElementById('nav-contacts-link')?.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (multiModal) {
-      multiModal.style.display = "flex";
-      if (isMobileViewport()) lockBodyScroll(true);
-    }
-  });
-  function closeModal() {
-    if (singleModal) singleModal.style.display = "none";
-    if (multiModal) multiModal.style.display = "none";
-    lockBodyScroll(false);
-  }
-  document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
-  window.addEventListener('click', (e) => {
-    if (e.target === singleModal || e.target === multiModal) closeModal();
-  });
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
-  document.querySelectorAll('#multiContactModal [data-copy-value]').forEach(button => {
-    button.addEventListener('click', () => {
-      const valueToCopy = button.dataset.copyValue;
-      navigator.clipboard.writeText(valueToCopy).then(() => showCopyNotification(valueToCopy));
-    });
-  });
-});
+      document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth - 0.5;
+        const mouseY = e.clientY / window.innerHeight - 0.5;
+        const photoFrame = document.querySelector('.photo-frame');
+        if (photoFrame) {
+          photoFrame.style.transform = `rotateY(${(-5 + mouseX * 10)}deg) rotateX(${mouseY * 5}deg)`;
+        }
+      });
+      const header = document.getElementById('header');
+      function handleScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 50); }
+      window.addEventListener('scroll', handleScroll);
+      const nav = document.querySelector('.primary-navigation');
+      const navToggle = document.querySelector('.mobile-nav-toggle');
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+          const isVisible = nav.getAttribute('data-visible') === 'true';
+          nav.setAttribute('data-visible', !isVisible);
+          navToggle.setAttribute('aria-expanded', !isVisible);
+          navToggle.querySelector('i').classList.toggle('fa-bars', isVisible);
+          navToggle.querySelector('i').classList.toggle('fa-times', !isVisible);
+        });
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+            if (entry.target.classList.contains('contact-item')) {
+              const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+              entry.target.style.transitionDelay = `${index * 0.1}s`;
+              if (entry.target.classList.contains('telegram')) {
+                entry.target.classList.add('is-visible');
+              }
+            }
+            if (!entry.target.classList.contains('swiper-slide')) observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.section-title, .contact-item').forEach(el => observer.observe(el));
+      const mobileSwiperEl = document.querySelector('.reviews-mobile .swiper');
+      if (mobileSwiperEl) {
+        new Swiper(mobileSwiperEl, {
+          slidesPerView: 1,
+          spaceBetween: 16,
+          speed: 450,
+          pagination: { el: '.reviews-mobile .swiper-pagination', clickable: true }
+        });
+      }
 
+      // ИСПРАВЛЕНО: Упрощенная логика модального окна
+      const multiModal = document.getElementById("multiContactModal");
+      const copyNotification = document.getElementById("copyNotification");
+      const isMobileViewport = () => window.matchMedia('(max-width: 1023.98px)').matches;
+
+      function lockBodyScroll(lock) {
+        document.body.style.overflow = lock ? 'hidden' : '';
+      }
+
+      function showCopyNotification(text) {
+        if (copyNotification) {
+          copyNotification.textContent = 'Скопировано: ' + text;
+          copyNotification.style.display = "block";
+          setTimeout(() => { copyNotification.style.display = "none"; }, 2000);
+        }
+      }
+
+      function openModal() {
+        if (multiModal) {
+          multiModal.style.display = "flex";
+          if (isMobileViewport()) lockBodyScroll(true);
+        }
+      }
+
+      function closeModal() {
+        if (multiModal) multiModal.style.display = "none";
+        lockBodyScroll(false);
+      }
+
+      // Слушатели для открытия модального окна
+      document.querySelectorAll('.contact-item').forEach(item => {
+        item.addEventListener('click', openModal);
+      });
+      document.getElementById('nav-contacts-link')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal();
+      });
+
+      // Слушатели для закрытия модального окна
+      document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+      window.addEventListener('click', (e) => {
+        if (e.target === multiModal) closeModal();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Слушатель для кнопок копирования
+      document.querySelectorAll('#multiContactModal [data-copy-value]').forEach(button => {
+        button.addEventListener('click', () => {
+          const valueToCopy = button.dataset.copyValue;
+          navigator.clipboard.writeText(valueToCopy).then(() => showCopyNotification(valueToCopy));
+        });
+      });
+    });
   </script>
 </body>
 </html>
-
