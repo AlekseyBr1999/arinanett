@@ -136,9 +136,27 @@ nav a.active::after { width:100%; }
   .contact-item.telegram:hover .preference-indicator { width:130px; border-radius:12px; animation:none; padding:0 15px; }
   .contact-item.telegram:hover .preference-indicator span { font-size:.7rem; opacity:1; transform:translateX(0); transition-delay:.1s; }
 }
+/* ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНЫХ: бейдж «предпочтительно» теперь автоширины и всегда вмещает текст */
 @media (max-width: 1023.98px) {
-  .contact-item.telegram.is-visible .preference-indicator { width:110px; border-radius:12px; animation:none; padding:0 12px; }
-  .contact-item.telegram.is-visible .preference-indicator span { font-size:.7rem; opacity:1; transform:translateX(0); transition-delay:.1s; }
+  .contact-item.telegram.is-visible .preference-indicator {
+    width: auto;
+    height: 22px;
+    border-radius: 12px;
+    animation: none;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    right: -6px;
+    top: -6px;
+  }
+  .contact-item.telegram.is-visible .preference-indicator span {
+    font-size: .7rem;
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: .1s;
+  }
 }
 .contact-item:hover .contact-icon { transform: translateY(-10px) scale(1.15); box-shadow:0 15px 35px rgba(0,0,0,0.4); }
 .contact-item:hover .contact-label { opacity:1; transform: translateY(5px); }
@@ -206,12 +224,6 @@ nav a.active::after { width:100%; }
   .contact-icon { width:70px; height:70px; }
   .preference-indicator { width:18px; height:18px; }
 }
-@media (max-width: 850px) {
-  .primary-navigation { position:fixed; top:0; right:0; width:70%; max-width:400px; height:100vh; flex-direction:column; justify-content:center; align-items:center; padding:2em; background:rgba(11,11,19,0.95); backdrop-filter: blur(1rem); transform: translateX(100%); transition: transform 350ms ease-out; z-index:1000; }
-  .primary-navigation[data-visible="true"] { transform: translateX(0%); }
-  .primary-navigation a { display:block; width:100%; text-align:center; font-size:1.3rem; padding:1rem 0; white-space:normal; }
-  .mobile-nav-toggle { display:block; position:absolute; top:1.8rem; right:2rem; z-index:2000; background:transparent; border:0; color:#fff; font-size:1.5rem; cursor:pointer; }
-}
 @media (max-width: 768px) {
   .container { padding:120px 20px 80px; }
   .hero-content h1 { font-size:2.8rem; }
@@ -235,15 +247,13 @@ nav a.active::after { width:100%; }
   .contact-card h4 { font-size:1.1rem; }
   #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
   .contact-card .action-btn { padding:11px; font-size:.9rem; }
-  /* ИСПРАВЛЕНИЕ: Оптимизация индикатора для самых маленьких экранов */
-  @media (max-width: 1023.98px) {
-    .contact-item.telegram.is-visible .preference-indicator {
-      width: 90px;
-      padding: 0 8px;
-    }
-    .contact-item.telegram.is-visible .preference-indicator span {
-      font-size: 0.65rem;
-    }
+  /* Дополнительная подстройка бейджа на самых маленьких экранах */
+  .contact-item.telegram.is-visible .preference-indicator {
+    height: 20px;
+    padding: 0 8px;
+  }
+  .contact-item.telegram.is-visible .preference-indicator span {
+    font-size: 0.62rem;
   }
 }
 
@@ -386,7 +396,7 @@ nav a.active::after { width:100%; }
   </section>  <footer id="developer-signature">
     <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
     <span class="footer-year">2025</span>
-    <span class="footer-version">v 2.0</span>
+    <span class="footer-version">v 2.1</span>
   </footer>  <div id="contactModal" class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
       <span class="close-modal" aria-label="Закрыть">&times;</span>
@@ -585,4 +595,3 @@ nav a.active::after { width:100%; }
   </script>
 </body>
 </html>
-
