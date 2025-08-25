@@ -132,13 +132,12 @@ nav a.active::after { width:100%; }
 .preference-indicator { position:absolute; top:-10px; right:-10px; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg, #ffd700, #ff9800); z-index:10; box-shadow:0 0 15px rgba(255,215,0,0.7); animation:pulse 2s infinite; display:flex; align-items:center; justify-content:center; transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275); overflow:hidden; }
 .preference-indicator span { position:absolute; font-size:0; font-weight:700; color:#000; white-space:nowrap; opacity:0; transition:all .3s ease; transform:translateX(10px); }
 @keyframes pulse { 0% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,215,0,0.7); } 70% { transform:scale(1.2); box-shadow:0 0 0 10px rgba(255,215,0,0); } 100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,215,0,0); } }
-/* ИСПРАВЛЕНИЕ: Раздельная логика для десктопа и мобильных */
 @media (min-width: 1024px) {
-  .contact-item.telegram:hover .preference-indicator { width:130px; border-radius:12px; animation:none; background:linear-gradient(135deg, #ffd700, #ff9800); padding:0 15px; }
+  .contact-item.telegram:hover .preference-indicator { width:130px; border-radius:12px; animation:none; padding:0 15px; }
   .contact-item.telegram:hover .preference-indicator span { font-size:.7rem; opacity:1; transform:translateX(0); transition-delay:.1s; }
 }
 @media (max-width: 1023.98px) {
-  .contact-item.telegram.is-visible .preference-indicator { width:110px; border-radius:12px; animation:none; background:linear-gradient(135deg, #ffd700, #ff9800); padding:0 12px; }
+  .contact-item.telegram.is-visible .preference-indicator { width:110px; border-radius:12px; animation:none; padding:0 12px; }
   .contact-item.telegram.is-visible .preference-indicator span { font-size:.7rem; opacity:1; transform:translateX(0); transition-delay:.1s; }
 }
 .contact-item:hover .contact-icon { transform: translateY(-10px) scale(1.15); box-shadow:0 15px 35px rgba(0,0,0,0.4); }
@@ -156,32 +155,24 @@ nav a.active::after { width:100%; }
 /* --- Стили модальных окон --- */
 .contact-modal { display:none; position:fixed; z-index:2000; inset:0; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px); animation: fadeIn .3s ease; align-items:center; justify-content:center; }
 @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
-
-/* Крестик закрытия */
-.close-modal {
-  color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease;
-  width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0;
-}
+.close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0; }
 .close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
-
-/* ОДИНОЧНОЕ модальное окно (стили восстановлены) */
-.modal-content {
-  background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px;
-  width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5);
-}
+.modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
 .modal-header h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; }
 .contact-qr { margin: 0 auto 20px; background: white; padding: 10px; border-radius: 10px; line-height: 0; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
 .contact-details p { font-size: 1.2rem; color: #a0a0d0; margin-bottom: 5px;}
 .contact-phone { font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 20px; }
 .contact-actions { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-.action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
-.action-primary { background: linear-gradient(90deg, #385fff, #e23f77); color: #fff; }
-.action-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
+.action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
 .action-secondary { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
 .action-secondary:hover { background: rgba(255,255,255,0.2); }
+/* ИСПРАВЛЕНИЕ: Градиент на псевдоэлементе для избежания артефактов */
+.action-primary { color: #fff; }
+.action-primary::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #385fff, #e23f77); transition: transform .3s ease; }
+.action-primary:hover::before { transform: scale(1.05); }
+.action-primary:hover { box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
 
-
-/* МУЛЬТИ-модальное окно (с исправлением кнопок) */
+/* МУЛЬТИ-модальное окно */
 #multiContactModal .modal-content-multi { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px; }
 .contact-card { background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards; }
 .contact-card:nth-child(2) { animation-delay:.1s; } .contact-card:nth-child(3) { animation-delay:.2s; }
@@ -191,11 +182,8 @@ nav a.active::after { width:100%; }
 .contact-card h4 { font-size:1.3rem; font-weight:600; }
 .contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-10px; }
 .contact-card p { font-size:1rem; color:#a0a0d0; }
-/* ИСПРАВЛЕНИЕ: Кнопки в мульти-модалке */
 .contact-card .actions-wrapper { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: auto; }
-#multiContactModal .action-btn { width: 100%; } /* Основная кнопка растягивается */
-
-
+#multiContactModal .action-btn { width: 100%; }
 .copy-notification { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(14,14,24,0.95); color:#6d8eff; padding:10px 25px; border-radius:50px; font-weight:600; box-shadow:0 5px 20px rgba(0,0,0,0.3); display:none; z-index:3000; }
 
 /* Мобильные правки */
@@ -242,14 +230,21 @@ nav a.active::after { width:100%; }
   .contact-icon i { font-size:22px; }
   .contact-label { font-size:.7rem; margin-top:10px; }
   .preference-indicator { width:14px; height:14px; top:-6px; right:-6px; }
-  @media (max-width: 1023.98px) {
-    .contact-item.telegram.is-visible .preference-indicator { width:85px; padding:0 8px; }
-  }
   .action-btn { padding:12px 15px; font-size:.9rem; }
   .contact-card { padding:18px; width:100%; max-width: 320px; }
   .contact-card h4 { font-size:1.1rem; }
   #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
   .contact-card .action-btn { padding:11px; font-size:.9rem; }
+  /* ИСПРАВЛЕНИЕ: Оптимизация индикатора для самых маленьких экранов */
+  @media (max-width: 1023.98px) {
+    .contact-item.telegram.is-visible .preference-indicator {
+      width: 90px;
+      padding: 0 8px;
+    }
+    .contact-item.telegram.is-visible .preference-indicator span {
+      font-size: 0.65rem;
+    }
+  }
 }
 
   </style>
