@@ -157,32 +157,20 @@
     @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
     .close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0; }
     .close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
-    .modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
-    .modal-header h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; }
-    .contact-qr { margin: 0 auto 20px; background: white; padding: 10px; border-radius: 10px; line-height: 0; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
-    .contact-details p { font-size: 1.2rem; color: #a0a0d0; margin-bottom: 5px;}
-    .contact-phone { font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 20px; }
+    .modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:400px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 20px; }
+    .modal-header h3 { font-size: 1.8rem; font-weight: 600; margin: 0; }
+    .contact-qr { margin: 0 auto; background: white; padding: 10px; border-radius: 10px; line-height: 0; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; transition: background .3s ease; }
+    .contact-qr.no-bg { background: transparent; }
+    .contact-qr i.fa-phone { font-size: 100px; color: #fff; background: linear-gradient(135deg, #25D366, #128C7E); padding: 30px; border-radius: 20px; }
+    .contact-details p { font-size: 1.2rem; color: #a0a0d0; margin: 0;}
     .contact-actions { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-    .action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
+    .action-btn { flex-grow: 1; padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
     .action-secondary { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
     .action-secondary:hover { background: rgba(255,255,255,0.2); }
     .action-primary { color: #fff; }
     .action-primary::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #385fff, #e23f77); transition: transform .3s ease; }
     .action-primary:hover::before { transform: scale(1.05); }
     .action-primary:hover { box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
-
-    /* МУЛЬТИ-модальное окно */
-    #multiContactModal .modal-content-multi { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px; }
-    .contact-card { background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards; }
-    .contact-card:nth-child(2) { animation-delay:.1s; } .contact-card:nth-child(3) { animation-delay:.2s; }
-    @keyframes cardFadeInUp { to { opacity:1; transform:translateY(0) } }
-    #multiContactModal .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; background: none; border-radius: 0; }
-    #multiContactModal .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .contact-card h4 { font-size:1.3rem; font-weight:600; }
-    .contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-10px; }
-    .contact-card p { font-size:1rem; color:#a0a0d0; }
-    .contact-card .actions-wrapper { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: auto; }
-    #multiContactModal .action-btn { width: 100%; }
     .copy-notification { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(14,14,24,0.95); color:#6d8eff; padding:10px 25px; border-radius:50px; font-weight:600; box-shadow:0 5px 20px rgba(0,0,0,0.3); display:none; z-index:3000; }
 
     .sr-only {
@@ -200,13 +188,10 @@
     /* Мобильные правки */
     @media (max-width: 1023.98px) {
       .contact-modal { padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
-      .modal-content, #multiContactModal .modal-content-multi { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; }
-      .modal-content { width: clamp(280px, 92vw, 500px); border-radius:16px; }
-      #multiContactModal .modal-content-multi { width: clamp(300px, 96vw, 950px); padding: 60px 16px 20px; }
+      .modal-content { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; width: clamp(280px, 92vw, 400px); border-radius:16px; }
       .close-modal { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); z-index: 2100; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color:#fff; font-size:26px; line-height:1; cursor:pointer; border:1px solid rgba(255,255,255,0.2); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s ease, background .2s ease; }
       .close-modal:hover { transform: scale(1.08); background: rgba(0,0,0,0.7); }
 
-      /* ИСПРАВЛЕНО v1.6: Увеличен размер индикатора и уменьшен шрифт для лучшего вида */
       .contact-item.telegram.is-visible .preference-indicator {
         width: 120px;
         border-radius: 12px;
@@ -244,8 +229,6 @@
       .key-point-text { font-size:1.2rem; }
       .btn { padding:14px 28px; font-size:1rem; }
       .section-title { font-size:2.2rem; }
-      #multiContactModal .contact-card { width:90%; max-width:300px; }
-      .contact-card .contact-icon { width:60px; height:60px; }
     }
     @media (max-width: 480px) {
       .photo-frame { max-width:300px; }
@@ -256,12 +239,6 @@
       .contact-label { font-size:.7rem; margin-top:10px; }
       .preference-indicator { width:14px; height:14px; top:-6px; right:-6px; }
       .action-btn { padding:12px 15px; font-size:.9rem; }
-      .contact-card { padding:18px; width:100%; max-width: 320px; }
-      .contact-card h4 { font-size:1.1rem; }
-      #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
-      .contact-card .action-btn { padding:11px; font-size:.9rem; }
-
-      /* ИСПРАВЛЕНО v1.6: Оптимизация индикатора для самых маленьких экранов */
       .contact-item.telegram.is-visible .preference-indicator {
         width: 100px;
         padding: 0 8px;
@@ -398,16 +375,16 @@
   <section id="contacts" class="contacts-section">
     <h2 class="section-title">Связаться</h2>
     <div class="contact-icons">
-      <div class="contact-item telegram">
+      <div class="contact-item telegram" data-contact="telegram">
         <div class="contact-icon"><i class="fab fa-telegram"></i></div>
         <span class="contact-label">Telegram</span>
         <div class="preference-indicator"><span>предпочтительно</span></div>
       </div>
-      <div class="contact-item max">
+      <div class="contact-item max" data-contact="max">
         <div class="contact-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"></div>
         <span class="contact-label">MAX</span>
       </div>
-      <div class="contact-item phone">
+      <div class="contact-item phone" data-contact="phone">
         <div class="contact-icon"><i class="fas fa-phone"></i></div>
         <span class="contact-label">Позвонить</span>
       </div>
@@ -420,43 +397,28 @@
     <span class="footer-version">v 1.6</span>
   </footer>
 
-  <div id="multiContactModal" class="contact-modal" role="dialog" aria-modal="true" aria-label="Контакты">
-    <div class="modal-content-multi">
-      <span class="close-modal" aria-label="Закрыть">&times;</span>
-      <div class="contact-card">
-        <div class="contact-icon"><img src="tg.png" alt="Telegram"></div>
-        <h4>Telegram</h4>
-        <div class="preference-text">Предпочтительно</div>
-        <p>@arinanett</p>
-        <div class="actions-wrapper">
-          <a href="https://t.me/arinanett" target="_blank" rel="noopener" class="action-btn action-primary">Написать</a>
-          <button class="action-btn action-secondary" data-copy-value="@arinanett"><i class="fas fa-copy"></i> Копировать ссылку</button>
-        </div>
+  <div id="singleContactModal" class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-content">
+          <span class="close-modal" aria-label="Закрыть">&times;</span>
+          <div class="modal-header">
+              <h3 id="modalTitle"></h3>
+          </div>
+          <div id="modalQrContainer" class="contact-qr"></div>
+          <div class="contact-details">
+              <p id="modalDetailsText"></p>
+          </div>
+          <div class="contact-actions">
+              <a id="modalPrimaryAction" href="#" target="_blank" rel="noopener" class="action-btn action-primary"></a>
+              <button id="modalCopyAction" class="action-btn action-secondary"></button>
+          </div>
       </div>
-      <div class="contact-card">
-        <div class="contact-icon"><img src="max.png" alt="MAX"></div>
-        <h4>MAX</h4>
-        <p>Профиль на MAX</p>
-        <div class="actions-wrapper">
-          <a href="https://web.max.ru/10624402" target="_blank" rel="noopener" class="action-btn action-primary">Перейти в профиль</a>
-          <button class="action-btn action-secondary" data-copy-value="https://web.max.ru/10624402"><i class="fas fa-copy"></i> Копировать ссылку</button>
-        </div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon"><img src="phone.png" alt="Телефон"></div>
-        <h4>Телефон</h4>
-        <p>+79633480774</p>
-        <div class="actions-wrapper">
-          <a href="tel:+79633480774" class="action-btn action-primary">Позвонить</a>
-          <button class="action-btn action-secondary" data-copy-value="+79633480774"><i class="fas fa-copy"></i> Копировать номер</button>
-        </div>
-      </div>
-    </div>
   </div>
-  <div class="copy-notification" id="copyNotification">Ссылка скопирована в буфер обмена!</div>
+
+  <div class="copy-notification" id="copyNotification">Скопировано!</div>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // --- Скрипты для анимаций и UI (не тронуты) ---
       const particlesContainer = document.getElementById('particles');
       if (particlesContainer) {
         for (let i = 0; i < 50; i++) {
@@ -522,58 +484,132 @@
         });
       }
 
-      const multiModal = document.getElementById("multiContactModal");
-      const copyNotification = document.getElementById("copyNotification");
-      const isMobileViewport = () => window.matchMedia('(max-width: 1023.98px)').matches;
+      // --- НОВАЯ ЛОГИКА МОДАЛЬНЫХ ОКОН ---
 
-      function lockBodyScroll(lock) {
-        document.body.style.overflow = lock ? 'hidden' : '';
-      }
+      const contactData = {
+          telegram: {
+              title: 'Telegram',
+              details: '@arinanett',
+              link: 'https://t.me/arinanett',
+              copyValue: 'https://t.me/arinanett',
+              primaryActionText: 'Написать',
+              secondaryActionText: '<i class="fas fa-copy"></i> Копировать ссылку',
+              isPhone: false
+          },
+          max: {
+              title: 'MAX',
+              details: 'Профиль на MAX',
+              link: 'https://web.max.ru/10624402',
+              copyValue: 'https://web.max.ru/10624402',
+              primaryActionText: 'Перейти в профиль',
+              secondaryActionText: '<i class="fas fa-copy"></i> Копировать ссылку',
+              isPhone: false
+          },
+          phone: {
+              title: 'Телефон',
+              details: '+7 (963) 348-07-74',
+              link: 'tel:+79633480774',
+              copyValue: '+79633480774',
+              primaryActionText: 'Позвонить',
+              secondaryActionText: '<i class="fas fa-copy"></i> Копировать номер',
+              isPhone: true
+          }
+      };
+
+      const modal = document.getElementById('singleContactModal');
+      const copyNotification = document.getElementById("copyNotification");
+      let currentContactType = null;
+      let qrCodeInstance = null;
+      
+      const modalElements = {
+          title: document.getElementById('modalTitle'),
+          qrContainer: document.getElementById('modalQrContainer'),
+          detailsText: document.getElementById('modalDetailsText'),
+          primaryAction: document.getElementById('modalPrimaryAction'),
+          copyAction: document.getElementById('modalCopyAction'),
+      };
 
       function showCopyNotification(text) {
-        if (copyNotification) {
-          copyNotification.textContent = 'Скопировано: ' + text;
-          copyNotification.style.display = "block";
-          setTimeout(() => { copyNotification.style.display = "none"; }, 2000);
-        }
+          if (copyNotification) {
+              copyNotification.textContent = 'Скопировано: ' + text;
+              copyNotification.style.display = "block";
+              setTimeout(() => { copyNotification.style.display = "none"; }, 2000);
+          }
       }
 
-      function openModal() {
-        if (multiModal) {
-          multiModal.style.display = "flex";
-          if (isMobileViewport()) lockBodyScroll(true);
-        }
+      function openModal(contactType) {
+          if (!modal || !contactData[contactType]) return;
+          
+          currentContactType = contactType;
+          const data = contactData[contactType];
+
+          // Заполнение контента
+          modalElements.title.textContent = data.title;
+          modalElements.detailsText.textContent = data.details;
+          modalElements.primaryAction.href = data.link;
+          modalElements.primaryAction.textContent = data.primaryActionText;
+          modalElements.copyAction.innerHTML = data.secondaryActionText;
+          
+          // Логика QR-кода или иконки телефона
+          modalElements.qrContainer.innerHTML = ''; // Очистка
+          if (data.isPhone) {
+              modalElements.qrContainer.classList.add('no-bg');
+              modalElements.qrContainer.innerHTML = '<i class="fas fa-phone"></i>';
+          } else {
+              modalElements.qrContainer.classList.remove('no-bg');
+              if (qrCodeInstance) {
+                qrCodeInstance.clear();
+                qrCodeInstance.makeCode(data.link);
+              } else {
+                qrCodeInstance = new QRCode(modalElements.qrContainer, {
+                    text: data.link,
+                    width: 180,
+                    height: 180,
+                    colorDark: "#0b0b13",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+              }
+          }
+          
+          modal.style.display = "flex";
+          document.body.style.overflow = 'hidden';
       }
 
       function closeModal() {
-        if (multiModal) multiModal.style.display = "none";
-        lockBodyScroll(false);
+          if (modal) modal.style.display = "none";
+          document.body.style.overflow = '';
+          currentContactType = null;
       }
 
-      document.querySelectorAll('.contact-item').forEach(item => {
-        item.addEventListener('click', openModal);
+      // Навешиваем события
+      document.querySelectorAll('.contact-item[data-contact]').forEach(item => {
+          item.addEventListener('click', () => openModal(item.dataset.contact));
       });
+      
       document.getElementById('nav-contacts-link')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        openModal();
+          e.preventDefault();
+          openModal('telegram'); // Открываем предпочтительный контакт по умолчанию
       });
 
-      document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
-      window.addEventListener('click', (e) => {
-        if (e.target === multiModal) closeModal();
+      modal.querySelector('.close-modal').addEventListener('click', closeModal);
+      
+      modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
       });
+
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
+          if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
       });
 
-      document.querySelectorAll('#multiContactModal [data-copy-value]').forEach(button => {
-        button.addEventListener('click', () => {
-          const valueToCopy = button.dataset.copyValue;
-          navigator.clipboard.writeText(valueToCopy).then(() => showCopyNotification(valueToCopy));
-        });
+      modalElements.copyAction.addEventListener('click', () => {
+          if (currentContactType) {
+              const valueToCopy = contactData[currentContactType].copyValue;
+              navigator.clipboard.writeText(valueToCopy)
+                  .then(() => showCopyNotification(valueToCopy));
+          }
       });
     });
   </script>
 </body>
 </html>
-
