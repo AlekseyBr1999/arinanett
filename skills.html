@@ -98,12 +98,10 @@
         .education-info p { font-size: 1.1rem; color: rgba(220,220,240,0.8); line-height: 1.6; }
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
-        .skill-card { background: rgba(18, 18, 30, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(5px); }
+        .skill-card { background: rgba(18, 18, 30, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; min-height: 100px; }
         .skill-card:hover { transform: translateY(-8px); background: rgba(25, 25, 40, 0.9); border-color: rgba(109, 142, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-        .skill-icon { font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(135deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
-        .skill-card p { font-size: 0.9rem; color: rgba(220,220,240,0.7); line-height: 1.5; }
-
+        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin: 0; }
+        
         .key-points { margin-top: 40px; display: flex; flex-direction: column; gap: 30px; }
         .key-point { position: relative; padding-left: 40px; }
         .key-point::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 5px; width: 24px; height: 24px; background: linear-gradient(135deg, #385fff, #e23f77); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; }
@@ -121,34 +119,52 @@
         .layer-2 { bottom: 15%; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(226, 63, 119, 0.25) 0%, transparent 70%); filter: blur(30px); animation: floatElement 15s infinite alternate-reverse ease-in-out; }
         @keyframes floatElement { 0% { transform: translateY(0) rotate(0deg) scale(1); } 100% { transform: translateY(-50px) rotate(10deg) scale(1.1); } }
         
-        #developer-signature { position: relative; z-index: 10; text-align: center; padding: 25px 20px; font-size: 1rem; color: rgba(220, 220, 240, 0.4); background: rgba(8, 8, 16, 0.6); backdrop-filter: blur(5px); border-top: 1px solid rgba(255, 255, 255, 0.08); }
-        #developer-signature a { color: rgba(109, 142, 255, 0.7); text-decoration: none; font-weight: 600; transition: all 0.3s ease; position: relative; }
-        #developer-signature a:hover { color: rgba(255, 255, 255, 0.8); }
-        .footer-year { display: block; margin-top: 8px; font-size: 0.9rem; color: rgba(220, 220, 240, 0.3); }
+        #developer-signature { position:relative; z-index:10; text-align:center; padding:25px 20px; font-size:1rem; color:rgba(220,220,240,0.6); background:rgba(8,8,16,0.6); backdrop-filter: blur(5px); border-top:1px solid rgba(255,255,255,0.08); font-weight:500; }
+        #developer-signature a { color:inherit; text-decoration:none; transition:color .3s ease; }
+        #developer-signature a:hover { color:#fff; }
+        .signature-e { font-weight:700; font-size:1.1em; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .footer-year { display:block; margin-top:8px; font-size:.9rem; color:rgba(220,220,240,0.3); }
+        .footer-version { display:block; margin-top:10px; font-size:.8rem; color:rgba(220,220,240,0.4); letter-spacing:1px; }
 
-        /* Стили для модального окна контактов */
-        .contact-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); animation: fadeIn 0.3s ease; align-items: center; justify-content: center; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .close-modal { color: #aaa; position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
-        .close-modal:hover, .close-modal:focus { color: white; transform: scale(1.2); }
-        #multiContactModal .modal-content-multi { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; background: transparent; border: none; box-shadow: none; width: 100%; max-width: 950px; position: relative; padding: 40px 20px; }
-        .contact-card { background: rgba(18, 18, 30, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; width: 280px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 15px; opacity: 0; transform: translateY(30px); animation: cardFadeInUp 0.6s ease forwards; }
-        .contact-card:nth-child(2) { animation-delay: 0.1s; } .contact-card:nth-child(3) { animation-delay: 0.2s; }
-        @keyframes cardFadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .contact-card .contact-icon i { font-size: 28px; color: white; }
-        .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .contact-card h4 { font-size: 1.3rem; font-weight: 600; }
-        .contact-card .preference-text { font-size: 0.8rem; font-weight: 600; color: #ffd700; margin-top: -10px; }
-        .contact-card p { font-size: 1rem; color: #a0a0d0; }
-        .action-btn { display: block; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-align: center; position: relative; z-index: 2; width: 100%; font-size: 0.9rem; }
-        .action-primary { background: linear-gradient(90deg, #385fff, #e23f77); color: white; box-shadow: 0 5px 20px rgba(56, 95, 255, 0.3); }
-        .action-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(56, 95, 255, 0.4); }
-        .telegram .contact-icon { background: linear-gradient(135deg, #2AABEE, #229ED9); }
-        .max .contact-icon { background: none; }
-        .phone .contact-icon { background: linear-gradient(135deg, #25D366, #128C7E); }
+        /* --- Стили модальных окон --- */
+        .contact-modal { display:none; position:fixed; z-index:2000; inset:0; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px); animation: fadeIn .3s ease; align-items:center; justify-content:center; }
+        @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+        .close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0; }
+        .close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
+        .modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
+        .action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
+        .action-secondary { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
+        .action-secondary:hover { background: rgba(255,255,255,0.2); }
+        .action-primary { color: #fff; }
+        .action-primary::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #385fff, #e23f77); transition: transform .3s ease; }
+        .action-primary:hover::before { transform: scale(1.05); }
+        .action-primary:hover { box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
+
+        /* МУЛЬТИ-модальное окно */
+        #multiContactModal .modal-content-multi { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px; }
+        .contact-card { background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards; }
+        .contact-card:nth-child(2) { animation-delay:.1s; } .contact-card:nth-child(3) { animation-delay:.2s; }
+        @keyframes cardFadeInUp { to { opacity:1; transform:translateY(0) } }
+        #multiContactModal .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; background: none; border-radius: 0; }
+        #multiContactModal .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: contain; }
+        .contact-card h4 { font-size:1.3rem; font-weight:600; }
+        .contact-card .preference-text { font-size:.8rem; font-weight:600; color:#ffd700; margin-top:-10px; }
+        .contact-card p { font-size:1rem; color:#a0a0d0; }
+        .contact-card .actions-wrapper { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: auto; }
+        #multiContactModal .action-btn { width: 100%; }
+        .copy-notification { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(14,14,24,0.95); color:#6d8eff; padding:10px 25px; border-radius:50px; font-weight:600; box-shadow:0 5px 20px rgba(0,0,0,0.3); display:none; z-index:3000; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
         /* Адаптивность и мобильная навигация */
+        @media (max-width: 1023.98px) {
+            .contact-modal { padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
+            .modal-content, #multiContactModal .modal-content-multi { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; }
+            .modal-content { width: clamp(280px, 92vw, 500px); border-radius:16px; }
+            #multiContactModal .modal-content-multi { width: clamp(300px, 96vw, 950px); padding: 60px 16px 20px; }
+            .close-modal { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); z-index: 2100; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color:#fff; font-size:26px; line-height:1; cursor:pointer; border:1px solid rgba(255,255,255,0.2); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s ease, background .2s ease; }
+            .close-modal:hover { transform: scale(1.08); background: rgba(0,0,0,0.7); }
+        }
+
         @media (max-width: 850px) {
             .primary-navigation {
                 position: fixed; top: 0; right: 0; width: 70%; max-width: 400px; height: 100vh;
@@ -170,44 +186,26 @@
             .page-title { font-size: 2.8rem; margin-bottom: 60px; }
             .section-subtitle { font-size: 1.8rem; }
             .skills-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-            .education-card { flex-direction: column; text-align: center; }
-            .key-point-text { font-size: 1.2rem; }
-            .key-point { padding-left: 35px; }
-            
-            /* ИСПРАВЛЕНИЯ ДЛЯ МОДАЛЬНОГО ОКНА */
-            .contact-modal { align-items: flex-start; }
-            #multiContactModal .modal-content-multi {
-                flex-direction: column; align-items: center;
-                gap: 15px; /* Уменьшаем отступ */
-                padding: 50px 15px 20px 15px; /* Увеличиваем верхний отступ для крестика, остальное уменьшаем */
-            }
-            .contact-card {
-                width: 90%; max-width: 300px;
-                padding: 20px; /* Уменьшаем внутренний отступ */
-                gap: 10px; /* Уменьшаем отступ внутри карточки */
-            }
-            .contact-card .contact-icon {
-                width: 50px; height: 50px; /* Уменьшаем иконку */
-            }
-            .contact-card .contact-icon i {
-                font-size: 24px; /* Уменьшаем иконку */
-            }
-            .contact-card h4 {
-                font-size: 1.2rem; /* Уменьшаем заголовок */
-            }
-            .contact-card p {
-                font-size: 0.9rem; /* Уменьшаем текст */
-            }
-            .action-btn {
-                padding: 10px 15px; /* Уменьшаем кнопку */
-                font-size: 0.85rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .skills-grid { grid-template-columns: 1fr; }
-            .page-title { font-size: 2.4rem; }
+            .education-card { flex-direction: column; text-align: center; gap: 20px; }
             .education-info h4 { font-size: 1.3rem; }
             .education-info p { font-size: 1rem; }
+            .key-point-text { font-size: 1.2rem; }
+            .key-point { padding-left: 35px; }
+            #multiContactModal .contact-card { width:90%; max-width:300px; }
+            .contact-card .contact-icon { width:60px; height:60px; }
+        }
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 15px;}
+            .skill-card { min-height: 80px; padding: 15px; }
+            .skill-card h4 { font-size: 1rem; }
+            .page-title { font-size: 2.4rem; }
+            .education-info h4 { font-size: 1.2rem; }
+            .education-info p { font-size: 0.9rem; }
+            .action-btn { padding:12px 15px; font-size:.9rem; }
+            .contact-card { padding:18px; width:100%; max-width: 320px; }
+            .contact-card h4 { font-size:1.1rem; }
+            #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
+            .contact-card .action-btn { padding:11px; font-size:.9rem; }
         }
     </style>
 </head>
@@ -221,11 +219,11 @@
         <div class="logo">Арина Петрова</div>
         <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
             <i class="fas fa-bars" aria-hidden="true"></i>
-            <span class="sr-only" style="display: none;">Меню</span>
+            <span class="sr-only">Меню</span>
         </button>
         <nav>
             <ul id="primary-navigation" class="primary-navigation" data-visible="false">
-                <li><a href="head.html">Главная</a></li>
+                <li><a href="index.html">Главная</a></li>
                 <li><a href="portfolio.html">Кейсы</a></li>
                 <li><a href="skills.html" class="active">Экспертиза</a></li>
                 <li><a href="services.html">Услуги</a></li>
@@ -245,107 +243,94 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="education-info">
-                        <h4>Государственный Университет (Пример)</h4>
-                        <p>Здесь можно разместить информацию о дипломе, например: "Специалист по направлению 'Журналистика', диплом с отличием. Тема дипломной работы: '...'"</p>
+                        <h4>Тюменский Государственный Университет‚ Институт Гуманитарных Наук (ИГН)</h4>
+                        <p>Филологический факультет, отделение журналистики<br>2011 · Высшее</p>
+                    </div>
+                </div>
+                <div class="education-card" style="margin-top: 30px;">
+                    <div class="education-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="education-info">
+                        <h4>Тюменский государственный университет, Тюмень</h4>
+                        <p>Факультет романо-германской филологии, переводчик немецкого языка<br>2011 · Высшее</p>
                     </div>
                 </div>
             </div>
 
             <div class="skills-section">
-                <h3 class="section-subtitle">Программное обеспечение</h3>
+                <h3 class="section-subtitle">Программное обеспечение и сервисы</h3>
                 <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-figma"></i></div>
-                        <h4>Figma</h4>
-                        <p>Создание прототипов и дизайн-макетов</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-image"></i></div>
-                        <h4>Adobe Photoshop</h4>
-                        <p>Обработка изображений, создание графики</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-file-word"></i></div>
-                        <h4>MS Office Suite</h4>
-                        <p>Word, Excel, PowerPoint на продвинутом уровне</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-trello"></i></div>
-                        <h4>Trello / Jira</h4>
-                        <p>Управление проектами и задачами</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-camera"></i></div>
-                        <h4>Название ПО</h4>
-                        <p>Краткое описание навыка работы с программой</p>
-                    </div>
+                    <div class="skill-card"><h4>Google Docs</h4></div>
+                    <div class="skill-card"><h4>Microsoft Word</h4></div>
+                    <div class="skill-card"><h4>Power Point</h4></div>
+                    <div class="skill-card"><h4>Text.ru</h4></div>
+                    <div class="skill-card"><h4>Главред</h4></div>
+                    <div class="skill-card"><h4>Deepl</h4></div>
+                    <div class="skill-card"><h4>Bitrix</h4></div>
+                    <div class="skill-card"><h4>Brand Analytics</h4></div>
                 </div>
             </div>
 
             <div class="skills-section">
                 <h3 class="section-subtitle">Работа с нейросетями (AI)</h3>
                 <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                        <h4>ChatGPT 4o</h4>
-                        <p>Генерация и редактура текстов, брейншторминг</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-palette"></i></div>
-                        <h4>Midjourney</h4>
-                        <p>Создание уникальных изображений по запросам</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                        <h4>Название AI</h4>
-                        <p>Краткое описание навыка работы с нейросетью</p>
-                    </div>
-                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-music"></i></div>
-                        <h4>Название AI</h4>
-                        <p>Краткое описание навыка работы с нейросетью</p>
-                    </div>
+                    <div class="skill-card"><h4>ChatGPT</h4></div>
+                    <div class="skill-card"><h4>Perplexity</h4></div>
+                    <div class="skill-card"><h4>YandexART</h4></div>
+                    <div class="skill-card"><h4>YandexGPT</h4></div>
+                    <div class="skill-card"><h4>GigaChat</h4></div>
+                    <div class="skill-card"><h4>Gemini</h4></div>
+                    <div class="skill-card"><h4>Deepl</h4></div>
+                    <div class="skill-card"><h4>Midjorney</h4></div>
                 </div>
             </div>
 
             <div class="skills-section">
                 <h3 class="section-subtitle">Ключевые профессиональные навыки</h3>
-                <div class="key-points">
-                    <div class="key-point">
-                        <p class="key-point-text"><span class="highlight">Копирайтинг и рерайтинг</span></p>
-                    </div>
-                    <div class="key-point">
-                        <p class="key-point-text"><span class="highlight">Редактура и корректура</span></p>
-                    </div>
-                    <div class="key-point">
-                        <p class="key-point-text"><span class="highlight">SEO-оптимизация текстов</span></p>
-                    </div>
+                 <div class="skills-grid">
+                    <div class="skill-card"><h4>Написание рекламных статей</h4></div>
+                    <div class="skill-card"><h4>Наполнение контентом</h4></div>
+                    <div class="skill-card"><h4>Журналистика</h4></div>
+                    <div class="skill-card"><h4>Копирайтинг</h4></div>
+                    <div class="skill-card"><h4>Грамотная речь</h4></div>
+                    <div class="skill-card"><h4>Написание текстов</h4></div>
+                    <div class="skill-card"><h4>Ведение переговоров</h4></div>
+                    <div class="skill-card"><h4>Написание пресс-релизов</h4></div>
+                    <div class="skill-card"><h4>Интервьюирование</h4></div>
+                    <div class="skill-card"><h4>SEO-копирайтинг</h4></div>
                 </div>
             </div>
 
             <div class="skills-section">
-                <h3 class="section-subtitle">Компетенции</h3>
+                <h3 class="section-subtitle">Дополнительно</h3>
                 <div class="key-points">
                     <div class="key-point">
-                        <p class="key-point-text">Создание и разработка креативных концепций.</p>
+                        <p class="key-point-text">Автор с большим стажем</p>
                     </div>
                     <div class="key-point">
-                        <p class="key-point-text">Написание продуктовых текстов, статей и лонгридов.</p>
+                        <p class="key-point-text">Сотрудничество с блогерами: создаю гайды, посты для рабочих и личных аккаунтов, статьи для Яндекс.Дзен</p>
                     </div>
                     <div class="key-point">
-                        <p class="key-point-text">Редактура текста.</p>
+                        <p class="key-point-text">За время профессиональной деятельности наработала большую базу спикеров в разных сферах (авто, недвижимость, медицина, юриспруденция и т.д.)</p>
                     </div>
                     <div class="key-point">
-                        <p class="key-point-text">Генерация креативных идей для контент-плана.</p>
+                        <p class="key-point-text">Легко погружаюсь в новую тему</p>
                     </div>
                      <div class="key-point">
-                        <p class="key-point-text">Создание текстового наполнения для посадочных страниц сайтов.</p>
+                        <p class="key-point-text">Диплом с отличием. На протяжении всего времени обучения в университете совмещала работу и учебу. Люблю свою работу</p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text">Вынослива, здоровье хорошее</p>
+                    </div>
+                    <div class="key-point">
+                        <p class="key-point-text">Главные интересы в жизни: семья, путешествия, политика, авиация, спорт, журналистика</p>
                     </div>
                 </div>
             </div>
 
             <div class="back-to-home-section">
-                <a href="head.html" class="btn btn-primary">
+                <a href="index.html" class="btn btn-primary">
                     <i class="fas fa-home"></i> На главную
                 </a>
             </div>
@@ -353,108 +338,129 @@
         </section>
     </div>
 
-    <div id="multiContactModal" class="contact-modal">
-        <div class="modal-content-multi">
-            <span class="close-modal">&times;</span>
-            <div class="contact-card">
-                <div class="contact-icon telegram"><i class="fab fa-telegram"></i></div>
-                <h4>Telegram</h4>
-                <div class="preference-text">Предпочтительно</div>
-                <p>@arinanett</p>
-                <a href="https://t.me/arinanett" target="_blank" rel="noopener" class="action-btn action-primary">Написать</a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon max"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Max_logo_2025.png" alt="Max logo"></div>
-                <h4>MAX</h4>
-                <p>Профиль на MAX</p>
-                <a href="https://web.max.ru/10624402" target="_blank" rel="noopener" class="action-btn action-primary">Перейти в профиль</a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon phone"><i class="fas fa-phone"></i></div>
-                <h4>Телефон</h4>
-                <p>+79633480774</p>
-                <a href="tel:+79633480774" class="action-btn action-primary">Позвонить</a>
-            </div>
+    <div id="multiContactModal" class="contact-modal" role="dialog" aria-modal="true" aria-label="Контакты">
+      <div class="modal-content-multi">
+        <span class="close-modal" aria-label="Закрыть">&times;</span>
+        <div class="contact-card">
+          <div class="contact-icon"><img src="tg.png" alt="Telegram"></div>
+          <h4>Telegram</h4>
+          <div class="preference-text">Предпочтительно</div>
+          <p>@arinanett</p>
+          <div class="actions-wrapper">
+            <a href="https://t.me/arinanett" target="_blank" rel="noopener" class="action-btn action-primary">Написать</a>
+            <button class="action-btn action-secondary" data-copy-value="@arinanett"><i class="fas fa-copy"></i> Копировать ссылку</button>
+          </div>
         </div>
+        <div class="contact-card">
+          <div class="contact-icon"><img src="max.png" alt="MAX"></div>
+          <h4>MAX</h4>
+          <p>Профиль на MAX</p>
+          <div class="actions-wrapper">
+            <a href="https://web.max.ru/10624402" target="_blank" rel="noopener" class="action-btn action-primary">Перейти в профиль</a>
+            <button class="action-btn action-secondary" data-copy-value="https://web.max.ru/10624402"><i class="fas fa-copy"></i> Копировать ссылку</button>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><img src="phone.png" alt="Телефон"></div>
+          <h4>Телефон</h4>
+          <p>+79633480774</p>
+          <div class="actions-wrapper">
+            <a href="tel:+79633480774" class="action-btn action-primary">Позвонить</a>
+            <button class="action-btn action-secondary" data-copy-value="+79633480774"><i class="fas fa-copy"></i> Копировать номер</button>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="copy-notification" id="copyNotification">Ссылка скопирована в буфер обмена!</div>
     
     <footer id="developer-signature">
-        Сайт разработал 
-        <a href="#" onclick="event.preventDefault(); alert('Сайт Алексея Бронникова в разработке');">
-            Алексей Бронников
-        </a>
+        <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
         <span class="footer-year">2025</span>
+        <span class="footer-version">v 1.6</span>
     </footer>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Создание частиц
-            const particlesContainer = document.getElementById('particles');
-            if (particlesContainer) {
-                for (let i = 0; i < 50; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    const size = Math.random() * 15 + 3;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${Math.random() * 100}vw`;
-                    particle.style.top = `${Math.random() * 100}vh`;
-                    particle.style.opacity = Math.random() * 0.3 + 0.1;
-                    particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
-                    particle.style.animationDelay = `${Math.random() * 5}s`;
-                    particlesContainer.appendChild(particle);
-                }
+          const particlesContainer = document.getElementById('particles');
+          if (particlesContainer) {
+            for (let i = 0; i < 50; i++) {
+              const p = document.createElement('div');
+              p.className = 'particle';
+              const size = Math.random() * 15 + 3;
+              p.style.width = size + 'px';
+              p.style.height = size + 'px';
+              p.style.left = (Math.random() * 100) + 'vw';
+              p.style.top = (Math.random() * 100) + 'vh';
+              p.style.opacity = (Math.random() * 0.3 + 0.1).toFixed(2);
+              p.style.animationDuration = (Math.random() * 15 + 10).toFixed(1) + 's';
+              p.style.animationDelay = (Math.random() * 5).toFixed(1) + 's';
+              particlesContainer.appendChild(p);
             }
-            
-            // Логика скролла для хедера
-            const header = document.getElementById('header');
-            function handleScroll() {
-                if (header) {
-                    header.classList.toggle('scrolled', window.scrollY > 50);
-                }
-            }
-            window.addEventListener('scroll', handleScroll);
-
-            // Логика модального окна контактов
-            const multiModal = document.getElementById("multiContactModal");
-            const navContactsLink = document.getElementById('nav-contacts-link');
-
-            if (navContactsLink) {
-                navContactsLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if(multiModal) multiModal.style.display = "flex";
-                });
-            }
-
-            function closeModal() {
-                if(multiModal) multiModal.style.display = "none";
-            }
-
-            document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
-            window.addEventListener('click', (e) => {
-                if (e.target === multiModal) {
-                    closeModal();
-                }
+          }
+          
+          const header = document.getElementById('header');
+          function handleScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 50); }
+          window.addEventListener('scroll', handleScroll);
+          
+          const nav = document.querySelector('.primary-navigation');
+          const navToggle = document.querySelector('.mobile-nav-toggle');
+          if (navToggle && nav) {
+            navToggle.addEventListener('click', () => {
+              const isVisible = nav.getAttribute('data-visible') === 'true';
+              nav.setAttribute('data-visible', !isVisible);
+              navToggle.setAttribute('aria-expanded', !isVisible);
+              navToggle.querySelector('i').classList.toggle('fa-bars', isVisible);
+              navToggle.querySelector('i').classList.toggle('fa-times', !isVisible);
             });
+          }
 
-            // Управление мобильной навигацией
-            const nav = document.querySelector('.primary-navigation');
-            const navToggle = document.querySelector('.mobile-nav-toggle');
+          const multiModal = document.getElementById("multiContactModal");
+          const copyNotification = document.getElementById("copyNotification");
+          const isMobileViewport = () => window.matchMedia('(max-width: 1023.98px)').matches;
 
-            if (navToggle && nav) {
-                navToggle.addEventListener('click', () => {
-                    const isVisible = nav.getAttribute('data-visible');
-                    if (isVisible === 'false') {
-                        nav.setAttribute('data-visible', true);
-                        navToggle.setAttribute('aria-expanded', true);
-                        navToggle.querySelector('i').classList.replace('fa-bars', 'fa-times');
-                    } else {
-                        nav.setAttribute('data-visible', false);
-                        navToggle.setAttribute('aria-expanded', false);
-                        navToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
-                    }
-                });
+          function lockBodyScroll(lock) {
+            document.body.style.overflow = lock ? 'hidden' : '';
+          }
+
+          function showCopyNotification(text) {
+            if (copyNotification) {
+              copyNotification.textContent = 'Скопировано: ' + text;
+              copyNotification.style.display = "block";
+              setTimeout(() => { copyNotification.style.display = "none"; }, 2000);
             }
+          }
+
+          function openModal() {
+            if (multiModal) {
+              multiModal.style.display = "flex";
+              if (isMobileViewport()) lockBodyScroll(true);
+            }
+          }
+
+          function closeModal() {
+            if (multiModal) multiModal.style.display = "none";
+            lockBodyScroll(false);
+          }
+
+          document.getElementById('nav-contacts-link')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal();
+          });
+
+          document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+          window.addEventListener('click', (e) => {
+            if (e.target === multiModal) closeModal();
+          });
+          window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+          });
+
+          document.querySelectorAll('#multiContactModal [data-copy-value]').forEach(button => {
+            button.addEventListener('click', () => {
+              const valueToCopy = button.dataset.copyValue;
+              navigator.clipboard.writeText(valueToCopy).then(() => showCopyNotification(valueToCopy));
+            });
+          });
         });
     </script>
 </body>
