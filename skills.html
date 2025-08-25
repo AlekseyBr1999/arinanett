@@ -100,7 +100,7 @@
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
         .skill-card { background: rgba(18, 18, 30, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; min-height: 100px; }
         .skill-card:hover { transform: translateY(-8px); background: rgba(25, 25, 40, 0.9); border-color: rgba(109, 142, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin: 0; overflow-wrap: break-word; /* ИСПРАВЛЕНИЕ 1 (МОБИЛЬНАЯ ВЕРСИЯ): Это свойство решает проблему с длинными названиями навыков, перенося их на новую строку внутри блока. */ }
+        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin: 0; overflow-wrap: break-word; /* ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ: Это свойство переносит длинный текст на новую строку */ }
         
         .key-points { margin-top: 40px; display: flex; flex-direction: column; gap: 30px; }
         .key-point { position: relative; padding-left: 40px; }
@@ -156,9 +156,14 @@
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
         /* Адаптивность и мобильная навигация */
-        /* ИСПРАВЛЕНИЕ 2 (ДЕКСТОПНАЯ ВЕРСИЯ): Симметричная сетка 5x2 */
+        /* ИСПРАВЛЕНИЕ ДЛЯ ДЕСКТОПА: Отдельные правила для разных сеток */
         @media (min-width: 992px) {
+            /* Правило по умолчанию для сеток с 8 элементами (4 в ряд) */
             .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            /* Отдельное правило для сетки с 10 элементами (5 в ряд) */
+            .skills-grid.professional-skills-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
         }
@@ -295,7 +300,7 @@
 
             <div class="skills-section">
                 <h3 class="section-subtitle">Ключевые профессиональные навыки</h3>
-                 <div class="skills-grid">
+                 <div class="skills-grid professional-skills-grid"> 
                     <div class="skill-card"><h4>Написание рекламных статей</h4></div>
                     <div class="skill-card"><h4>Наполнение контентом</h4></div>
                     <div class="skill-card"><h4>Журналистика</h4></div>
