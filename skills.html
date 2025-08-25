@@ -100,7 +100,7 @@
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
         .skill-card { background: rgba(18, 18, 30, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center; transition: all 0.3s ease; backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; min-height: 100px; }
         .skill-card:hover { transform: translateY(-8px); background: rgba(25, 25, 40, 0.9); border-color: rgba(109, 142, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin: 0; overflow-wrap: break-word; /* ИСПРАВЛЕНИЕ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ: Это свойство переносит длинный текст на новую строку */ }
+        .skill-card h4 { font-size: 1.2rem; font-weight: 600; margin: 0; overflow-wrap: break-word; word-break: break-all; /* ИСПРАВЛЕНИЕ: Добавлено для принудительного переноса очень длинных слов */ }
         
         .key-points { margin-top: 40px; display: flex; flex-direction: column; gap: 30px; }
         .key-point { position: relative; padding-left: 40px; }
