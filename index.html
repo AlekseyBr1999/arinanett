@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head  <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Арина Петрова | PR, креативные тексты, редактура, контент-стратегии</title>
 
@@ -43,7 +44,7 @@
       transform:translateY(0); transition: transform .4s ease, background .4s ease;
     }
     header.scrolled { background:rgba(8,8,16,0.95); transform:translateY(-10px); box-shadow:0 10px 30px rgba(0,0,0,0.5); }
-    .logo { font-size:1.8rem; font-weight:700; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px; transition:all .3s ease; }
+    .logo { font-size:1.8rem; font-weight:700; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px; transition:all .3s ease; text-decoration: none; }
     header.scrolled .logo { transform:scale(1.05); }
     .mobile-nav-toggle { display:none; }
     nav ul { display:flex; gap:35px; list-style:none; }
@@ -127,6 +128,99 @@
       .reviews-mobile { display:none; }
       .reviews-desktop { display:block; }
     }
+    
+    /* --- Стили для блога --- */
+    .blog-section { padding: 100px 20px; position: relative; z-index: 2; }
+    .blog-desktop .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 48px;
+    }
+    .blog-card {
+      background: rgba(22,22,36,0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s ease, box-shadow .3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      height: 100%;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    .blog-card-content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .blog-card-category {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a0a0d0;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .blog-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      color: #fff;
+    }
+    .blog-card-excerpt {
+      font-size: 0.95rem;
+      color: rgba(220,220,240,0.85);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .blog-card-link {
+      font-weight: 600;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap .3s ease;
+      background: linear-gradient(90deg, #6d8eff, #e23f77);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      align-self: flex-start;
+    }
+    .blog-card-link i {
+      transition: transform .3s ease;
+    }
+    .blog-card:hover .blog-card-link {
+      gap: 12px;
+    }
+    .blog-card:hover .blog-card-link i {
+      transform: translateX(4px);
+    }
+    .blog-cta {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .blog-mobile { margin-top: 40px; }
+    .blog-mobile .swiper { width: 100%; padding-bottom: 32px; }
+    .blog-mobile .swiper-wrapper { align-items: stretch; }
+    .blog-mobile .swiper-pagination { position: relative; margin-top: 18px; }
+    .blog-mobile .swiper-pagination-bullet { background: rgba(255,255,255,0.3); width: 10px; height: 10px; opacity: 1; }
+    .blog-mobile .swiper-pagination-bullet-active { background: linear-gradient(90deg, #6d8eff, #e23f77); width: 26px; border-radius: 6px; }
+    .blog-desktop { display: none; }
+    @media (min-width: 1024px) {
+      .blog-mobile { display: none; }
+      .blog-desktop { display: block; }
+    }
+    /* --- Конец стилей для блога --- */
+
     .contacts-section { padding:100px 20px; position:relative; z-index:2; max-width:1200px; margin:0 auto; text-align:center; }
     .contact-icons { display:flex; flex-wrap:wrap; justify-content:center; gap:35px; max-width:900px; margin:60px auto 0; }
     .contact-item { position:relative; width:110px; height:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transform:translateY(30px) scale(.8); transition:all .5s ease; text-decoration:none !important; cursor:pointer; }
@@ -229,6 +323,7 @@
       .key-point-text { font-size:1.2rem; }
       .btn { padding:14px 28px; font-size:1rem; }
       .section-title { font-size:2.2rem; }
+      .blog-card-title { font-size: 1.15rem; }
       #multiContactModal .contact-card { width:90%; max-width:300px; }
       #multiContactModal .contact-card .contact-icon { width:60px; height:60px; }
     }
@@ -256,7 +351,7 @@
   <div class="parallax-layer layer-1"></div>
   <div class="parallax-layer layer-2"></div>
   <header id="header">
-    <div class="logo">Арина Петрова</div>
+    <a href="index.html" class="logo">Арина Петрова</a>
     <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
       <i class="fas fa-bars" aria-hidden="true"></i>
       <span class="sr-only">Меню</span>
@@ -267,6 +362,7 @@
         <li><a href="portfolio.html">Кейсы</a></li>
         <li><a href="skills.html">Экспертиза</a></li>
         <li><a href="services.html">Услуги</a></li>
+        <li><a href="blog.html">Блог</a></li>
         <li><a href="#contacts" id="nav-contacts-link">Контакты</a></li>
       </ul>
     </nav>
@@ -371,8 +467,83 @@
         </div>
       </div>
     </div>
-
   </section>
+
+  <section id="blog" class="blog-section">
+    <h2 class="section-title">Свежие статьи</h2>
+    
+    <div class="blog-mobile">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <a href="blog-post-1.html" class="blog-card">
+              <div class="blog-card-content">
+                <span class="blog-card-category">Категория 1</span>
+                <h3 class="blog-card-title">Статья 1</h3>
+                <p class="blog-card-excerpt">Краткое описание первой статьи. Здесь можно разместить несколько предложений, раскрывающих суть материала.</p>
+                <span class="blog-card-link">Читать далее <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="blog-post-2.html" class="blog-card">
+              <div class="blog-card-content">
+                <span class="blog-card-category">Категория 2</span>
+                <h3 class="blog-card-title">Статья 2</h3>
+                <p class="blog-card-excerpt">Краткое описание второй статьи. Здесь можно разместить несколько предложений, раскрывающих суть материала.</p>
+                <span class="blog-card-link">Читать далее <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="blog-post-3.html" class="blog-card">
+              <div class="blog-card-content">
+                <span class="blog-card-category">Категория 3</span>
+                <h3 class="blog-card-title">Статья 3</h3>
+                <p class="blog-card-excerpt">Краткое описание третьей статьи. Здесь можно разместить несколько предложений, раскрывающих суть материала.</p>
+                <span class="blog-card-link">Читать далее <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <div class="blog-desktop">
+      <div class="blog-grid">
+        <a href="blog-post-1.html" class="blog-card">
+          <div class="blog-card-content">
+            <span class="blog-card-category">Категория 1</span>
+            <h3 class="blog-card-title">Статья 1</h3>
+            <p class="blog-card-excerpt">Краткое описание первой статьи. Здесь можно разместить несколько предложений, раскрывающих суть материала.</p>
+            <span class="blog-card-link">Читать далее <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a href="blog-post-2.html" class="blog-card">
+          <div class="blog-card-content">
+            <span class="blog-card-category">Категория 2</span>
+            <h3 class="blog-card-title">Статья 2</h3>
+            <p class="blog-card-excerpt">Краткое описание второй статьи. Здесь можно разместить несколько предложений, раскрывающих суть материала.</p>
+            <span class="blog-card-link">Читать далее <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a href="blog-post-3.html" class="blog-card">
+          <div class="blog-card-content">
+            <span class="blog-card-category">Категория 3</span>
+            <h3 class="blog-card-title">Статья 3</h3>
+            <p class="blog-card-excerpt">Краткое описание третьей статьи. Здесь можно разместить несколько предложений, раскрывающих суть материала.</p>
+            <span class="blog-card-link">Читать далее <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="blog-cta">
+      <a href="blog.html" class="btn btn-primary"><i class="fas fa-rss"></i> Перейти в блог</a>
+    </div>
+  </section>
+
   <section id="contacts" class="contacts-section">
     <h2 class="section-title">Связаться</h2>
     <div class="contact-icons">
@@ -391,7 +562,7 @@
     <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
     <span class="footer-year">2025</span>
     
-    <span class="footer-version">v 1.6</span>
+    <span class="footer-version">v 1.8</span>
   </footer>
 
   
@@ -442,7 +613,7 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // --- Скрипты для анимаций и UI (не тронуты) ---
+      // --- Скрипты для анимаций и UI ---
       const particlesContainer = document.getElementById('particles');
       if (particlesContainer) {
         for (let i = 0; i < 50; i++) {
@@ -498,18 +669,42 @@
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.section-title, .contact-item').forEach(el => observer.observe(el));
+      
+      // Инициализация Swiper для отзывов
       const mobileSwiperEl = document.querySelector('.reviews-mobile .swiper');
       if (mobileSwiperEl) {
         new Swiper(mobileSwiperEl, {
           slidesPerView: 1,
           spaceBetween: 16,
           speed: 450,
-          pagination: { el: '.reviews-mobile .swiper-pagination', clickable: true }
+          pagination: { el: '.reviews-mobile .swiper-pagination', clickable: true },
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20
+            }
+          }
         });
       }
 
-      // --- ИСПРАВЛЕННАЯ ЛОГИКА МОДАЛЬНЫХ ОКОН ---
+      // Инициализация Swiper для блога
+      const blogSwiperEl = document.querySelector('.blog-mobile .swiper');
+      if (blogSwiperEl) {
+        new Swiper(blogSwiperEl, {
+          slidesPerView: 1,
+          spaceBetween: 16,
+          speed: 450,
+          pagination: { el: '.blog-mobile .swiper-pagination', clickable: true },
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20
+            }
+          }
+        });
+      }
 
+      // --- ЛОГИКА МОДАЛЬНЫХ ОКОН ---
       const singleModal = document.getElementById('singleContactModal');
       const multiModal = document.getElementById('multiContactModal');
       const copyNotification = document.getElementById("copyNotification");
@@ -556,7 +751,6 @@
         document.body.style.overflow = lock ? 'hidden' : '';
       }
 
-      // Функция для открытия ОДИНОЧНОГО модального окна
       function openSingleModal(contactType) {
           if (!singleModal || !contactData[contactType]) return;
           
@@ -569,7 +763,6 @@
           modalElements.primaryAction.textContent = data.primaryActionText;
           modalElements.copyAction.innerHTML = data.secondaryActionText;
           
-          // **ИСПРАВЛЕНИЕ**: Очищаем контейнер и создаем QR-код заново каждый раз
           modalElements.qrContainer.innerHTML = ''; 
           if (data.isPhone) {
               modalElements.qrContainer.classList.add('no-bg');
@@ -590,7 +783,6 @@
           lockBodyScroll(true);
       }
 
-      // Функция для открытия МУЛЬТИ-модального окна
       function openMultiModal() {
         if (multiModal) {
             multiModal.style.display = "flex";
@@ -605,33 +797,29 @@
           currentContactType = null;
       }
 
-      // --- Назначение обработчиков событий ---
-
-      // Иконки контактов открывают ОДИНОЧНЫЕ окна
       document.querySelectorAll('.contact-item[data-contact]').forEach(item => {
           item.addEventListener('click', () => openSingleModal(item.dataset.contact));
       });
       
-      // **ИСПРАВЛЕНИЕ**: Ссылка в навигации открывает МУЛЬТИ-окно
       document.getElementById('nav-contacts-link')?.addEventListener('click', function(e) {
           e.preventDefault();
-          openMultiModal();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
       });
 
-      // Кнопки закрытия для ВСЕХ модальных окон
       document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', closeAllModals));
       
-      // Закрытие по клику на фон
       window.addEventListener('click', (e) => {
           if (e.target === singleModal || e.target === multiModal) closeAllModals();
       });
 
-      // Закрытие по Escape
       window.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') closeAllModals();
       });
 
-      // Логика копирования для ОДИНОЧНОГО окна
       modalElements.copyAction.addEventListener('click', () => {
           if (currentContactType) {
               const valueToCopy = contactData[currentContactType].copyValue;
@@ -640,7 +828,6 @@
           }
       });
 
-      // Логика копирования для МУЛЬТИ-окна
       document.querySelectorAll('#multiContactModal [data-copy-value]').forEach(button => {
         button.addEventListener('click', () => {
           const valueToCopy = button.dataset.copyValue;
