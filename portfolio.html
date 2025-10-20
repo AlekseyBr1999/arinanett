@@ -62,7 +62,7 @@
         /* Хедер с навигацией */
         header { position: fixed; top: 0; left: 0; right: 0; padding: 25px 5%; z-index: 100; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 11, 19, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); transform: translateY(0); transition: transform 0.4s ease, background 0.4s ease; }
         header.scrolled { background: rgba(8, 8, 16, 0.95); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
-        .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; transition: all 0.3s ease; }
+        .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; transition: all 0.3s ease; text-decoration: none; }
         header.scrolled .logo { transform: scale(1.05); }
         
         /* Навигация */
@@ -110,21 +110,19 @@
             line-height: 1.6;
             color: rgba(220, 220, 240, 0.85);
         }
-        /* --- НОВЫЕ СТИЛИ для списков обязанностей --- */
         .experience-box ul {
             list-style-position: outside;
-            padding-left: 20px; /* Отступ для маркеров списка */
+            padding-left: 20px;
         }
         .experience-box li {
             font-size: 1rem;
             line-height: 1.6;
             color: rgba(220, 220, 240, 0.85);
-            margin-bottom: 8px; /* Отступ между пунктами */
+            margin-bottom: 8px;
         }
         .experience-box li:last-child {
             margin-bottom: 0;
         }
-        /* --- КОНЕЦ НОВЫХ СТИЛЕЙ --- */
         
         .portfolio-request-section {
             text-align: center;
@@ -144,38 +142,21 @@
         .btn-primary { color: white; box-shadow: 0 10px 30px rgba(56, 95, 255, 0.3); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(56, 95, 255, 0.4); }
         
-        /* --- СТИЛИ ПОДВАЛА --- */
         #developer-signature { position:relative; z-index:10; text-align:center; padding:25px 20px; font-size:1rem; color:rgba(220,220,240,0.6); background:rgba(8,8,16,0.6); backdrop-filter: blur(5px); border-top:1px solid rgba(255,255,255,0.08); font-weight:500; }
         #developer-signature a { color:inherit; text-decoration:none; transition:color .3s ease; }
         #developer-signature a:hover { color:#fff; }
         .signature-e { font-weight:700; font-size:1.1em; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         .footer-year { display:block; margin-top:8px; font-size:.9rem; color:rgba(220,220,240,0.3); }
         .footer-version { display:block; margin-top:10px; font-size:.8rem; color:rgba(220,220,240,0.4); letter-spacing:1px; }
-        /* --- КОНЕЦ СТИЛЕЙ ПОДВАЛА --- */
 
-        /* --- Стили модальных окон --- */
         .contact-modal { display:none; position:fixed; z-index:2000; inset:0; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(10px); animation: fadeIn .3s ease; align-items:center; justify-content:center; }
         @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
         .close-modal { color:#aaa; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; transition:all .3s ease; width:auto; height:auto; background:transparent; border:none; box-shadow:none; border-radius:0; }
         .close-modal:hover, .close-modal:focus { color:#fff; transform:scale(1.2); }
-        .modal-content { background: rgba(14,14,24,0.95); padding:30px; border:1px solid rgba(255,255,255,0.1); border-radius:20px; width:90%; max-width:500px; text-align:center; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
-        .modal-header h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; }
-        .contact-qr { margin: 0 auto 20px; background: white; padding: 10px; border-radius: 10px; line-height: 0; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
-        .contact-details p { font-size: 1.2rem; color: #a0a0d0; margin-bottom: 5px;}
-        .contact-phone { font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 20px; }
-        .contact-actions { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-        .action-btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all .3s ease; border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; z-index: 1; }
-        .action-secondary { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
-        .action-secondary:hover { background: rgba(255,255,255,0.2); }
-        .action-primary { color: #fff; }
-        .action-primary::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #385fff, #e23f77); transition: transform .3s ease; }
-        .action-primary:hover::before { transform: scale(1.05); }
-        .action-primary:hover { box-shadow: 0 8px 20px rgba(56,95,255,0.3); }
-
-        /* МУЛЬТИ-модальное окно */
+        
         #multiContactModal .modal-content-multi { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; background:transparent; border:none; box-shadow:none; width:100%; max-width:950px; position:relative; padding:40px 20px; }
         .contact-card { background: rgba(18,18,30,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:25px; width:280px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:15px; opacity:0; transform:translateY(30px); animation: cardFadeInUp .6s ease forwards; }
-        .contact-card:nth-child(2) { animation-delay:.1s; } .contact-card:nth-child(3) { animation-delay:.2s; }
+        .contact-card:nth-child(2) { animation-delay:.1s; }
         @keyframes cardFadeInUp { to { opacity:1; transform:translateY(0) } }
         #multiContactModal .contact-card .contact-icon { width: 60px; height: 60px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; background: none; border-radius: 0; }
         #multiContactModal .contact-card .contact-icon img { width: 100%; height: 100%; object-fit: contain; }
@@ -186,23 +167,11 @@
         #multiContactModal .action-btn { width: 100%; }
         .copy-notification { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(14,14,24,0.95); color:#6d8eff; padding:10px 25px; border-radius:50px; font-weight:600; box-shadow:0 5px 20px rgba(0,0,0,0.3); display:none; z-index:3000; }
 
-        .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border-width: 0;
-        }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
         
-        /* Адаптивность и мобильная навигация */
         @media (max-width: 1023.98px) {
           .contact-modal { padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
-          .modal-content, #multiContactModal .modal-content-multi { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; }
-          .modal-content { width: clamp(280px, 92vw, 500px); border-radius:16px; }
+          #multiContactModal .modal-content-multi { max-height: 92vh; overflow: auto; -webkit-overflow-scrolling: touch; }
           #multiContactModal .modal-content-multi { width: clamp(300px, 96vw, 950px); padding: 60px 16px 20px; }
           .close-modal { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); z-index: 2100; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color:#fff; font-size:26px; line-height:1; cursor:pointer; border:1px solid rgba(255,255,255,0.2); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform .15s ease, background .2s ease; }
           .close-modal:hover { transform: scale(1.08); background: rgba(0,0,0,0.7); }
@@ -229,7 +198,6 @@
             .experience-box p, .experience-box li { font-size: 0.9rem; }
             
             #multiContactModal .contact-card { width:90%; max-width:300px; }
-            .contact-card .contact-icon { width:60px; height:60px; }
         }
         @media (max-width: 480px) {
             .page-title { font-size: 2.4rem; }
@@ -239,10 +207,8 @@
             .experience-box { padding: 15px; }
             
             .action-btn { padding:12px 15px; font-size:.9rem; }
-            .contact-card { padding:18px; width:100%; max-width: 320px; }
-            .contact-card h4 { font-size:1.1rem; }
-            #multiContactModal .contact-card .contact-icon { width:56px; height:56px; }
-            .contact-card .action-btn { padding:11px; font-size:.9rem; }
+            #multiContactModal .contact-card { padding:18px; width:100%; max-width: 320px; }
+            #multiContactModal .contact-card h4 { font-size:1.1rem; }
         }
     </style>
 </head>
@@ -251,18 +217,18 @@
     <div class="particles" id="particles"></div>
     
     <header id="header">
-        <div class="logo">Арина Петрова</div>
+        <a href="index.html" class="logo">Арина Петрова</a>
         <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
             <i class="fas fa-bars" aria-hidden="true"></i>
             <span class="sr-only">Меню</span>
         </button>
         <nav>
             <ul id="primary-navigation" class="primary-navigation" data-visible="false">
-                
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="portfolio.html" class="active">Кейсы</a></li>
                 <li><a href="skills.html">Экспертиза</a></li>
                 <li><a href="services.html">Услуги</a></li>
+                <li><a href="blog.html">Блог</a></li>
                 <li><a href="#contacts" id="nav-contacts-link">Контакты</a></li>
             </ul>
         </nav>
@@ -694,7 +660,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Создание частиц
             const particlesContainer = document.getElementById('particles');
             if (particlesContainer) {
                 for (let i = 0; i < 30; i++) {
@@ -712,7 +677,6 @@
                 }
             }
             
-            // Логика скролла для хедера
             const header = document.getElementById('header');
             function handleScroll() {
                 if (header) {
@@ -721,7 +685,6 @@
             }
             window.addEventListener('scroll', handleScroll);
 
-            // Логика аккордеона
             document.querySelectorAll('.portfolio-header').forEach(header => {
                 header.addEventListener('click', function() {
                     const item = this.closest('.portfolio-item');
@@ -731,7 +694,6 @@
                 });
             });
 
-            // Новая логика модального окна
             const multiModal = document.getElementById("multiContactModal");
             const copyNotification = document.getElementById("copyNotification");
             const navContactsLink = document.getElementById('nav-contacts-link');
@@ -795,7 +757,6 @@
                 });
             });
 
-            // Мобильная навигация
             const nav = document.querySelector('.primary-navigation');
             const navToggle = document.querySelector('.mobile-nav-toggle');
 
