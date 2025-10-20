@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Блог | Арина Петрова</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; } /* <<-- ПЛАВНЫЙ СКРОЛЛ */
+    html, body { height:100%; overflow-x:hidden; }
+    body { background:#0b0b13; color:#fff; font-family:'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; min-height:100vh; position:relative; }
+    html::-webkit-scrollbar { width:12px; }
+    html::-webkit-scrollbar-track { background:#0b0b13; }
+    html::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #385fff, #e23f77);
+      border-radius:10px; border:2px solid #0b0b13;
+    }
+    html::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #5a7aff, #f35a8e); }
+    html { scrollbar-width:thin; scrollbar-color:#6d8eff #0b0b13; }
+    .bg-gradient {
+      position:fixed; inset:0; z-index:-2;
+      background:
+        radial-gradient(circle at 18% 32%, #2842c3bb 0%, transparent 55%),
+        radial-gradient(circle at 82% 72%, #c32b61bb 0%, transparent 44%),
+        linear-gradient(120deg, #10101b 90%, #202027 100%);
+      animation: gradientShift 12s infinite alternate;
+    }
+    @keyframes gradientShift { 0% { background-size:150% 150%; background-position:0% 0%; } 100% { background-size:160% 160%; background-position:100% 100%; } }
+    .particles { position:fixed; inset:0; pointer-events:none; z-index:-1; }
+    .particle { position:absolute; border-radius:50%; background:rgba(255,255,255,0.1); filter:blur(1px); animation: float 20s linear infinite; }
+    @keyframes float { 0% { transform: translateY(0) scale(1); opacity:0.7; } 50% { opacity:1; } 100% { transform: translateY(-120vh) scale(1.5); opacity:0.7; } }
+    .container { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:150px 20px 100px; }
+    
+    /* --- Стили шапки (идентичны главной) --- */
+    header {
+      position:fixed; top:0; left:0; right:0; padding:25px 5%; z-index:100;
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(11,11,19,0.85); backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      transition: background .4s ease;
+    }
+    header.scrolled { background:rgba(8,8,16,0.95); box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+    .logo { font-size:1.8rem; font-weight:700; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px; transition:all .3s ease; text-decoration: none; }
+    .logo:hover { transform: scale(1.05); }
+    .mobile-nav-toggle { display:none; }
+    nav ul { display:flex; gap:35px; list-style:none; }
+    nav a { color:rgba(220,220,230,0.85); text-decoration:none; font-weight:500; font-size:1.1rem; transition:all .3s ease; position:relative; }
+    nav a:hover { color:#fff; }
+    nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:linear-gradient(90deg, #6d8eff, #e23f77); transition:width .3s ease; }
+    nav a:hover::after { width:100%; }
+    nav a.active { color:#fff; font-weight: 600; }
+    nav a.active::after { width:100%; }
+
+    /* --- Стили для страницы блога --- */
+    .section-title { 
+      font-size:3.2rem; 
+      margin-bottom:60px; 
+      background:linear-gradient(90deg,#fff,#a0a0d0); 
+      -webkit-background-clip:text; 
+      -webkit-text-fill-color:transparent; 
+      text-align:center; 
+    }
+    .blog-page-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .blog-card {
+      background: rgba(22,22,36,0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s ease, box-shadow .3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      cursor: default;
+    }
+    /* <<-- ХОВЕР-ЭФФЕКТЫ */
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    .blog-card-image {
+      height: 220px;
+      overflow: hidden;
+      filter: grayscale(80%) brightness(0.7);
+      transition: filter .4s ease; /* <<-- Плавность для фильтра */
+    }
+    .blog-card:hover .blog-card-image {
+      filter: grayscale(0%) brightness(1); /* <<-- Эффект для картинки */
+    }
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .blog-card-content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 150px;
+    }
+    .blog-card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.8);
+      transition: color .4s ease; /* <<-- Плавность для текста */
+    }
+    .blog-card:hover .blog-card-title {
+      color: rgba(255,255,255,1); /* <<-- Эффект для текста */
+    }
+
+    /* --- Стили подвала (идентичны главной) --- */
+    #developer-signature { position:relative; z-index:10; text-align:center; padding:25px 20px; font-size:1rem; color:rgba(220,220,240,0.6); background:rgba(8,8,16,0.6); backdrop-filter: blur(5px); border-top:1px solid rgba(255,255,255,0.08); font-weight:500; }
+    #developer-signature a { color:inherit; text-decoration:none; transition:color .3s ease; }
+    #developer-signature a:hover { color:#fff; }
+    .signature-e { font-weight:700; font-size:1.1em; background:linear-gradient(90deg, #6d8eff, #e23f77); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .footer-year { display:block; margin-top:8px; font-size:.9rem; color:rgba(220,220,240,0.3); }
+    .footer-version { display:block; margin-top:10px; font-size:.8rem; color:rgba(220,220,240,0.4); letter-spacing:1px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+
+    /* --- Адаптивность --- */
+    @media (max-width: 1024px) {
+      .blog-page-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 850px) {
+      .primary-navigation { position:fixed; top:0; right:0; width:70%; max-width:400px; height:100vh; flex-direction:column; justify-content:center; align-items:center; padding:2em; background:rgba(11,11,19,0.95); backdrop-filter: blur(1rem); transform: translateX(100%); transition: transform 350ms ease-out; z-index:1000; }
+      .primary-navigation[data-visible="true"] { transform: translateX(0%); }
+      .primary-navigation a { display:block; width:100%; text-align:center; font-size:1.3rem; padding:1rem 0; white-space:normal; }
+      .mobile-nav-toggle { display:block; position:absolute; top:1.8rem; right:2rem; z-index:2000; background:transparent; border:0; color:#fff; font-size:1.5rem; cursor:pointer; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 120px 20px 80px; }
+      .section-title { font-size: 2.4rem; margin-bottom: 40px; }
+      .blog-page-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="particles" id="particles"></div>
+  
+  <header id="header">
+    <a href="index.html" class="logo">Арина Петрова</a>
+    <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+      <span class="sr-only">Меню</span>
+    </button>
+    <nav>
+      <ul id="primary-navigation" class="primary-navigation" data-visible="false">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="portfolio.html">Кейсы</a></li>
+        <li><a href="skills.html">Экспертиза</a></li>
+        <li><a href="services.html">Услуги</a></li>
+        <li><a href="blog.html" class="active">Блог</a></li>
+        <li><a href="index.html#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="blog-listing">
+      <h1 class="section-title">Блог</h1>
+      <div class="blog-page-grid">
+        
+        <div class="blog-card">
+          <div class="blog-card-image">
+            <img src="https://placehold.co/600x400/353545/151520?text=..." alt="Заглушка для статьи">
+          </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">Здесь скоро будет статья</h3>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card-image">
+            <img src="https://placehold.co/600x400/353545/151520?text=..." alt="Заглушка для статьи">
+          </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">Здесь скоро будет статья</h3>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-card-image">
+            <img src="https://placehold.co/600x400/353545/151520?text=..." alt="Заглушка для статьи">
+          </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">Здесь скоро будет статья</h3>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="developer-signature">
+    <a href="#" title="Сайт в разработке">Сайт разработал Алексей <span class="signature-e">Э.</span> Бронников</a>
+    <span class="footer-year">2025</span>
+    <span class="footer-version">v 2.0</span>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // --- Генерация частиц (идентично главной) ---
+      const particlesContainer = document.getElementById('particles');
+      if (particlesContainer) {
+        for (let i = 0; i < 50; i++) {
+          const p = document.createElement('div');
+          p.className = 'particle';
+          const size = Math.random() * 15 + 3;
+          p.style.width = size + 'px';
+          p.style.height = size + 'px';
+          p.style.left = (Math.random() * 100) + 'vw';
+          p.style.top = (Math.random() * 100) + 'vh';
+          p.style.opacity = (Math.random() * 0.3 + 0.1).toFixed(2);
+          p.style.animationDuration = (Math.random() * 15 + 10).toFixed(1) + 's';
+          p.style.animationDelay = (Math.random() * 5).toFixed(1) + 's';
+          particlesContainer.appendChild(p);
+        }
+      }
+
+      // --- Эффект "прилипания" шапки (идентично главной) ---
+      const header = document.getElementById('header');
+      function handleScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 50); }
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); 
+
+      // --- Логика мобильного меню (идентично главной) ---
+      const nav = document.querySelector('.primary-navigation');
+      const navToggle = document.querySelector('.mobile-nav-toggle');
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+          const isVisible = nav.getAttribute('data-visible') === 'true';
+          nav.setAttribute('data-visible', !isVisible);
+          navToggle.setAttribute('aria-expanded', !isVisible);
+          navToggle.querySelector('i').classList.toggle('fa-bars', isVisible);
+          navToggle.querySelector('i').classList.toggle('fa-times', !isVisible);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
